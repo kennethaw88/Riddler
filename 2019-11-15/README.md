@@ -13,7 +13,7 @@ What’s the area of the darker region?
 ## Classic
 
 You are given a fair, unweighted 10-sided die with sides labeled 0 to 9 and a sheet of paper to record your score.
-(If the very notion of a fair 10-sided die bothers you, and you need to know what sort of three-dimensional solid it is, then forget it — you have a random number generator that gives you an integer value from 0 to 9 with equal probability.
+(If the very notion of a fair 10-sided die bothers you, and you *need* to know what sort of three-dimensional solid it is, then forget it — you have a random number generator that gives you an integer value from 0 to 9 with equal probability.
 Your loss — the die was a collector’s item.)
 
 To start the game, you roll the die.
@@ -32,4 +32,4 @@ You ignore the fifth roll, since 8 is greater than the current last digit, 1.
 After the sixth roll, your score is 0.6211.
 And after the seventh roll, the game is over — 0.6211 is your final score.
 
-What will be your average final score in this game?
+What will be your *average* final score in this game?
