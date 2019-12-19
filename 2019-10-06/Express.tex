@@ -61,39 +61,30 @@
 
 \vspace{0.15in}
 
-{\Large 13 December 2019}
+{\Large 6 December 2019}
 \end{center}
 
 
 \section*{Riddle:}
 
-The infamous 1984 World Chess Championship match between the reigning world champion Anatoly Karpov and 21-year-old Garry Kasparov was supposed to have been played until either player had won six games.
-Instead, it went on for 48 games: Karpov won five, Kasparov won 3, and the other 40 games each ended in a draw.
-Alas, the match was controversially terminated without a winner.
+After being ambushed by the forces of the First Order on the planet Jakku, the droid BB-8 narrowly escaped and requires immediate help.
+Fortunately, there is one person (named Rey) on the planet who can help BB-8, but they’ve never met and BB-8 has no idea where Rey is located.
 
-We can deduce from the games Karpov and Kasparov played that, independently of other games, Karpov’s chances of winning each game were 5/48, Kasparov’s chances were 3/48, and the chances of a draw were 40/48.
-Had the match been allowed to continue indefinitely, what would have been Kasparov’s chances of eventually winning the match?
+Even if BB-8 did know where Rey was, what’s the probability that BB-8 could reach her within 24 hours?
+Assume Jakku has a radius of 4,000 miles (similar to Earth) and that BB-8 rolls along at a speed of 3 miles per hour.
 
 
 
 \section*{Solution:}
 
-There are two interpretations to this riddle.
+The area that BB-8 could cover is basically a circle around its starting point.
+Its maximum travel distance is 3~mph $\times$ 24~hours, or 72~miles.
+I will here assume that it would be in sight of Rey within a distance of about 2~miles, so the total coverage radius is generously 74~miles.
+The area of the circle is $\pi(74~\mathrm{mile})^{2}$, or $1.72\times10^{4}$~sq.~miles.
+The surface area of the planet is $4\pi(4,000~\mathrm{mile})^{2}$, or $2.01\times10^{8}$~sq.~miles.
+The probability is just the ratio of these two areas, so the solution is $8.556\times10^{-5}$, or
+\fcolorbox{red}{white}{\bf0.0086\%}\,.
 
-First I assumed that the match was started from scratch (i.e., from a score of 0-0-0).
-Then I just need to calculate what are the chances to win at least 6 games outright.
-It is clear that the probability of drawing has no impact on the calculations; a draw is essentially a do-over.
-Thus, the problem is reduced to starting a match at 0-0, with probabilities of winning 5/8 and 3/8 for Karpov and Kasparaov, respectively.
-The match is now best of 6, out of 11 matches.
-The total probability is a binomial sum:
-\begin{equation*}
-P(\mathrm{Kasparov}) = \sum_{n=6}^{11}\binom{11}{n}\left(\frac{3}{8}\right)^{n}\left(\frac{5}{8}\right)^{11-n}
-\end{equation*}
-This gives a solution of 0.19434\dots, or \fcolorbox{red}{white}{\bf 19.4\%}.
 
-The second interpretation is that the match continued from 3-5-48.
-Again, draws have no impact, so this is essentially a match starting at 3-5, with the same probabilities for the remaining games.
-The math is much simpler, since Kasparov must win three games in a row, with probability $(3/8)^{3}$.
-This solution is then 0.052734375, or \fcolorbox{red}{white}{\bf 5.3\%}.
 
 \end{document}

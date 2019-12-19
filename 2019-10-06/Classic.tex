@@ -1,0 +1,119 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+
+%\setlength{\droptitle}{-4em} % remove huge white space above title
+
+%\title{Riddler Express}
+%\author{}
+%\date{13 December 2019}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+%\maketitle
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 6 December 2019}
+\end{center}
+
+
+\section*{Riddle:}
+
+You have a playlist with exactly 100 tracks (i.e., songs), numbered 1 to 100.
+To go to another track, there are two buttons you can press: (1) ``Next,'' which will take you to the next track in the list or back to song 1 if you are currently on track 100, and (2) ``Random,'' which will take you to a track chosen uniformly from among the 100 tracks.
+Pressing ``Random'' can restart the track you’re already listening to — this will happen 1 percent of the time you press the “Random” button.
+
+For example, if you started on track 73, and you pressed the buttons in the sequence ``Random, Next, Random, Random, Next, Next, Random, Next,'' you might get the following sequence of track numbers: 73, 30, 31, 67, 12, 13, 14, 89, 90.
+You always know the number of the track you’re currently listening to.
+
+Your goal is to get to your favorite song (on track 42, of course) with as few button presses as possible.
+What should your general strategy be?
+Assuming you start on a random track, what is the average number of button presses you would need to make to reach your favorite song?
+
+
+
+\section*{Solution:}
+
+I will first translate the problem, so that the numbers make a bit more sense.
+The desired track is now 1, and the ``Next'' button becomes ``Previous''.
+Now it is a problem of counting down to 1.
+
+It is clear that the strategy must be pressing each button only for a pre-specified range (and of course, not doing anything on track 1).
+Suppose you start on track $k$.
+You should always press ``Previous'' for $k\leq n$ for some specified threshold track $n$.
+Thus the ``Previous'' range becomes 2--$n$.
+For all other tracks, you should press ``Random''.
+
+Within the range 2--$n$ it will always take $k-1$ clicks to get to 1.
+Outside that range, the probability of clicking into the range is $n/100$, so the average numbers of clicks to get there is $100/n$.
+Letting $M(k,n)$ be the expected number of clicks starting from track $k$ with threshold $n$, we see that
+\begin{equation*}
+M(k,n)=
+\begin{cases}
+k-1 & k\leq n \\
+\frac{100}{n}+\frac{1}{n}\sum\limits_{m=1}^{n}(m-1) & k>n
+\end{cases}
+\end{equation*}
+
+Furthur let $M(n)$ be the expected number of clicks with threshold $n$:
+\begin{equation*}
+M(n)=\frac{1}{100}\sum\limits_{k=1}^{100}M(k,n)
+\end{equation*}
+
+The problem is now to find the smallest value of $M(n)$.
+I have set up the calculations in the spreadsheet \texttt{Song\_skipping.xlsx}.
+The apparent solution is $n=14$, which gives an average of 12.6 clicks to get to track 1.
+Translating this back to the original problem means the 13 tracks prior to 42 become our range, and the solution is
+\fcolorbox{red}{white}{\bf Press ``Next'' for tracks 29--41, and press ``Random'' for all others.}
+
+
+
+\end{document}
