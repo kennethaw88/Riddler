@@ -4,7 +4,7 @@ https://fivethirtyeight.com/features/how-low-can-you-roll
 
 ## Express
 
-(https://github.com/kennethaw88/Riddler/blob/master/2019-11-15/halfcircles.png)
+![half circles](https://github.com/kennethaw88/Riddler/blob/master/2019-11-15/halfcircles.png)
 
 The picture above shows two semicircles.
 The lighter region (inside the larger semicircle but outside the smaller one) has an area of 7.
