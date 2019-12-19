@@ -1,0 +1,179 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+
+%\setlength{\droptitle}{-4em} % remove huge white space above title
+
+%\title{Riddler Express}
+%\author{}
+%\date{13 December 2019}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+%\maketitle
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.2in}
+
+{\Large 13 December 2019}
+\end{center}
+
+
+\section*{Riddle:}
+
+Suppose I have a rectangle whose side lengths are each a whole number, and whose area (in square units) is the same as its perimeter (in units of length). What are the possible dimensions for this rectangle?
+
+Alas, that’s not the riddle — that’s just the appetizer. The rectangle could be 4 by 4 or 3 by 6. You can check both of these: 4 · 4 = 16 and 4 + 4 + 4 + 4 = 16, while 3 · 6 = 18 and 3 + 6 + 3 + 6 = 18. These are the only two whole number dimensions the rectangle could have. (One way to see this is to call the rectangle’s length a and its width b. You’re looking for whole number solutions to the equation ab = 2a + 2b.)
+
+On to the main course! Instead of rectangles, let’s give rectangular prisms a try. What whole number dimensions can rectangular prisms have so that their volume (in cubic units) is the same as their surface area (in square units)?
+
+To get you started, Steve notes that 6 by 6 by 6 is one such solution. How many others can you find?
+
+
+\section*{Solution:}
+
+This is a fairly straightforward riddle.
+It amounts to solving the equation
+\begin{equation*}
+abc=2(ab+ac+bc)
+\end{equation*}
+for side lengths $a$, $b$, and $c$.
+One method is to just guess and check, since the answers will all be relatively small integers; the $6\times6\times6$ example shows that the maximum possible value of the smallest side is 6.
+This is because the third-order term on the left-hand side of the equation will grow faster than the second-order terms on the right-hand side.
+The guess and check method is made slightly easier by the observation that at least one side must have even length, reducing the number of guesses.
+
+Instead of guessing and checking, I substituted values of the smallest side (since it is limited to 1--6) and found the relation for the remaining two sides.
+Without loss of generality, I let $a$ be the smallest side to get 6 different relations for $b$ and $c$.
+
+\vspace{0.2in}
+
+$a=1$:
+\begin{equation*}
+b=-\frac{2c}{c+2}
+\end{equation*}
+This clearly has no solutions in which both $b$ and $c$ are positive.
+
+\vspace{0.2in}
+
+$a=2$:
+\begin{equation*}
+b=-c
+\end{equation*}
+Again, this has no postive solutions.
+
+\vspace{0.2in}
+
+$a=3$:
+\begin{equation*}
+b=\frac{6c}{c-6}
+\end{equation*}
+Here it is clear that $c>6$ for positive solutions.
+Checking all results up to $b=c$ gives
+\fcolorbox{red}{white}{$c=7$, $b=42$}\,;
+\fcolorbox{red}{white}{$c=8$, $b=24$}\,;
+\fcolorbox{red}{white}{$c=9$, $b=18$}\,;
+\fcolorbox{red}{white}{$c=10$, $b=15$}\,; and
+\fcolorbox{red}{white}{$c=12$, $b=12$}\,.
+
+\vspace{0.2in}
+
+$a=4$:
+\begin{equation*}
+b=\frac{8c}{c-8}
+\end{equation*}
+Here, $c>4$, with solutions
+\fcolorbox{red}{white}{$c=5$, $b=20$}\,;
+\fcolorbox{red}{white}{$c=6$, $b=12$}\,; and
+\fcolorbox{red}{white}{$c=8$, $b=8$}\,.
+
+
+\vspace{0.2in}
+
+$a=5$:
+\begin{equation*}
+b=\frac{10c}{3c-10}
+\end{equation*}
+Here, $c>3$, but I have already found solutions with sides $<5$, so this has the single solution
+\fcolorbox{red}{white}{$c=5$, $b=10$}\,.
+
+\vspace{0.2in}
+
+$a=6$:
+\begin{equation*}
+b=\frac{12c}{4c-12}
+\end{equation*}
+Here, $c>3$, but I have already found solutions with sides $<6$, so this recovers the example solution
+\fcolorbox{red}{white}{$c=6$, $b=6$}\,.
+
+\vspace{0.2in}
+
+Up to permutations, there are ten unique solutions to this problem.
+Letting $a\leq b\leq c$, the final solutions are
+
+\begin{center}
+\begin{tabular}{| >{\centering}p{0.5in} | >{\centering}p{0.5in} | >{\centering}p{0.5in} | >{\centering}p{1.75in} |}
+\hline
+{\bf a} & {\bf b} & {\bf c} & {\bf Volume/Surface area} \tabularnewline \hline
+3 & 7  & 42 & 882 \tabularnewline \hline
+3 & 8  & 24 & 576 \tabularnewline \hline
+3 & 9  & 18 & 486 \tabularnewline \hline
+3 & 10 & 15 & 450 \tabularnewline \hline
+3 & 12 & 12 & 432 \tabularnewline \hline
+4 & 5  & 20 & 400 \tabularnewline \hline
+4 & 6  & 12 & 288 \tabularnewline \hline
+4 & 8  & 8  & 256 \tabularnewline \hline
+5 & 5  & 10 & 250 \tabularnewline \hline
+6 & 6  & 6  & 216 \tabularnewline \hline
+\end{tabular}
+\end{center}
+
+
+
+\end{document}

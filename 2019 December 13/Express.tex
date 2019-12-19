@@ -1,18 +1,49 @@
 \documentclass{article}
 
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage[T1]{fontenc}
-\usepackage[margin=0.8in]{geometry}
-\usepackage{lipsum}
-\usepackage{lmodern}
-%\usepackage{setspace}
-\usepackage{titling}
-%\usepackage{url}
-\usepackage{xcolor} % colors and color boxes
-\usepackage[colorlinks,urlcolor=blue]{hyperref}
 
-\setlength{\droptitle}{-4em}
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+
+%\setlength{\droptitle}{-4em} % remove huge white space above title
 
 %\title{Riddler Express}
 %\author{}
@@ -20,9 +51,11 @@
 
 \begin{document}
 
-\pagestyle{empty}
+\pagestyle{empty} % don't number pages
 
 %\maketitle
+
+% custom title
 \begin{center}
 {\LARGE Riddler Express}
 
