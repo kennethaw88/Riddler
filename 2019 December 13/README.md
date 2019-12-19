@@ -1,10 +1,8 @@
-# Riddler from 13 December 2019
+# Can You Solve a Particularly Prismatic Puzzle? (13 December 2019)
 
 https://fivethirtyeight.com/features/can-you-solve-a-particularly-prismatic-puzzle
 
-## Can You Solve a Particularly Prismatic Puzzle?
-
-### Express
+## Express
 
 The infamous 1984 World Chess Championship match between the reigning world champion Anatoly Karpov and 21-year-old Garry Kasparov was supposed to have been played until either player had won six games.
 Instead, it went on for 48 games: Karpov won five, Kasparov won 3, and the other 40 games each ended in a draw.
@@ -13,7 +11,7 @@ Alas, the match was controversially terminated without a winner.
 We can deduce from the games Karpov and Kasparov played that, independently of other games, Karpov’s chances of winning each game were 5/48, Kasparov’s chances were 3/48, and the chances of a draw were 40/48.
 Had the match been allowed to continue indefinitely, what would have been Kasparov’s chances of eventually winning the match?
 
-### Classic
+## Classic
 
 Suppose I have a rectangle whose side lengths are each a whole number, and whose area (in square units) is the same as its perimeter (in units of length).
 What are the possible dimensions for this rectangle?

@@ -1,0 +1,66 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{lipsum}
+\usepackage{lmodern}
+%\usepackage{setspace}
+\usepackage{titling}
+%\usepackage{url}
+\usepackage{xcolor} % colors and color boxes
+\usepackage[colorlinks,urlcolor=blue]{hyperref}
+
+\setlength{\droptitle}{-4em}
+
+%\title{Riddler Express}
+%\author{}
+%\date{13 December 2019}
+
+\begin{document}
+
+\pagestyle{empty}
+
+%\maketitle
+\begin{center}
+{\LARGE Riddler Express}
+
+\vspace{0.2in}
+
+{\Large 13 December 2019}
+\end{center}
+
+
+\section*{Riddle:}
+
+The infamous 1984 World Chess Championship match between the reigning world champion Anatoly Karpov and 21-year-old Garry Kasparov was supposed to have been played until either player had won six games.
+Instead, it went on for 48 games: Karpov won five, Kasparov won 3, and the other 40 games each ended in a draw.
+Alas, the match was controversially terminated without a winner.
+
+We can deduce from the games Karpov and Kasparov played that, independently of other games, Karpov’s chances of winning each game were 5/48, Kasparov’s chances were 3/48, and the chances of a draw were 40/48.
+Had the match been allowed to continue indefinitely, what would have been Kasparov’s chances of eventually winning the match?
+
+
+
+\section*{Solution:}
+
+There are two interpretations to this riddle.
+
+First I assumed that the match was started from scratch (i.e., from a score of 0-0-0).
+Then I just need to calculate what are the chances to win at least 6 games outright.
+It is clear that the probability of drawing has no impact on the calculations; a draw is essentially a do-over.
+Thus, the problem is reduced to starting a match at 0-0, with probabilities of winning 5/8 and 3/8 for Karpov and Kasparaov, respectively.
+The match is now best of 6, out of 11 matches.
+The total probability is a binomial sum:
+\begin{equation*}
+P(\mathrm{Kasparov}) = \sum_{n=6}^{11}\binom{11}{n}\left(\frac{3}{8}\right)^{n}\left(\frac{5}{8}\right)^{11-n}
+\end{equation*}
+This gives a solution of 0.19434\dots, or \fcolorbox{red}{white}{\bf 19.4\%}.
+
+The second interpretation is that the match continued from 3-5-48.
+Again, draws have no impact, so this is essentially a match starting at 3-5, with the same probabilities for the remaining games.
+The math is much simpler, since Kasparov must win three games in a row, with probability $(3/8)^{3}$.
+This solution is then 0.052734375, or \fcolorbox{red}{white}{\bf 5.3\%}.
+
+\end{document}
