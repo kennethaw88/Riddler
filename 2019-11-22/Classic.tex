@@ -1,0 +1,138 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+
+%\setlength{\droptitle}{-4em} % remove huge white space above title
+
+%\title{Riddler Express}
+%\author{}
+%\date{13 December 2019}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+%\maketitle
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 22 November 2019}
+\end{center}
+
+
+\section*{Riddle:}
+
+Five friends with a lot in common are playing the Riddler Lottery, in which each must choose exactly five numbers from 1 to 70.
+After they all picked their numbers, the first friend notices that no number was selected by two or more friends.
+Unimpressed, the second friend observes that all 25 selected numbers are composite (i.e., not prime).
+Not to be outdone, the third friend points out that each selected number has at least two distinct prime factors.
+After some more thinking, the fourth friend excitedly remarks that the product of selected numbers on each ticket is exactly the same.
+At this point, the fifth friend is left speechless.
+(You can tell why all these people are friends.)
+
+What is the product of the selected numbers on each ticket?
+
+\textit{Extra credit}: How many \textit{different} ways could the friends have selected five numbers each so that all their statements are true?
+
+
+\section*{Solution:}
+
+This is a tough riddle.
+At the first level, since there are 25 numbers that the friends chose, there are $\binom{70}{25}> 6\times10^{18}$ possible sets of numbers to choose.
+Of course, many numbers can be immediately eliminated.
+
+First, I eliminate the primes (and 1):
+\begin{equation*}
+1,2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67
+\end{equation*}
+
+Next, I can eliminate powers of single primes:
+\begin{equation*}
+4,8,9,16,25,27,32,49,64
+\end{equation*}
+
+That leaves 41 numbers, so we narrow the possibilities to $\binom{41}{25}> 1\times10^{11}$ possible sets.
+Now comes the tricky part.
+Because each friend has the same product, any prime factor that appears in one friend's ticket must appear at least five times overall.
+So I now can eliminate multiples of primes $p$ where $6p>70$ (since we already removed the primes themselves):
+\begin{equation*}
+26,34,38,39,46,51,52,57,58,62,65,68,69
+\end{equation*}
+
+There are just 28 numbers and $\binom{28}{25}= 3{,}276$ possible sets left.
+The numbers are:
+\begin{equation*}
+6,10,12,14,15,18,20,21,22,24,28,30,33,35,36,40,42,44,45,48,50,54,55,56,60,63,66,70
+\end{equation*}
+
+So which three remaining numbers are leftover?
+I now look at the prime factorization of the total product of these numbers:
+\begin{equation*}
+2^{36}\cdot3^{22}\cdot5^{12}\cdot7^{8}\cdot11^{5}
+\end{equation*}
+
+The final result must have each power term be a multiple of five and therefore be a number raised to the fifth power (that number is the individual product on each ticket).
+By removing three numbers, the power term of 11 will be reduced by at most three, so I cannot eliminate any multiple of 11.
+Similar for seven, the power term can only be reduced by at most three, but I must reduce it by three to get to a fifth power.
+So the three leftover numbers are all multiples of seven.
+Again, for five, the power term can only be reduced by at most three, but I must reduce it by exactly two to get to a fifth power.
+So two of the numbers must be 35 and 70, also eliminating one factor of two.
+This leaves a leftover prime factorization of $3^{2}\cdot7^{1}=63$.
+So the final set of 25 numbers becomes:
+\begin{equation*}
+6,10,12,14,15,18,20,21,22,24,28,30,33,36,40,42,44,45,48,50,54,55,56,60,66
+\end{equation*}
+with a total product of $3.166\ldots\times10^{36}$.
+The product of each ticket is the fifth root of this number,
+\fcolorbox{red}{white}{19,958,400}\,,
+with a prime factorization of $2^{7}\cdot3^{4}\cdot5^{2}\cdot7^{1}\cdot11^{1}$.
+I have no idea how to tackle the question of how many ways there are to pick numbers with this product.
+
+
+\end{document}
