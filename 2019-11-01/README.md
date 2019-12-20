@@ -6,9 +6,13 @@ https://fivethirtyeight.com/features/how-long-is-the-snails-slimy-trail
 
 Six snails are situated at the corners of a regular hexagon whose sides are all 10 meters.
 Each snail is determined to reach its clockwise neighbor, and they all travel at the same speed.
-But keep in mind that as each snail moves along, slowly but surely, the snail it’s traveling toward is also moving toward another snail.
+But keep in mind that as each snail moves along, slowly but surely, the snail it’s traveling toward is *also* moving toward another snail.
 
 The result is six snails — and six trails of slime — that spiral inward toward the center of the hexagon, as shown in the animation below:
+
+![snails](https://github.com/kennethaw88/Riddler/blob/master/2019-11-01/hexagon.gif)
+
+How long is each snail’s slimy trail?
 
 ## Classic
 
