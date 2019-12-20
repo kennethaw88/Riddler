@@ -1,0 +1,243 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+
+% repeated symbols
+\makeatletter
+\newcount\my@repeat@count
+\newcommand{\myrepeat}[2]{%
+  \begingroup
+  \my@repeat@count=\z@
+  \@whilenum\my@repeat@count<#1\do{#2\advance\my@repeat@count\@ne}%
+  \endgroup
+}
+\makeatother
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 8 November 2019}
+\end{center}
+
+
+\section*{Riddle:}
+
+Now that Halloween has come and gone, your chances of getting free candy have similarly disappeared.
+Desperate for sugar, you wander into the candy store, where three kinds of candy are being sold: Almond Soys (yummy, sounds vegan!), Butterflingers and Candy Kernels.
+
+You’d like to buy at least one candy and at most 100, but you don’t care precisely how many you get of each or how many you get overall.
+So you might buy one of each, or you might buy 30 Almond Soys, six Butterflingers and 64 Candy Kernels.
+As long as you have somewhere between one and 100 candies, you’ll leave the store happy.
+
+But as a member of Riddler Nation, you can’t help but wonder: How many distinct ways are there for you to make your candy purchase?
+
+
+\section*{Solution:}
+
+Another way of stating this problem is how many ways are there to divide up 100 items among 4 groups, and in this case, one groupis just ``nothing''.
+So for however many candies below 100 are bought, the remaining items become the ``nothing'' group.
+I wasn't sure how exactly to frame this problem, since combinatorics can get really involved and confusing.
+So I basically set up the problem for numbers smaller than 100 and made exhaustive lists to get the general pattern.
+Suppose you are buying $n$ candies, still with 4 possible groups.
+Letting $C(n)$ be the numbers of ways to buy $n$ candies, I have for small $n$
+
+\vspace{0.2in}
+
+$n=0$, $C(n)=1$, trivially.
+
+\vspace{0.2in}
+
+$n=1$, $C(n)=4$, also somewhat trivially
+\begin{center}
+\begin{tabular}{c c c c}
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 0
+\end{tabular}
+\end{center}
+
+\vspace{0.2in}
+
+$n=2$, $C(n)=10$
+\begin{center}
+\begin{tabular}{c c c c}
+0 & 0 & 0 & 2 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 2 & 0 \\
+0 & 1 & 0 & 1 \\
+0 & 1 & 1 & 0
+\end{tabular}
+\qquad
+\begin{tabular}{c c c c}
+0 & 2 & 0 & 0 \\
+1 & 0 & 0 & 1 \\
+1 & 0 & 1 & 0 \\
+1 & 1 & 0 & 0 \\
+2 & 0 & 0 & 0
+\end{tabular}
+\end{center}
+
+\vspace{0.2in}
+
+$n=3$, $C(n)=20$
+\begin{center}
+\begin{tabular}{c c c c}
+0 & 0 & 0 & 3 \\
+0 & 0 & 1 & 2 \\
+0 & 0 & 2 & 1 \\
+0 & 0 & 3 & 1 \\
+0 & 1 & 0 & 2
+\end{tabular}
+\qquad
+\begin{tabular}{c c c c}
+0 & 1 & 1 & 1 \\
+0 & 1 & 2 & 0 \\
+0 & 2 & 0 & 1 \\
+0 & 2 & 1 & 0 \\
+0 & 3 & 0 & 0
+\end{tabular}
+\qquad
+\begin{tabular}{c c c c}
+1 & 0 & 0 & 2 \\
+1 & 0 & 1 & 1 \\
+1 & 0 & 2 & 0 \\
+1 & 1 & 0 & 1 \\
+1 & 1 & 1 & 0
+\end{tabular}
+\qquad
+\begin{tabular}{c c c c}
+1 & 2 & 0 & 0 \\
+2 & 0 & 0 & 1 \\
+2 & 0 & 1 & 0 \\
+2 & 1 & 0 & 0 \\
+3 & 0 & 0 & 0
+\end{tabular}
+\end{center}
+
+\newpage
+
+And just in case the pattern isn't clear, $n=4$, $C(n)=35$
+\begin{center}
+\begin{tabular}{c c c c}
+0 & 0 & 0 & 4 \\
+0 & 0 & 1 & 3 \\
+0 & 0 & 2 & 2 \\
+0 & 0 & 3 & 1 \\
+0 & 0 & 4 & 0 \\
+0 & 1 & 0 & 3 \\
+0 & 1 & 1 & 2
+\end{tabular}
+\qquad
+\begin{tabular}{c c c c}
+0 & 1 & 2 & 1 \\
+0 & 1 & 3 & 0 \\
+0 & 2 & 0 & 2 \\
+0 & 2 & 1 & 1 \\
+0 & 2 & 2 & 0 \\
+0 & 3 & 0 & 1 \\
+0 & 3 & 1 & 0
+\end{tabular}
+\qquad
+\begin{tabular}{c c c c}
+0 & 4 & 0 & 0 \\
+1 & 0 & 0 & 3 \\
+1 & 0 & 1 & 2 \\
+1 & 0 & 2 & 1 \\
+1 & 0 & 3 & 0 \\
+1 & 1 & 0 & 2 \\
+1 & 1 & 1 & 1
+\end{tabular}
+\qquad
+\begin{tabular}{c c c c}
+1 & 1 & 2 & 0 \\
+1 & 2 & 0 & 1 \\
+1 & 2 & 1 & 0 \\
+1 & 3 & 0 & 0 \\
+2 & 0 & 0 & 2 \\
+2 & 0 & 1 & 1 \\
+2 & 0 & 2 & 0
+\end{tabular}
+\qquad
+\begin{tabular}{c c c c}
+2 & 1 & 0 & 1 \\
+2 & 1 & 1 & 0 \\
+2 & 2 & 0 & 0 \\
+3 & 0 & 0 & 1 \\
+3 & 0 & 1 & 0 \\
+3 & 1 & 0 & 0 \\
+4 & 0 & 0 & 0
+\end{tabular}
+\end{center}
+
+\vspace{0.2in}
+
+Now it is clear that the pattern is a sum of triangular numbers, i.e., $1=1$, $4=1+3$, $10=1+3+6$, etc., so that I have
+\[
+C(n)=\sum\limits_{m=1}^{n+1}Tri_{m}=\sum\limits_{m=1}^{n+1}\frac{m(m+1)}{2}
+\]
+
+But then I started thinking: geometrically, triangular numbers are just sums of the whole numbers, and a triangle is formed by stacking them.
+Similarly, stacking triangles actually gives tetrahedra, so in principle, I am just re-calculating the tetrahedral numbers.
+Sure enough,
+\[
+Tet_{n}=\sum\limits_{m=1}^{n}Tri_{m}=\sum\limits_{m=1}^{n}\frac{m(m+1)}{2}=\frac{n(n+1)(n+2)}{6}
+\]
+
+So now I get $C(100)=Tet_{101}=176851$.
+But wait!
+This number includes the possibility of having all 100 candies in the ``nothing'' group.
+So I reduce this by 1 to get the final solution of
+\fcolorbox{red}{white}{\bf 176,850}\,.
+
+
+\end{document}
