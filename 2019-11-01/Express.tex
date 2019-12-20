@@ -44,17 +44,6 @@
 
 \DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
 
-% repeated symbols
-\makeatletter
-\newcount\my@repeat@count
-\newcommand{\myrepeat}[2]{%
-  \begingroup
-  \my@repeat@count=\z@
-  \@whilenum\my@repeat@count<#1\do{#2\advance\my@repeat@count\@ne}%
-  \endgroup
-}
-\makeatother
-
 \begin{document}
 
 \pagestyle{empty} % don't number pages
