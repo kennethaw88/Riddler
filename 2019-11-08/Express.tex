@@ -1,0 +1,129 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+
+% repeated symbols
+\makeatletter
+\newcount\my@repeat@count
+\newcommand{\myrepeat}[2]{%
+  \begingroup
+  \my@repeat@count=\z@
+  \@whilenum\my@repeat@count<#1\do{#2\advance\my@repeat@count\@ne}%
+  \endgroup
+}
+\makeatother
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Riddler Express}
+
+\vspace{0.15in}
+
+{\Large 8 November 2019}
+\end{center}
+
+
+\section*{Riddle:}
+
+Suppose I asked you to generate the biggest number you could using exactly three nines.
+Specifically, you can add, subtract, multiply, divide, exponentiate or write them side-by-side.
+Given this challenge, $9\times9\times9$ is a pretty good start---it equals 729.
+Better yet is just writing the nines side-by-side, giving you 999.
+The biggest number is $9^{9^{9}}$, which equals $9^{387420489}$.
+If you were to write one digit of that number every second, it would take you more than a decade to write the whole thing.
+
+Now let’s up the challenge: What’s the biggest number you can generate using exactly four threes?
+
+
+\section*{Solution:}
+
+Since the most powerful function I can use is exponentiation, that will obviously be in the solution.
+But which combination of threes is best?
+Some first guesses are:
+\begin{align*}
+3^{3^{3^{3}}} \\
+3^{333} \\
+33^{33} \\
+333^{3}
+\end{align*}
+Very quickly, I can see that $333^{3}$ is much too small---I can calculate that by hand!
+I definitely need a solution with multiple steps (really, tetration).
+Now I also note that $33>3^{3}=27$, so I can reduce the possibilities to
+\begin{align*}
+3^{3^{33}} \\
+3^{333} \\
+33^{33} \\
+\end{align*}
+From here, I can calculate (online) that $3^{33}>5\times10^{15}\gg 333$, leaving only two possible answers.
+But I can make a further observation that
+\begin{align*}
+3^{5\times10^{15}} &= \left(3^{5}\right)^{10^{15}} \\
+ &> 33^{10^{15}} \\
+ &\gg 33^{33}
+\end{align*}
+So the final answer is
+\fcolorbox{red}{white}{$\bm{3^{3^{33}}}$}\,, which is such an enormously large number, I won't bother to calculate it at all.
+
+Of course, for fun, I also wanted to see how else I could combine four threes with additional operations.
+I am not using fuctions such as $\text{TREE}(n)$ or $g_{n}$, but I will use the extension of the tetration notation, Knuth's up arrows.
+That way I'm only using proper operators and the number three itself.
+Since I already know $33>3^{3}$, I believe the best answer I can get this way is
+\[
+3\uparrow^{33}3 = 3\myrepeat{33}{\uparrow}3
+\]
+which puts the former solution to shame.
+Actually, once a single up arrow is introduced as an operator, there's no limit to how many to put, so this method is really unlimited.
+An alternative way is to just use tetration proper (not pentation or anything higher), and by analogy to the real solution, the largest number produced in this way is
+\[
+^{^{33}3}3
+\]
+which, although not as large as the up-arrow solution, is still unimaginably larger than the real solution.
+
+
+\end{document}
