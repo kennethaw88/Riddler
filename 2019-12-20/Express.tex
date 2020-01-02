@@ -1,0 +1,128 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac} % in-line fractions
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+%\usepackage{xfrac} % in-line fractions (nicefrac is slightly better than sfrac)
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+
+%\setlength{\droptitle}{-4em} % remove huge white space above title
+
+%\title{Riddler Express}
+%\author{}
+%\date{13 December 2019}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+%\maketitle
+
+% custom title
+\begin{center}
+{\LARGE Riddler Express}
+
+\vspace{0.15in}
+
+{\Large 20 December 2019}
+\end{center}
+
+
+\section*{Riddle:}
+
+You’re new at your job, and your office is voting on a theme for its holiday party.
+It’s fallen on you to record the percent of your coworkers (including yourself) who voted for each one.
+Well, since you’re in a hurry, you just write down everything in the percentage that comes before the decimal point.
+So for example, 35.0 percent, 35.17 percent and 35.92 percent would all be written simply as “35 percent.”
+
+After the votes are tallied, you found that the winner received 73 percent of the vote (at least, that’s what you wrote down), while second place had 58 percent, and third place had 32 percent.
+Your first realization is that you work with a bunch of cheaters who voted more than once.
+But your second thought is that you might be able to use this information to figure out how many people work in your office.
+(As I said, you’re new, and this isn’t something you know off the top of your head.)
+
+Based on these percentages, what’s the minimum number of people who could work in your office?
+
+\textit{Extra credit}: Your office could be filled with many possible numbers of people. Based on the percentages given in the problem, what’s the greatest number of people your office can’t have?
+
+
+
+\section*{Solution:}
+
+Basically, this riddle boils down to solving for four integers $A, B, C, D$ such that:
+\[
+0.73\leq \frac{A}{D} <0.74
+\]
+\[
+0.58\leq \frac{B}{D} <0.59
+\]
+\[
+0.32\leq \frac{C}{D} <0.33
+\]
+
+The problem is to find the minimum value of $D$ with these solutions.
+The maximum value of $D$ is at most 100, since I can trivially obtain $\nicefrac{73}{100}=0.73$, $\nicefrac{58}{100}=0.58$, and  $\nicefrac{32}{100}=0.32$.
+Obtaining the real solution is a bit less trivial; literally guessing and checking, while possible, would take a while.
+
+Instead, I evaluated this problem in Excel, which can be seen in \texttt{office\_survey.xlsx}\,.
+For every possible value of $D$, I calculated $0.32*D$ and rounded up (via the ceiling function), which gave the lowest number $C$ for which $\nicefrac{A}{D}\geq0.32$.
+Then I calculated $0.33*D$ and rounded down (via the floor function), which gave the largest $C$ for which $\nicefrac{C}{D}\leq0.33$.
+If these two numbers are the same, it is clear that $A$ and $D$ satisfy the first condition, and creates a possible solution.
+There isn't a way to distinguish less then or less than or equal to in this way, so if $A$ is a multiple of 100, it won't give the same answer, even though I know a solution is possible.
+I repeated these checks for $B$ and $C$.
+The lowest value of $D$ with all three solutions is
+\fcolorbox{red}{white}{$D=34$}\,,
+and the full solution is
+\begin{align*}
+A&=25 &A/D&=73.53\% \\
+B&=20 &B/D&=58.85\% \\
+C&=11 &C/D&=32.35\% \\
+\end{align*}
+
+For the extra credit, it is not necessary to check beyond 100, because beyond this, the spacing between rational numbers is less than 0.1, so each of the ranges above necessarily has at least one possible solution.
+Therefore, I only need to check for what value of $D$ below 100 has at least one missing answer, and that is
+\fcolorbox{red}{white}{$D=88$}\,,
+for which $B$ has no solution.
+
+
+
+\end{document}
