@@ -1,0 +1,151 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 24 January 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+From Dean Ballard comes another coin-related challenge---a game of ``Pinching Pennies'':
+
+The game starts with somewhere between 20 and 30 pennies, which I then divide into two piles any way I like.
+Then we alternate taking turns, with you first, until someone wins the game.
+For each turn, a player may take any number of pennies he or she likes from either pile, or instead take the same number of pennies from both piles.
+Each player must also take at least one penny every turn.
+The winner of the game is the one who takes the last penny.
+
+If we both play optimally, what starting numbers of pennies (again, between 20 and 30) guarantee that you can win the game?
+
+
+\section*{Solution:}
+
+First off, this is a NIM game, which I generally dislike, mostly because I didn't \textit{get it} for a long time.
+Now that I understand the general solution methods for NIM games, I only dislike them a bit less.
+
+Luckily, it turns out the solution to this riddle has a simple, but non-obvious pattern.
+(Truthfully, all NIM solutions are non-obvious).
+The first step is to identify winning positions---sets of piles of given sizes which guaranteee that one player will win.
+I will consider the winning positions from the perspective of the player who just finished his or her turn (i.e., the first player (``I'') in this scenario).
+I will denote a position as $(m,n)$ where $m$ and $n$ are the sizes of the two piles and, without loss of generality, let $m<n$.
+Therefore, the total number of pennies in a position is $m+n$.
+The final winning position is (0,0), because of course, the player just won by removing all of the remaining pennies.
+
+The next step is to identify the lowest possible number of pennies which creates a winning position.
+For one remaining penny, the only position is (0,1), which is not a winning position, because the opponent \sout{can} must remove the penny.
+For two remaining pennies, there are two possible positions.
+The (0,2) position is not winning, because the opponent can remove both pennies from the same pile.
+Neither is (1,1) a winning position, because the opponent can remove one penny from both piles at the same time.
+
+The first non-trivial winning position is (1,2).
+From here, the opponent could remove the single penny from the first pile, leaving the first player the other pile altogether.
+Alternately, the opponent could remove one penny from the second pile, allowing the first player to remove one penny from both piles at once.
+Or, the opponent could remove two pennies from the second pile, forcing the first player to win (as above).
+Finally, the opponent could remove one penny from both piles, also forcing the first player to win.
+In general, any position of the form $(0,n)$ or $(m,m)$ leaves the other player with a trivial move to (0,0).
+I will now call these losing positions.
+It turns out every position is either winning or losing, so if a move does not create a guaranteed win, it in fact guarantees a loss.
+All of the possible moves from (1,2) lead to either of these losing positions, so it is a winning position.
+
+Now I can deduce three new losing positions: $(1,n)$, $(2,n)$, and $(m,m+1)$ (for $n>2$ and $m>1$).
+From $(1,n)$ or $(2,n)$, a player can remove enough pennies from the $n$ pile to arrive at the winning position (1,2).
+From any $(m,m+1)$ position, a player can remove $m-1$ pennies from both piles to get to (1,2).
+
+Here I make two more observations: \textit{any} position with zero, one, or two pennies left in a pile (other than (1,2) of course) is a losing position, and \textit{any} position where the difference between the piles is zero or one (also excluding (1,2)) is a losing position.
+Therefore, any other winning positions must have an $m$ that does not appear smaller winning positions.
+Further, the difference for winning positions ($n-m$) must also be larger than all smaller winning positions.
+In order to force wins, the $m$ and $n-m$ values must be the minimum that meets these criteria.
+So the next winning position will have $m=3$ with a difference of two, or (3,5).
+I manually checked all possible moves from this position, and indeed, none directly lead to a winning position, but do create losing positions that then lead to a winning position.
+
+\vspace{0.3in}
+Following this logic, the first few non-trivial winning positions are:
+
+\begin{center}
+\begin{tabular}{c}
+(1,2) \\
+(3,5) \\
+(4,7) \\
+(6,10) \\
+(8,13)
+\end{tabular}
+\qquad
+\begin{tabular}{c}
+(9,15) \\
+(11,18) \\
+(12,20) \\
+(14,23) \\
+(16,26)
+\end{tabular}
+\qquad
+\begin{tabular}{c}
+(17,28) \\
+(19,31) \\
+(21,34) \\
+(22,36) \\
+(23,38)
+\end{tabular}
+\end{center}
+
+The winning positions are easy to generate, but it's hard to find an exact pattern or formula for generating them.
+Concerning the original riddle, with total pennies in the range 20--30, the winning positions are (8,13), (9,15), and (11,18) for a total of 21, 24, and 29 pennies, respectively.
+But the riddle asked from which numbers of pennies can the opponent (``you'') win after the first player sets up the piles.
+This is just the reverse, so the solution is
+\fcolorbox{red}{white}{20, 22, 23, 25, 26, 27, 28, and 30}\,.
+
+\end{document}
