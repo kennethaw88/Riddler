@@ -30,4 +30,6 @@ If you were to arrange 12 of these tiles with their 30 degree angles in the cent
 If you were to put fewer (between three and 11) of those tiles together in a similar way, they would form a pyramid whose base is a regular polygon.
 Robert has graciously provided a photo of the resulting pyramids when three and 11 tiles are used:
 
+![pyramids](https://github.com/kennethaw88/Riddler/blob/master/2020-01-31/pyramids.png)
+
 If Robert wanted to maximize the volume contained within the resulting pyramid (presumably to store as much candy for his daughter as possible), how many tiles should he use?
