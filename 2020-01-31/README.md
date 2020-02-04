@@ -16,7 +16,7 @@ Let’s simplify the math a little, and say that each bowl is a sphere with a ra
 Let’s further suppose that your opponent’s two red bowls are separated by a distance of 3 — that is, the centers of the red bowls are separated by a distance of 5.
 Define *ɸ* as the angle between the path your bowl is on and the line connecting your opponent’s bowls.
 
-For example, here’s how you could split your opponent’s bowls when ɸ is 75 degrees:
+For example, here’s how you could split your opponent’s bowls when *ɸ* is 75 degrees:
 
 ![bowls](https://github.com/kennethaw88/Riddler/blob/master/2020-01-31/bowls.gif)
 
