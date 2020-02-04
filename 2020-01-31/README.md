@@ -18,7 +18,7 @@ Define *ɸ* as the angle between the path your bowl is on and the line connectin
 
 For example, here’s how you could split your opponent’s bowls when ɸ is 75 degrees:
 
-![bowls](../blob/master/2020-01-31/bowls.gif)
+![bowls](https://github.com/kennethaw88/Riddler/blob/master/2020-01-31/bowls.gif)
 
 What is the *minimum* value of *ɸ* that will allow your bowl to split your opponents’ bowls without hitting them?
 
