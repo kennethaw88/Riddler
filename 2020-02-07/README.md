@@ -25,7 +25,7 @@ For example, in the expression (1+2(3−4)+5), the closing parenthesis after the
 
 But pairings of other mathematical symbols can be more ambiguous.
 Take the absolute value symbols in Jim’s example, which are vertical bars, regardless of whether they mark the opening or closing of the absolute value.
-As Jim points out, |−1|−2|−3| has two possible interpretations:
+As Jim points out, |−1|−2|−3| has *two* possible interpretations:
 
 * The two left bars are a pair and the two right bars are a pair. In this case, we have 1−2·3 = 1−6 = −5.
 * The two outer bars are a pair and the two inner bars are a pair. In this case, we have |−1·2−3| = |−2−3| = |−5| = 5.

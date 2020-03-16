@@ -1,0 +1,92 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 7 February 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+This past Sunday was Groundhog Day.
+Also, there was a football game.
+But to top it all off, the date, 02/02/2020, was palindromic, meaning it reads the same forwards and backwards (if you ignore the slashes).
+
+If we write out dates in the American format of MM/DD/YYYY (i.e., the two digits of the month, followed by the two digits of the day, followed by the four digits of the year), how many more palindromic dates will there be this century?
+
+\section*{Solution:}
+
+The only thing to do to solve this riddle is simply to write out all the palindromic dates for the rest of the century.
+Because every year of the century begins with 20, the dates will always be the 2nd of each month.
+All possible dates are:
+
+\begin{align*}
+01/02/2010& &07/02/2070 \\
+02/02/2020& &08/02/2080 \\
+03/02/2030& &09/02/2090 \\
+04/02/2040& &10/02/2001 \\
+05/02/2050& &11/02/2011 \\
+06/02/2060& &12/02/2021
+\end{align*}
+
+Obviously, 2001, 2010, and 2011 have already passed, and not counting this weekend, there are
+\fcolorbox{red}{white}{eight remaining dates}\, this century.
+
+
+
+\end{document}

@@ -1,0 +1,158 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 7 February 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+Also on Super Bowl Sunday, math professor Jim Propp made a rather interesting observation:
+
+\begin{quote}
+I told my kid (who’d asked about absolute value signs) ``They’re just like parentheses so there’s never any ambiguity,'' but then I realized that things are more complicated; for instance |-1|-2|-3| could be 5 or -5. Has anyone encountered ambiguities like this in the wild?
+
+— James Propp (@JimPropp) \href{https://twitter.com/JimPropp/status/1224177172362989571}{February 3, 2020}
+\end{quote}
+
+At first glance, this might look like one of those annoying memes about order of operations that goes viral every few years---but it’s not.
+
+When you write lengthy mathematical expressions using parentheses, it's always clear which ``open'' parenthesis corresponds to which ``close'' parenthesis.
+For example, in the expression $(1+2(3-4)+5)$, the closing parenthesis after the 4 pairs with the opening parenthesis before the 3, and not with the opening parenthesis before the 1.
+
+But pairings of other mathematical symbols can be more ambiguous. Take the absolute value symbols in Jim’s example, which are vertical bars, regardless of whether they mark the opening or closing of the absolute value. As Jim points out, $|-1|-2|-3|$ has \textit{two} possible interpretations:
+
+\begin{itemize}
+\item The two left bars are a pair and the two right bars are a pair.
+In this case, we have $1-2\cdot3=1-6=-5$.
+
+\item The two outer bars are a pair and the two inner bars are a pair.
+In this case, we have $|-1\cdot2-3| = |-2-3| = |-5| = 5$.
+\end{itemize}
+
+Of course, if we gave each pair of bars a different height (as is done in mathematical typesetting), this wouldn't be an issue.
+But for the purposes of this problem, assume the bars are indistinguishable.
+
+How many different values can the expression $|-1|-2|-3|-4|-5|-6|-7|-8|-9|$ have?
+
+\section*{Solution:}
+
+As with this week's express riddle, the only way to solve this is just to explicitly write every possible interpretation and solve each equation.
+When I write these equations, I will be using bars of different heights, since this is of course mathematical typesetting.
+The interpretations are therefore (in more-or-less decreasing order of nesting depth):
+
+\begin{center}
+
+\begin{align*}
+\Bigg|-1\times\bigg|-2\times\Big|-3\times\big|-4\times|-5|-6\big|-7\Big|-8\bigg|-9\Bigg|=187 \\
+\bigg|-1\times\Big|-2\times\big|-3\times|-4|-5\times|-6|-7\big|-8\Big|-9\bigg|=115 \\
+\bigg|-1\times\Big|-2\times\big|-3\times|-4|-5\big|-6\times|-7|-8\Big|-9\bigg|=93 \\
+\bigg|-1\times\Big|-2\times\big|-3\times|-4|-5\big|-6\Big|-7\times|-8|-9\bigg|=105 \\
+\bigg|-1\times\Big|-2\times\big|-3\times|-4|-5\big|-6\Big|-7\bigg|-8\times|-9|=-25 \\
+\bigg|-1\times\Big|-2\times|-3|-4\big|-5\times|-6|-7\big|-8\Big|-9\bigg|=171 \\
+\Big|-1\times\big|-2\times|-3|-4\times|-5|-6\times|-7|-8\big|-9\Big|=85 \\
+\end{align*} % manually allow page break
+\begin{align*}
+\Big|-1\times\big|-2\times|-3|-4\times|-5|-6\big|-7\times|-8|-9\Big|=97 \\
+\Big|-1\times\big|-2\times|-3|-4\times|-5|-6\big|-7\Big|-8\times|-9|=-33 \\
+\Big|-1\times\big|-2\times|-3|-4\big|-5\times\big|-6\times|-7|-8\big|-9\Big|=269 \\
+\Big|-1\times\big|-2\times|-3|-4\big|-5\times|-6|-7\times|-8|-9\Big|=105 \\
+\Big|-1\times\big|-2\times|-3|-4\big|-5\times|-6|-7\Big|-8\times|-9|=-25 \\
+\Big|-1\times\big|-2\times|-3|-4\big|-5\Big|-6\times\big|-7\times|-8|-9\big|=-375 \\
+\Big|-1\times\big|-2\times|-3|-4\big|-5\Big|-6\times|-7|-8\times|-9|=-99 \\
+\bigg|-1\times|-2|-3\times\Big|-4\times\big|-5\times|-6|-7\big|-8\Big|-9\bigg|=479 \\
+\Big|-1\times|-2|-3\times\big|-4\times|-5|-6\times|-7|-8\big|-9\Big|=281 \\
+\Big|-1\times|-2|-3\times\big|-4\times|-5|-6\big|-7\times|-8|-9\Big|=145 \\
+\Big|-1\times|-2|-3\times\big|-4\times|-5|-6\big|-7\Big|-8\times|-9|=15 \\
+\Big|-1\times|-2|-3\times|-4|-5\times\big|-6\times|-7|-8\big|-9\Big|=273 \\
+\big|-1\times|-2|-3\times|-4|-5\times|-6|-7\times|-8|-9\big|=109 \\
+\big|-1\times|-2|-3\times|-4|-5\times|-6|-7\big|-8\times|-9|=-21 \\
+\big|-1\times|-2|-3\times|-4|-5\big|-6\times\big|-7\times|-8|-9\big|=-371 \\
+\big|-1\times|-2|-3\times|-4|-5\big|-6\times|-7|-8\times|-9|=-95 \\
+\big|-1\times|-2|-3\big|-4\times\Big|-5\times\big|-6\times|-7|-8\big|-9\Big|=-1031 \\
+\big|-1\times|-2|-3\big|-4\times\big|-5\times|-6|-7\times|-8|-9\big|=-375 \\
+\big|-1\times|-2|-3\big|-4\times\big|-5\times|-6|-7\big|-8\times|-9|=-215 \\
+\big|-1\times|-2|-3\big|-4\times|-5|-6\times\big|-7\times|-8|-9\big|=-405 \\
+\big|-1\times|-2|-3\big|-4\times|-5|-6\times|-7|-8\times|-9|=-129 \\
+|-1|-2\times\bigg|-3\times\Big|-4\times\big|-5\times|-6|-7\big|-8\Big|-9\bigg|=-953 \\
+|-1|-2\times\Big|-3\times\big|-4\times|-5|-6\times|-7|-8\big|-9\Big|=-437 \\
+|-1|-2\times\Big|-3\times\big|-4\times|-5|-6\big|-7\times|-8|-9\Big|=-285 \\
+|-1|-2\times\Big|-3\times\big|-4\times|-5|-6\big|-7\Big|-8\times|-9|=-241 \\
+|-1|-2\times\Big|-3\times|-4|-5\times\big|-6\times|-7|-8\big|-9\Big|=-541 \\
+|-1|-2\times\big|-3\times|-4|-5\times|-6|-7\times|-8|-9\big|=-213 \\
+|-1|-2\times\big|-3\times|-4|-5\times|-6|-7\big|-8\times|-9|=-169 \\
+|-1|-2\times\big|-3\times|-4|-5\big|-6\times\big|-7\times|-8|-9\big|=-423 \\
+|-1|-2\times\big|-3\times|-4|-5\big|-6\times|-7|-8\times|-9|=-147 \\
+|-1|-2\times|-3|-4\times\Big|-5\times\big|-6\times|-7|-8\big|-9\Big|=-1041 \\
+|-1|-2\times|-3|-4\times\big|-5\times|-6|-7\times|-8|-9\big|=-385 \\
+|-1|-2\times|-3|-4\times\big|-5\times|-6|-7\big|-8\times|-9|=-225 \\
+|-1|-2\times|-3|-4\times|-5|-6\times\big|-7\times|-8|-9\big|=-415 \\
+|-1|-2\times|-3|-4\times|-5|-6\times|-7|-8\times|-9|=-139 \\
+\end{align*}
+
+\end{center}
+
+By my count, that is 42 different interpretations.
+By coincidence, it seems some interpretations share solutions, even though they are calculated differently.
+In particular, $-375$, $-25$, and 105 are repeated exactly twice, so there are
+\fcolorbox{red}{white}{39}\, 
+possible solutions to the ambiguous equation.
+
+
+\end{document}
