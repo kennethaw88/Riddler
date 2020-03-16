@@ -15,6 +15,7 @@ If we write out dates in the American format of MM/DD/YYYY (i.e., the two digits
 Also on Super Bowl Sunday, math professor Jim Propp made a rather interesting observation:
 
 >I told my kid (who’d asked about absolute value signs) “They’re just like parentheses so there’s never any ambiguity,” but then I realized that things are more complicated; for instance |-1|-2|-3| could be 5 or -5. Has anyone encountered ambiguities like this in the wild?
+
 >— James Propp (@JimPropp) February 3, 2020
 
 At first glance, this might look like one of those annoying memes about order of operations that goes viral every few years — but it’s not.
