@@ -27,8 +27,8 @@ But pairings of other mathematical symbols can be more ambiguous.
 Take the absolute value symbols in Jim’s example, which are vertical bars, regardless of whether they mark the opening or closing of the absolute value.
 As Jim points out, |−1|−2|−3| has two possible interpretations:
 
-*The two left bars are a pair and the two right bars are a pair. In this case, we have 1−2·3 = 1−6 = −5.
-*The two outer bars are a pair and the two inner bars are a pair. In this case, we have |−1·2−3| = |−2−3| = |−5| = 5.
+* The two left bars are a pair and the two right bars are a pair. In this case, we have 1−2·3 = 1−6 = −5.
+* The two outer bars are a pair and the two inner bars are a pair. In this case, we have |−1·2−3| = |−2−3| = |−5| = 5.
 
 Of course, if we gave each pair of bars a different height (as is done in mathematical typesetting), this wouldn’t be an issue.
 But for the purposes of this problem, assume the bars are indistinguishable.
