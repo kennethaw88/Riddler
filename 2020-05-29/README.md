@@ -1,6 +1,6 @@
 Can You Join the World's Biggest Zoom Call?  (29 May 2020)
 
-https://fivethirtyeight.com/features/can-you-join-the-worlds-biggest-zoom-call/
+https://fivethirtyeight.com/features/can-you-join-the-worlds-biggest-zoom-call
 
 ## Express
 
