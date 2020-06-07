@@ -24,7 +24,6 @@
 %\usepackage{setspace} % adjust text spacing and indents
 \usepackage{siunitx} % decimal alignment
 \usepackage{subfigure} % divided figures
-\usepackage{sudoku} % sudoku grid
 %\usepackage{tabu} % extra table options
 \usepackage{textcomp} % symbols
 \usepackage{threeparttablex} % better footnotes with longtable
@@ -48,9 +47,6 @@
 \DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
 \renewcommand{\arraystretch}{1} % extra vertical space in tables
 
-\setlength\sudokusize{8cm}
-\renewcommand*\sudokuformat[1]{\LARGE\rmfamily#1}
-
 \begin{document}
 
 \pagestyle{empty} % don't number pages
@@ -61,43 +57,25 @@
 
 \vspace{0.15in}
 
-{\Large 15 May 2020}
+{\Large 1 May 2020}
 \end{center}
 
 
 \section*{Riddle:}
 
-As you sit down to pass the time with a sudoku puzzle, you immediately notice that the grid is oddly sparse---only a handful of numbers are initially filled in.
-But it gets worse.
-While there aren't any numbers that occur more than once in the same row, column, or square (i.e., the grid doesn't \textit{ostensibly} break any of the sudoku rules), upon closer inspection, you can see that the puzzle is impossible.
+And so, you must once again recreate the crystal using the data from Dakota’s laser scanner.
+As a reminder, the scanner takes a 3D object and records 2D cross-sectional slices along the third dimension. Here’s the looping animation file the scanner produced for the crystal \textit{this} time:
 
-What is the \textit{smallest} possible sum of the initial numbers in the grid?
-(Note that multiple instances of the same number count separately.
-So if your impossible grid happened to consist of eight 4s and two 5s, the sum would be 42.)
+\href{https://fivethirtyeight.com/wp-content/uploads/2020/04/crystal_538.gif}{Video link}
+
+What sort of three-dimensional shape is the crystal?
+No pressure---Dakota Jones, nay, the entire world, is counting on you to locate the lost temple!
 
 \section*{Solution:}
 
-Here is my solution:
-
-\vspace{0.1in}
-\begin{sudoku}
-|1| | | | | | | | |.
-| | | |1| | | | | |.
-| | | | | | |2| | |.
-| | | | | | | |1| |.
-| | | | | | | | | |.
-| | | | | | | | | |.
-| | | | | | | | |1|.
-| | | | | | | | | |.
-| | | | | | | | | |.
-\end{sudoku}
-\vspace{0.1in}
-
-It is impossible because the single 2 is occupying the only spot where the upper-right 1 must be.
-The sum of these numbers is a mere 6, which intuitively seems impossible to beat.
-I don't think this can be improved because there need to be at least four numbers to specify a fifth position, and just having a single other number to block it seems to be the minimum required to create an impossible  scenario.
-Therefore, using four 1s and a single 2 gives the minimum sum, so the solution to the riddle is
-\fcolorbox{red}{white}{\bf 6}\,.
+The shape is a
+\fcolorbox{red}{white}{\bf tetrahedron}\,,
+presumably a regular tetrahedron, but possibly stretched or compressed.
 
 
 

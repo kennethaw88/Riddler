@@ -1,0 +1,142 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 1 May 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+You are locked in the dungeon of a faraway castle with three fellow prisoners (i.e., there are four prisoners in total), each in a separate cell with no means of communication.
+But it just so happens that all of you are logicians (of course).
+
+To entertain themselves, the guards have decided to give you all a single chance for immediate release.
+Each prisoner will be given a fair coin, which can either be fairly flipped one time or returned to the guards without being flipped.
+If all flipped coins come up heads, you will all be set free!
+But if any of the flipped coins comes up tails, or if no one chooses to flip a coin, you will all be doomed to spend the rest of your lives in the castle's dungeon.
+
+The only tools you and your fellow prisoners have to aid you are random number generators, which will give each prisoner a random number, uniformly and independently chosen between zero and one.
+
+What are your chances of being released?
+
+\textit{Extra credit}: Instead of four prisoners, suppose there are N prisoners. Now what are your chances of being released?
+
+\section*{Solution:}
+
+Intuitively, this problem requires the balancing of two needs.
+The first need is the have as few prisoners as possible flip a coin; more coin flipping increases the chances of tails.
+The other is the need to avoid having nobody flip a coin at all, since this eliminates any possibility of release.
+My first thought was simply to maximize the individual probability of exactly one prisoner flipping a coin.
+But the solution is a bit more involved, since scenarios which tend to lead to one coin flip also lead to zero coin flips.
+Additionally, the solution needs to take into account the overall probability of each coin flipper getting heads.
+
+To identify a forumula for the solution, I define two terms which relate the final probability of release.
+First, let $P_{f}(n)$ be the probability of successfully flipping heads for each of $n$ prisoners (taking into account there needs to be at least one heads) is
+\[
+P_{f}(n)=
+\begin{cases}
+0 & n=0 \\
+\frac{1}{2^{n}} & n\geq1
+\end{cases}
+.
+\]
+
+Second, let $P_{p}(n,N)$ be the probability of having $n$ coin flippers out of $N$ prisoners given a threshold (or equivalently, range) of $p$:
+\[
+P_{p}(n)=\binom{N}{n}p^{n}(1-p)^{N-n}.
+\]
+
+The $p$ value is where the random number generators come in.
+Each prisoner should generate a number and if it is less than $p$ (or equivalently, within a specified range of length $p$) should flip the coin.
+
+The total probability of release $P_{success}$ is
+\[
+P_{success}=\sum_{n=0}^{N}P_{p}(n)P_{f}(n)=\sum_{n=1}^{N}\binom{N}{n}p^{n}(1-p)^{N-n}
+\]
+which becomes a polynomial in $p$.
+The solution is to maximize this with respect to $p$.
+For $N=4$, the polynomial is
+\[
+-\frac{15}{16}p^{3}+\frac{7}{2}p^{2}-\frac{9}{2}p+2
+\]
+which has a maximum of approximately 0.2848 at
+\fcolorbox{red}{white}{$\bm{p\approx0.3420}$}\,,
+which is the solution to the riddle.
+
+For the extra credit, I'm not sure how to turn this into an analytical solution.
+I have solved for a few other small values, but I'm not sure of the limiting result.
+
+\begin{center}
+\begin{tabular}{c c c}
+$N$ & $P_{success}$ & $p$ \\
+    &               & \\
+4   & 0.2848        & 0.3420 \\
+6   & 0.2720        & 0.2292 \\
+8   & 0.2661        & 0.1723 \\
+10  & 0.2627        & 0.1380
+\end{tabular}
+\end{center}
+
+It seems that the probability of success approches 0.25, but I can't prove that it does.
+It does make sense, though, that the optimum $p$ gets smaller, and probably approaches 0 for large $N$.
+This is because we want very few prisoners to have to flip a coin, and the expected number of coin flippers is always $Np$.
+
+
+
+\end{document}
