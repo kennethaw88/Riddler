@@ -1,6 +1,6 @@
-Can You Find The Fish In State Names?  (22 May 2020)
+Can You Flip Your Way To Freedom?  (1 May 2020)
 
-https://fivethirtyeight.com/features/somethings-fishy-in-the-state-of-the-riddler
+https://fivethirtyeight.com/features/can-you-flip-your-way-to-freedom
 
 ## Express
 
