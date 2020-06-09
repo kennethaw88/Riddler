@@ -1,0 +1,133 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 24 April 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+The Monty Hall problem is a classic case of conditional probability.
+In the original problem, there are three doors, two of which have goats behind them, while the third has a prize.
+You pick one of the doors, and then Monty (who knows in advance which door has the prize) will always open another door, revealing a goat behind it.
+It’s then up to you to choose whether to stay with your initial guess or to switch to the remaining door.
+Your best bet is to switch doors, in which case you will win the prize two-thirds of the time.
+
+Now suppose Monty changes the rules.
+First, he will randomly pick a number of goats to put behind the doors: zero, one, two or three, each with a 25 percent chance.
+After the number of goats is chosen, they are assigned to the doors at random, and each door has at most one goat.
+Any doors that don’t have a goat behind them have an identical prize behind them.
+
+At this point, you choose a door.
+If Monty is able to open another door, revealing a goat, he will do so.
+But if no other doors have goats behind them, he will tell you that is the case.
+
+It just so happens that when you play, Monty is able to open another door, revealing a goat behind it.
+Should you stay with your original selection or switch?
+And what are your chances of winning the prize?
+
+\section*{Solution:}
+
+These types of problems always confuse me.
+To get through this, I typed up the table laid out in \texttt{Super\_Monty\_Hall.xlsx}.
+This is basically a list of all possible combinations of outcomes.
+Each outcome has to consider several things, and the table goes through these in order:
+
+\begin{enumerate}
+\item the number of goats
+\item which door the contestant chooses
+\item if Monty can open a door with a goat
+\item which door Monty opens
+\item to which door the contestant switches
+\item whether the contestant wins
+\end{enumerate}
+
+Without loss of generality, however, I let the contestant always choose the first door first, and then if there is a door opened switch to the next available door.
+This doesn't affect the result, because each choice can be permuted, and the total statistics would look the same, only with more outcomes to sort through.
+In principle, each outcome could just be listed out, but the probability of each outcome is not the same; having a table makes the calculations much easier.
+
+In the spreadsheet, the successive probability of getting through each step is calculated.
+Of course, the probability of each first step (number of goats) is just \nicefrac{1}{4}, as stated in the riddle.
+But each successive step has different probabilities, depending on how the outcomes are divided up.
+For example, because there are three different ways to arrange one goat, but only 1 way to arrange three goats, the probability of getting the door arrangements for these cases are different.
+Similarly, when there are multiple doors available for Monty to open, these lead to multiple outcomes, splitting the probabilities further in those cases.
+
+The end result is that the probability of both winning by not switching and Monty opening one of the doors is \nicefrac{1}{4}.
+Similarly, the probability of winning by switching with an open door is \nicefrac{1}{3}.
+But the solution to the riddle needs to take into account that Monty did in fact open a door; the answer is a conditional probability.
+So these numbers need to be divided by the overall probability that Monty opened a door, which is \nicefrac{2}{3}.
+The probabilities then become \nicefrac{3}{8} and \nicefrac{1}{2}, respectively.
+The solution to the riddle is therefore to
+\fcolorbox{red}{white}{\bf switch doors}\,,
+giving the contestant a probability of winning of
+\fcolorbox{red}{white}{\bf \nicefrac{1}{2}}\,.
+
+I found it interesting that the overall probability of selecting a winning door from the beginning is \nicefrac{1}{2}.
+This is because of the symmetry of the problem.
+It is just as likely for there to be three goats as there are no goats.
+So really it seems like the above situation is only as good or worse than just picking a door and opening it immediately with no second option.
+But then how can the outcome be worse if the contestant has more information?
+Really, by opening a door with a goat, Monty is revealing that the constestant is in some outcome with goats, in which on average there is more than one goat.
+This overall lowers the initial probability of choosing a winning door.
+But if there are no goats---or if the contestant picks the single door with a goat---Monty has no doors to open, and the contestant is guaranteed a win by switching.
+So the two sets of outcomes do balance out.
+
+
+
+\end{document}
