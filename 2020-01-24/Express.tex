@@ -1,0 +1,94 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 24 January 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+Derek Jeter and Larry Walker were just elected to the Baseball Hall of Fame!
+That got Stephanie thinking.
+Suppose there are 20 players on the ballot and 400 voters in a given year.
+Each voter can select up to 10 players for induction without voting for any given player more than once.
+To gain entry, a player must have been selected on at least 75 percent of the ballots.
+
+Under these circumstances, what is the \textit{maximum} number of players that can be inducted into the Hall of Fame?
+
+
+\section*{Solution:}
+
+There are 400 total ballots, and I am assuming that each ballot must be cast, so that the 75\% threshold means that a player must receive 300 votes to be inducted.
+The first way to determine the maximum is to divide the total votes by the 300-vote threshold.
+Dividing 4000 votes by 300 gives 13.3\dots, which means that in principle, 13 players can be inducted.
+But is there a way that it works out for 13 players?
+
+The answer is yes.
+For this argument, I will label the 13 lucky players A--M.
+First, voters 1--300 each vote for player A.
+Then voters 301--400 and 1--200 vote for player B.
+Next, voters 201--400 and 1--100 vote for player C, and finally voters 101--400 vote for player D.
+In this scenario, A, B, C, and D have each received exactly 300 votes, and each voter has used 3 votes.
+This process repeats for players E--H and I--L.
+Now 12 players have each received the necessary votes, and each voter has voted nine times.
+Player M now just needs any 300 (or all 400) of the remaining votes.
+At most, there are only 100 votes remaining for player N, so the estimate above holds true, that the fourteenth player cannot be inducted.
+So the answer to the riddle is
+\fcolorbox{red}{white}{13 players}\,.
+
+\end{document}

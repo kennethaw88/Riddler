@@ -1,0 +1,93 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 18 October 2019}
+\end{center}
+
+
+\section*{Riddle:}
+
+Riddler Nation has two coins: the Dio, worth \$538, and the Phantus, worth \$19.
+When visiting on vacation, Riddler National Bank will gladly convert your dollars into Dios and Phanti.
+For example, if you were to give a bank teller \$614, they’d return to you one Dio and four Phanti, since $614=1\times538+4\times19$.
+But if you tried to exchange one dollar more (i.e., \$615), then alas, there is no combination of Dios and Phanti the teller could give you, and you won’t get your money's worth in local currency.
+
+To make the bank teller's job (and your vacation) as miserable as possible, you decide to bring the largest dollar amount that cannot be converted into Riddler currency.
+How much money are we talking here?
+That is, what's the largest whole number that \textit{cannot} be expressed as a sum of 19s and 538s?
+
+\textbf{Extra Credit}: Word is that Riddler Nation is considering minting a third currency, worth \$101.
+If they do, then what would be the largest dollar amount that cannot be converted into Riddler currency?
+
+\section*{Solution:}
+
+This is just the Mcnugget problem, which asks what is the largest number of Mcnuggets you can order at McDonald's which cannot be fulfilled by any combination of their Mcnugget sizes.
+For two relatively prime numbers $a$ and $b$, the largest number $x$ which cannot be expressed as a linear combination of the two is $x=ab-a-b$.
+So in this case, the solution is $19\times538-19-538$, or
+\fcolorbox{red}{white}{9,665}\,.
+
+For the extra credit, I don't know if there is a formula for three numbers.
+My strategy is to just solve for the smaller numbers (which have smaller solutions).
+For 19 and 101, the answer is $19\times101-19-101$, or 1,799.
+Of course I must check if this number can be achieved with 538 also in the mix.
+It turns out that it cannot be made from a linear combination of 19, 101, and 538, and in this case, 538 is irrelevant to the problem altogether.
+So the extra credit solution is
+\fcolorbox{red}{white}{1,799}\,.
+
+
+\end{document}
