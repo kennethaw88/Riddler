@@ -1,0 +1,409 @@
+max N = 20
+
+N = 12, possible target sum match at 3042.
+counter = 1652
+
+N = 12, possible target sum match at 3042.
+counter = 2443
+
+N = 15, possible target sum match at 7200.
+counter = 7868
+
+N = 15, possible target sum match at 7200.
+counter = 13515
+
+N = 15, possible target sum match at 7200.
+counter = 19252
+
+N = 15, possible target sum match at 7200.
+counter = 24899
+
+N = 16, possible target sum match at 9248.
+counter = 27030
+
+N = 16, possible target sum match at 9248.
+counter = 38505
+
+N = 19, possible target sum match at 18050.
+counter = 124339
+
+N = 19, possible target sum match at 18050.
+counter = 189590
+
+N = 19, possible target sum match at 18050.
+counter = 334697
+
+N = 19, possible target sum match at 18050.
+counter = 399948
+
+N = 20, possible target sum match at 22050.
+counter = 130042
+
+N = 20, possible target sum match at 22050.
+counter = 195378
+
+N = 20, possible target sum match at 22050.
+counter = 221117
+
+N = 20, possible target sum match at 22050.
+counter = 226296
+
+N = 20, possible target sum match at 22050.
+counter = 226926
+
+N = 20, possible target sum match at 22050.
+counter = 227577
+
+N = 20, possible target sum match at 22050.
+counter = 227672
+
+N = 20, possible target sum match at 22050.
+counter = 237045
+
+N = 20, possible target sum match at 22050.
+counter = 237247
+
+N = 20, possible target sum match at 22050.
+counter = 237342
+
+N = 20, possible target sum match at 22050.
+counter = 237346
+
+N = 20, possible target sum match at 22050.
+counter = 240597
+
+N = 20, possible target sum match at 22050.
+counter = 241209
+
+N = 20, possible target sum match at 22050.
+counter = 242426
+
+N = 20, possible target sum match at 22050.
+counter = 242564
+
+N = 20, possible target sum match at 22050.
+counter = 243802
+
+N = 20, possible target sum match at 22050.
+counter = 243845
+
+N = 20, possible target sum match at 22050.
+counter = 248550
+
+N = 20, possible target sum match at 22050.
+counter = 248631
+
+N = 20, possible target sum match at 22050.
+counter = 248956
+
+N = 20, possible target sum match at 22050.
+counter = 250512
+
+N = 20, possible target sum match at 22050.
+counter = 323256
+
+N = 20, possible target sum match at 22050.
+counter = 324982
+
+N = 20, possible target sum match at 22050.
+counter = 351673
+
+N = 20, possible target sum match at 22050.
+counter = 354277
+
+N = 20, possible target sum match at 22050.
+counter = 355225
+
+N = 20, possible target sum match at 22050.
+counter = 355653
+
+N = 20, possible target sum match at 22050.
+counter = 355855
+
+N = 20, possible target sum match at 22050.
+counter = 357482
+
+N = 20, possible target sum match at 22050.
+counter = 366522
+
+N = 20, possible target sum match at 22050.
+counter = 367803
+
+N = 20, possible target sum match at 22050.
+counter = 367898
+
+N = 20, possible target sum match at 22050.
+counter = 370407
+
+N = 20, possible target sum match at 22050.
+counter = 370502
+
+N = 20, possible target sum match at 22050.
+counter = 371153
+
+N = 20, possible target sum match at 22050.
+counter = 371355
+
+N = 20, possible target sum match at 22050.
+counter = 371783
+
+N = 20, possible target sum match at 22050.
+counter = 373120
+
+N = 20, possible target sum match at 22050.
+counter = 378450
+
+N = 20, possible target sum match at 22050.
+counter = 379102
+
+N = 20, possible target sum match at 22050.
+counter = 379106
+
+N = 20, possible target sum match at 22050.
+counter = 379187
+
+N = 20, possible target sum match at 22050.
+counter = 413680
+
+N = 20, possible target sum match at 22050.
+counter = 416924
+
+N = 20, possible target sum match at 22050.
+counter = 416928
+
+N = 20, possible target sum match at 22050.
+counter = 420222
+
+N = 20, possible target sum match at 22050.
+counter = 420480
+
+N = 20, possible target sum match at 22050.
+counter = 429810
+
+N = 20, possible target sum match at 22050.
+counter = 443062
+
+N = 20, possible target sum match at 22050.
+counter = 444438
+
+N = 20, possible target sum match at 22050.
+counter = 461779
+
+N = 20, possible target sum match at 22050.
+counter = 462190
+
+N = 20, possible target sum match at 22050.
+counter = 463746
+
+N = 20, possible target sum match at 22050.
+counter = 464057
+
+N = 20, possible target sum match at 22050.
+counter = 464152
+
+N = 20, possible target sum match at 22050.
+counter = 465027
+
+N = 20, possible target sum match at 22050.
+counter = 467609
+
+N = 20, possible target sum match at 22050.
+counter = 468037
+
+N = 20, possible target sum match at 22050.
+counter = 475356
+
+N = 20, possible target sum match at 22050.
+counter = 475360
+
+N = 20, possible target sum match at 22050.
+counter = 475441
+
+N = 20, possible target sum match at 22050.
+counter = 491571
+
+N = 20, possible target sum match at 22050.
+counter = 557004
+
+N = 20, possible target sum match at 22050.
+counter = 573134
+
+N = 20, possible target sum match at 22050.
+counter = 573215
+
+N = 20, possible target sum match at 22050.
+counter = 573219
+
+N = 20, possible target sum match at 22050.
+counter = 580538
+
+N = 20, possible target sum match at 22050.
+counter = 580966
+
+N = 20, possible target sum match at 22050.
+counter = 583548
+
+N = 20, possible target sum match at 22050.
+counter = 584423
+
+N = 20, possible target sum match at 22050.
+counter = 584518
+
+N = 20, possible target sum match at 22050.
+counter = 584829
+
+N = 20, possible target sum match at 22050.
+counter = 586385
+
+N = 20, possible target sum match at 22050.
+counter = 586796
+
+N = 20, possible target sum match at 22050.
+counter = 604137
+
+N = 20, possible target sum match at 22050.
+counter = 605513
+
+N = 20, possible target sum match at 22050.
+counter = 618765
+
+N = 20, possible target sum match at 22050.
+counter = 628095
+
+N = 20, possible target sum match at 22050.
+counter = 628353
+
+N = 20, possible target sum match at 22050.
+counter = 631647
+
+N = 20, possible target sum match at 22050.
+counter = 631651
+
+N = 20, possible target sum match at 22050.
+counter = 634895
+
+N = 20, possible target sum match at 22050.
+counter = 669388
+
+N = 20, possible target sum match at 22050.
+counter = 669469
+
+N = 20, possible target sum match at 22050.
+counter = 669473
+
+N = 20, possible target sum match at 22050.
+counter = 670125
+
+N = 20, possible target sum match at 22050.
+counter = 675455
+
+N = 20, possible target sum match at 22050.
+counter = 676792
+
+N = 20, possible target sum match at 22050.
+counter = 677220
+
+N = 20, possible target sum match at 22050.
+counter = 677422
+
+N = 20, possible target sum match at 22050.
+counter = 678073
+
+N = 20, possible target sum match at 22050.
+counter = 678168
+
+N = 20, possible target sum match at 22050.
+counter = 680677
+
+N = 20, possible target sum match at 22050.
+counter = 680772
+
+N = 20, possible target sum match at 22050.
+counter = 682053
+
+N = 20, possible target sum match at 22050.
+counter = 691093
+
+N = 20, possible target sum match at 22050.
+counter = 692720
+
+N = 20, possible target sum match at 22050.
+counter = 692922
+
+N = 20, possible target sum match at 22050.
+counter = 693350
+
+N = 20, possible target sum match at 22050.
+counter = 694298
+
+N = 20, possible target sum match at 22050.
+counter = 696902
+
+N = 20, possible target sum match at 22050.
+counter = 723593
+
+N = 20, possible target sum match at 22050.
+counter = 725319
+
+N = 20, possible target sum match at 22050.
+counter = 798063
+
+N = 20, possible target sum match at 22050.
+counter = 799619
+
+N = 20, possible target sum match at 22050.
+counter = 799944
+
+N = 20, possible target sum match at 22050.
+counter = 800025
+
+N = 20, possible target sum match at 22050.
+counter = 804730
+
+N = 20, possible target sum match at 22050.
+counter = 804773
+
+N = 20, possible target sum match at 22050.
+counter = 806011
+
+N = 20, possible target sum match at 22050.
+counter = 806149
+
+N = 20, possible target sum match at 22050.
+counter = 807366
+
+N = 20, possible target sum match at 22050.
+counter = 807978
+
+N = 20, possible target sum match at 22050.
+counter = 811229
+
+N = 20, possible target sum match at 22050.
+counter = 811233
+
+N = 20, possible target sum match at 22050.
+counter = 811328
+
+N = 20, possible target sum match at 22050.
+counter = 811530
+
+N = 20, possible target sum match at 22050.
+counter = 820903
+
+N = 20, possible target sum match at 22050.
+counter = 820998
+
+N = 20, possible target sum match at 22050.
+counter = 821649
+
+N = 20, possible target sum match at 22050.
+counter = 822279
+
+N = 20, possible target sum match at 22050.
+counter = 827458
+
+N = 20, possible target sum match at 22050.
+counter = 853197
+
+N = 20, possible target sum match at 22050.
+counter = 918533

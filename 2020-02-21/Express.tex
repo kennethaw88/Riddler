@@ -1,0 +1,90 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 21 February 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+On a warm, sunny day, Nick glanced at a thermometer, and noticed something quite interesting.
+When he toggled between the Fahrenheit and Celsius scales, the digits of the temperature---when rounded to the nearest degree---had switched.
+For example, this works for a temperature of 61 degrees Fahrenheit, which corresponds to a temperature of 16 degrees Celsius.
+
+However, the temperature that day was not 61 degrees Fahrenheit.
+What was the temperature?
+
+\section*{Solution:}
+
+The easiest way to solve this is to plug in several Fahrenheit temperatures into a spreadsheet, calculate the Celsius values, and visually compare the results.
+I have done this in the file \texttt{Temperatures.xlsx}, where I have checked values between 50\textdegree\ and 100\textdegree\ Fahrenheit.
+The values I checked were in 0.4\textdegree increments, so that the resolution was more than twice that of whole-number increments, to be wary of any intermediate rounding issues.
+The value of 0.4 is otherwise just arbitrary.
+
+Looking at the file, it is clear there are two solutions: 61\textdegree\ F/16\textdegree\ C and 82\textdegree\ F/28\textdegree\ C.
+Since 61/16 was already ruled out, the solution is
+\fcolorbox{red}{white}{82\textdegree\ F/28\textdegree\ C}\,.
+
+Out of curiosity, I wanted to check what actual range of temperatures to which this solution corresponds.
+The limits for 82\textdegree\ F are 81.5--82.5, which correspond to 27.5--28.056\textdegree\ C.
+The limits for 28\textdegree\ C are 27.5--28.5, which correspond to 81.5--83.3\textdegree\ F.
+Of course, the more stringent limits give the answer, which means the more precise temperature the thermometer recorded were in the range 81.5--82.499\textdegree\ F/27.5--28.056\textdegree\ C.
+
+
+\end{document}

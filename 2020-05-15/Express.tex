@@ -1,0 +1,104 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+\usepackage{sudoku} % sudoku grid
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1} % extra vertical space in tables
+
+\setlength\sudokusize{8cm}
+\renewcommand*\sudokuformat[1]{\LARGE\rmfamily#1}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 15 May 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+As you sit down to pass the time with a sudoku puzzle, you immediately notice that the grid is oddly sparse---only a handful of numbers are initially filled in.
+But it gets worse.
+While there aren't any numbers that occur more than once in the same row, column, or square (i.e., the grid doesn't \textit{ostensibly} break any of the sudoku rules), upon closer inspection, you can see that the puzzle is impossible.
+
+What is the \textit{smallest} possible sum of the initial numbers in the grid?
+(Note that multiple instances of the same number count separately.
+So if your impossible grid happened to consist of eight 4s and two 5s, the sum would be 42.)
+
+\section*{Solution:}
+
+Here is my solution:
+
+\vspace{0.1in}
+\begin{sudoku}
+|1| | | | | | | | |.
+| | | |1| | | | | |.
+| | | | | | |2| | |.
+| | | | | | | |1| |.
+| | | | | | | | | |.
+| | | | | | | | | |.
+| | | | | | | | |1|.
+| | | | | | | | | |.
+| | | | | | | | | |.
+\end{sudoku}
+\vspace{0.1in}
+
+It is impossible because the single 2 is occupying the only spot where the upper-right 1 must be.
+The sum of these numbers is a mere 6, which intuitively seems impossible to beat.
+I don't think this can be improved because there need to be at least four numbers to specify a fifth position, and just having a single other number to block it seems to be the minimum required to create an impossible  scenario.
+Therefore, using four 1s and a single 2 gives the minimum sum, so the solution to the riddle is
+\fcolorbox{red}{white}{\bf 6}\,.
+
+
+
+\end{document}

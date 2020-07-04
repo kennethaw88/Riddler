@@ -1,0 +1,131 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 15 May 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+The fifth edition of Dungeons \& Dragons introduced a system of ``advantage and disadvantage.''
+When you roll a die ``with advantage,'' you roll the die twice and keep the higher result.
+Rolling ``with disadvantage'' is similar, except you keep the lower result instead.
+The rules further specify that when a player rolls with both advantage and disadvantage, they cancel out, and the player rolls a single die.
+Yawn!
+
+There are two other, more mathematically interesting ways that advantage and disadvantage could be combined.
+First, you could have ``advantage of disadvantage,'' meaning you roll twice with disadvantage and then keep the higher result.
+Or, you could have ``disadvantage of advantage,'' meaning you roll twice with advantage and then keep the lower result.
+With a fair 20-sided die, which situation produces the highest expected roll: advantage of disadvantage, disadvantage of advantage or rolling a single die?
+
+\textit{Extra Credit}: Instead of maximizing your expected roll, suppose you need to roll $N$ or better with your 20-sided die.
+For each value of $N$, is it better to use advantage of disadvantage, disadvantage of advantage or rolling a single die?
+
+\section*{Solution:}
+
+Obviously, with a single roll, each number has a probability $P(n)=\nicefrac{1}{20}$ chance of being rolled, and the average roll is 10.5.
+How the advantage-of-disadvantage (AOD) and disadvantage-of-advantage (DOA) rolls compare to this depends on the probabilties that come out of the advantage and disadvantage rolling.
+I have covered all of this in the spreadsheet \texttt{DnD\_rolling.xlsx}.
+
+First, I have calculated the outcomes of the advantaged rolling.
+For this, I created a table that displays the maximum from each rolled pair of numbers.
+It is clear (and relatively straightforward to calculate by hand) that the probability of getting $n$ out of this scenario is
+
+\begin{equation*}
+P_{A}(n)=\frac{(2n-1)}{400}.
+\end{equation*}
+
+This probability is used in the DOA calculations.
+Although not relevant to the riddle, the average roll in this case is now 13.825.
+
+Next, I calculated the outcomes for the disadvantaged rolling using the minimum from each rolled pair.
+Now, the probability becomes
+
+\begin{equation*}
+P_{D}(n)=\frac{(41-2n)}{400},
+\end{equation*}
+
+with an average roll of 7.175.
+Similarly, this probability is used in the AOD calculations.
+For completeness, I note that
+
+\begin{equation*}
+\sum_{i=1}^{20}P_{A}(n)=\sum_{i=1}^{20}P_{D}(n)=1.
+\end{equation*}
+
+I never actually figured out an equation for the probabilities using the AOD and DOA strategies ($P_{AOD}(n)$ and $P_{DOA}(n)$).
+Instead I just created an extra set of tables, and made a few large Excel calculations to get to the solutions.
+The second two tables calculate the probabilites of rolling a given pair of numbers based on two advantaged or two disadvantaged rolls.
+I then calculated the average roll using those tables and the original maximum and minimum tables.
+The end result is that the AOD situation has an average roll of 9.833\dots, while the DOA gives 11.166\dots\,.
+Thus, the best strategy is
+\fcolorbox{red}{white}{\bf disadvantage-of-advantage}\,.
+
+I continued the calculations from the AOD and DOA tables to get at the extra credit question.
+The summed probability of getting at least $n$ is shown below these tables for each of the single roll, AOD, and DOA.
+Of course, for a roll of at least 1, all strategies give a probability of 1, since that includes all the numbers on the die.
+Up through 13, the DOA strategy gives the highest probability, while for 14 and above, the single roll is best.
+So the extra credit solution is
+\fcolorbox{red}{white}{\bf use any for at least 1, use DOA for at least 2--13, and use a single roll for 14--20}\,.
+
+
+
+
+
+\end{document}
