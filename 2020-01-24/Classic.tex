@@ -81,13 +81,14 @@ Now that I understand the general solution methods for NIM games, I only dislike
 Luckily, it turns out the solution to this riddle has a simple, but non-obvious pattern.
 (Truthfully, all NIM solutions are non-obvious).
 The first step is to identify winning positions---sets of piles of given sizes which guaranteee that one player will win.
-I will consider the winning positions from the perspective of the player who just finished his or her turn (i.e., the first player (``I'') in this scenario).
-I will denote a position as $(m,n)$ where $m$ and $n$ are the sizes of the two piles and, without loss of generality, let $m<n$.
+I will consider the winning positions from the perspective of the player who just finished his or her turn.
+That means that the solution is for the starting player (``I'') not to have placed the pennies in a winning position.
+I will denote a position as $(m,n)$ where $m$ and $n$ are the sizes of the two piles and, without loss of generality, let $m\leq <n$.
 Therefore, the total number of pennies in a position is $m+n$.
 The final winning position is (0,0), because of course, the player just won by removing all of the remaining pennies.
 
 The next step is to identify the lowest possible number of pennies which creates a winning position.
-For one remaining penny, the only position is (0,1), which is not a winning position, because the opponent \sout{can} must remove the penny.
+For one remaining penny, the only position is (0,1), which is not a winning position, because the opponent \sout{can} \textit{must} remove the penny.
 For two remaining pennies, there are two possible positions.
 The (0,2) position is not winning, because the opponent can remove both pennies from the same pile.
 Neither is (1,1) a winning position, because the opponent can remove one penny from both piles at the same time.
@@ -107,7 +108,7 @@ From $(1,n)$ or $(2,n)$, a player can remove enough pennies from the $n$ pile to
 From any $(m,m+1)$ position, a player can remove $m-1$ pennies from both piles to get to (1,2).
 
 Here I make two more observations: \textit{any} position with zero, one, or two pennies left in a pile (other than (1,2) of course) is a losing position, and \textit{any} position where the difference between the piles is zero or one (also excluding (1,2)) is a losing position.
-Therefore, any other winning positions must have an $m$ that does not appear smaller winning positions.
+Therefore, any other winning positions must have an $m$ that does not appear in smaller winning positions.
 Further, the difference for winning positions ($n-m$) must also be larger than all smaller winning positions.
 In order to force wins, the $m$ and $n-m$ values must be the minimum that meets these criteria.
 So the next winning position will have $m=3$ with a difference of two, or (3,5).
