@@ -1,0 +1,160 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 26 June 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+In Riddler City, the city streets follow a grid layout, running north-south and east-west. You're driving north when you decide to play a little game.
+Every time you reach an intersection, you randomly turn left or right, each with a 50 percent chance.
+
+After driving through 10 intersections, what is the probability that you are still driving north?
+
+\textit{Extra credit}: Now suppose that at every intersection, there's a one-third chance you turn left, a one-third chance you turn right and a one-third chance you drive straight.
+After driving through 10 intersections, \textit{now} what's the probability that you are still driving north?
+
+\section*{Solution:}
+
+This riddle is really straightforward.
+The outcome of turning from north is the same as turning from south; both lead to driving east or west, each with 50\% probability.
+Similarly, turning from east or west both result in driving north or south with 50\% probability.
+Therefore, the total trip is just a pattern, alternating between north/south and east/west each turn.
+So if you start driving north, after 10 or any number of even intersections, you are driving north or south, each still with 50\% probability.
+So the solution is
+\fcolorbox{red}{white}{\bf 50\%}\,.
+
+The extra credit requires actual math.
+From each direction, we can easily figure out the probabilities to go in any direction.
+From north, each of west, north, and east has a \nicefrac{1}{3} probability, and so on.
+We can turn that into a matrix, with each row corresponding to an incoming direction, and each column an outgoing direction.
+The value at a given position is the probability of turning to an outgoing direction given an incoming direction.
+Calling the matrix $A$, and letting the rows and columns be arranged in the order north, east, south, and west, we have:
+
+\[
+A=
+\begin{bmatrix}
+\nicefrac{1}{3} & \nicefrac{1}{3} & 0 & \nicefrac{1}{3} \\
+\nicefrac{1}{3} & \nicefrac{1}{3} & \nicefrac{1}{3} & 0 \\
+0 & \nicefrac{1}{3} & \nicefrac{1}{3} & \nicefrac{1}{3} \\
+\nicefrac{1}{3} & 0 & \nicefrac{1}{3} & \nicefrac{1}{3} 
+\end{bmatrix}
+= \frac{1}{3}
+\begin{bmatrix}
+1 & 1 & 0 & 1 \\
+1 & 1 & 1 & 0 \\
+0 & 1 & 1 & 1 \\
+1 & 0 & 1 & 1
+\end{bmatrix}
+\]
+
+To find the probabilities for a final direction, we need to multiply this by a $4\times1$ vector that describes the initial distributions of driving directions.
+In this case, the direction is only north, so the vector $v$ becomes
+
+\[
+v=
+\begin{bmatrix}
+1 \\
+0 \\
+0 \\
+0
+\end{bmatrix}
+\]
+
+Multiplying this by the matrix ($Av$) gives us another $4\times1$ vector that lists the probabilities for each direction after a single turn.
+The probability distrubtion after $n$ turns just means $A$ gets multiplied $n$ times, so the calculation becomes $A^{n}v$.
+We can separate these terms and calculate $A^{n}$ before applying it to $v$.
+Luckily, there is an easy general form for $A^{n}$ in this case.
+
+\[
+A^{n}=
+\begin{cases}
+\frac{1}{3^{n}}
+\begin{bmatrix}
+a & b & b & b \\
+b & a & b & b \\
+b & b & a & b \\
+b & b & b & a
+\end{bmatrix} & n\ \mathrm{even} \\
+\frac{1}{3^{n}}
+\begin{bmatrix}
+a & a & b & a \\
+a & a & a & b \\
+b & a & a & a \\
+a & b & a & a
+\end{bmatrix} & n\ \mathrm{odd}
+\end{cases}
+\]
+
+where
+\[
+a=\left\lceil \frac{3^{n}}{4}\right\rceil
+\]
+\[
+b=\left\lfloor \frac{3^{n}}{4}\right\rfloor
+\]
+
+For $n=10$, the final probability for starting north and ending north ($\nicefrac{a(10)}{3^{10}}$) is $\nicefrac{14763}{59049}\approx0.25001$, which is very close to \nicefrac{1}{4}.
+Of course, as the number of turns gets large the probabilities all start to smear together and approach \nicefrac{1}{4}, but the initial direction always keeps a very slight advantage.
+So the solution to the extra credit is
+\fcolorbox{red}{white}{\bf \nicefrac{14763}{59049}}\,.
+
+
+\end{document}
