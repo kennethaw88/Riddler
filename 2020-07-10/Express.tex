@@ -1,0 +1,87 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 10 July 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+The 24 Game is a fun test of mathematical fluency.
+In the Riddler version of the game, your goal is to make a numerical expression that equals 24, using each of four given numbers once, along with parentheses, addition, subtraction, multiplication, division and exponentiation.
+
+For example, if I gave you the numbers 1, 2, 3 and 8, then valid solutions would be $8\times3\times(2-1)$ and $(3+1)\times(8-2)$, since they both equal 24.
+However, concatenation is not an allowed operation, which means $(32-8)\times1$ is \textit{not} a solution---that is, you can’t smush the 3 and the 2 together to get 32.
+
+Given the four numbers 2, 3, 3 and 4, how can you make 24?
+
+\textit{Extra credit}: Can you find \textit{another} way to make 24?
+
+\section*{Solution:}
+
+I found these two solutions to the riddle.
+There might be more.
+
+\begin{align*}
+4\left(3^{2}-3\right) &= 24 \\
+3\left(\frac{4}{2}\right)^{3} &= 24
+\end{align*}
+
+
+\end{document}

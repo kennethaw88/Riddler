@@ -8,7 +8,7 @@ The 24 Game is a fun test of mathematical fluency.
 In the Riddler version of the game, your goal is to make a numerical expression that equals 24, using each of four given numbers once, along with parentheses, addition, subtraction, multiplication, division and exponentiation.
 
 For example, if I gave you the numbers 1, 2, 3 and 8, then valid solutions would be 8×3×(2−1) and (3+1)×(8−2), since they both equal 24.
-However, concatenation is not an allowed operation, which means (32−8)×1 is not a solution — that is, you can’t smush the 3 and the 2 together to get 32.
+However, concatenation is not an allowed operation, which means (32−8)×1 is *not* a solution—that is, you can’t smush the 3 and the 2 together to get 32.
 
 Given the four numbers 2, 3, 3 and 4, how can you make 24?
 
