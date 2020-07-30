@@ -1,0 +1,112 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 17 July 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+The tortoise and the hare are about to begin a 10-mile race along a ``stretch'' of road.
+The tortoise is driving a car that travels 60 miles per hour, while the hare is driving a car that travels 75 miles per hour.
+(For the purposes of this problem, assume that both cars accelerate from 0 miles per hour to their cruising speed instantaneously.)
+
+The hare does a quick mental calculation and realizes if it waits until two minutes have passed, they’ll cross the finish line at the exact same moment.
+And so, when the race begins, the tortoise drives off while the hare patiently waits.
+
+But one minute into the race, after the tortoise has driven 1 mile, something extraordinary happens.
+The road turns out to be magical and instantaneously stretches by 10 miles!
+As a result of this stretching, the tortoise is now 2 miles ahead of the hare, who remains at the starting line.
+
+At the end of every subsequent minute, the road stretches by 10 miles.
+With this in mind, the hare does some more mental math.
+
+How long after the race has begun should the hare wait so that both the tortoise and the hare will cross the finish line at the same exact moment?
+
+\section*{Solution:}
+
+At first glance, this problem seems impossible, since the road stretches at a rate of 10 miles per minute, ten times the speed of the tortoise.
+However, because the tortoise is pulled along with the stretching, it does eventually reach the end.
+The tortoise's distance becomes a harmonic sum $H_{n}$:
+
+\[
+H_{n}=\sum_{i=1}^{n} \frac{1}{i}
+\]
+
+This sum does not converge, and is larger than any real number for some large enough $n$.
+There isn't an analytical way to find how large $n$ must be to exceed a given number; it must be solved numerically, especially since the tortoise will arrive between discrete stretches (because the harmonic number is constantly adding new primes to the denominator).
+
+I decided to solve this in Excel, and the calculations can be found in \texttt{tortoise\_hare\_harmonic\_race.xlsx}.
+First I had to calculate how long it would take the tortoise to finish.
+I did this by calculating each one-minute section of driving and instant stretching step by step.
+In the step-by-step section, the tortoise crosses the finish line sometime between minutes 12,366 and 12,367, at which time the road is 123,670 miles long.
+After the stretching to 123,670 miles, the tortoise's position is 123,669.5319 miles (approximately), and it takes an additional 0.4681 minutes to get to the finish.
+
+Next I used this finish time and distance for the hare, and made the same step-by-step calculation with the hare.
+This time, the order of the road ``compression'' and movement of the hare are reversed.
+Ultimately, the hare made it back to the start line between minutes 3 and 4, when the road is 4 miles long.
+At minute 4, before the stretch (after the compression), the hare's position is 0.4167 miles.
+Traveling that distance takes 0.3333 minutes, so the hare must leave after 2.6667 minutes.
+
+I'm not sure if the solution should be exactly 2~\nicefrac{2}{3} minutes, or if it is just an artifact of the truncation of decimals and adding/subtracting small numbers.
+So I'll leave the solution as an approximate decimal, and the hare should leave after
+\fcolorbox{red}{white}{\bf 2.6667~minutes}\,.
+
+
+\end{document}
