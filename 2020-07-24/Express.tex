@@ -1,0 +1,108 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 17 July 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+Riddler Township is having its quadrennial presidential election.
+Each of the town's 10 ``shires'' is allotted a certain number of electoral votes: two, plus one additional vote for every 10 citizens (rounded to the nearest 10).
+
+The names and populations of the 10 shires are summarized in the table below.
+
+\vspace{0.1in}
+\begin{center}
+\begin{tabular*}{0.6\textwidth}{ @{\extracolsep{\fill}} l c c}
+\textbf{Shire} & \textbf{Population} & \textbf{Electoral Votes} \\
+\hline
+Oneshire   & 11  & 3 \\
+Twoshire   & 21  & 4 \\
+Threeshire & 31  & 5 \\
+Fourshire  & 41  & 6 \\
+Fiveshire  & 51  & 7 \\
+Sixshire   & 61  & 8 \\
+Sevenshire & 71  & 9 \\
+Eightshire & 81  & 10 \\
+Nineshire  & 91  & 11 \\
+Tenshire   & 101 & 12 \\
+\end{tabular*}
+\end{center}
+\vspace{0.1in}
+
+As you may know, under this sort of electoral system, it is quite possible for a presidential candidate to lose the popular vote and still win the election.
+
+If there are two candidates running for president of Riddler Township, and every single citizen votes for one or the other, then what is the \textit{lowest} percentage of the popular vote that a candidate can get while still winning the election?
+
+\section*{Solution:}
+
+There are 75 total electoral votes in this scenario.
+The best way to get the minimum number of actual votes is to just barely get a majority of electoral votes, which is 38.
+Whatever combination of shires gets to 38 electoral votes, those shires shires should also just barely get a majority of votes to swing their shires.
+The remaining shires should have 100\% of their actual votes go the other way.
+The majority combination of shires should also be preferentially lower-population shires.
+For example, although Eightshire has as many electoral votes as Twoshire and Fourshire, it represents a larger actual voter population, so in this case, Twoshire and Fourshire would be preferred to Eightshire in forming an electoral majority.
+
+By my non-exhaustive calculations, the best way to get to 38 electoral votes is with Oneshire (3), Threeshire (5), Fourshire (6), Fiveshire (7), Sixshire (8), and Sevenshire (9).
+With each shire winning only a majority by one actual vote, that totals $6+16+21+26+31+36=136$ electoral votes.
+The total population is 560, so my solution is \nicefrac{136}{560}~$\approx$~\fcolorbox{red}{white}{\bf 24.29\%}\,.
+
+
+\end{document}

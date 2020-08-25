@@ -46,12 +46,12 @@ In other words, assume the system is frictionless and that all collisions are pe
 Let's take a look at some games to see how they play out.
 
 If you aim too far to the right (i.e., your value of *x* is too small), the pinball will quickly bounce its way through the gap between the circle and the wall.
-That's what happened in the game below, when x was 0.75 inches, resulting in a rather pedestrian four bounces.
+That's what happened in the game below, when *x* was 0.75 inches, resulting in a rather pedestrian four bounces.
 
 ![richochet1](https://github.com/kennethaw88/Riddler/blob/master/2020-07-24/ricochet1.gif)
 
 But if you aim too far to the left (i.e., your value of *x* is too big), the pinball will quickly come back out the same side it went in.
-That's what happened in the next game, when x was 0.9 inches, again yielding just four bounces.
+That's what happened in the next game, when *x* was 0.9 inches, again yielding just four bounces.
 
 ![richochet2](https://github.com/kennethaw88/Riddler/blob/master/2020-07-24/ricochet2.gif)
 
