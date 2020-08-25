@@ -5,7 +5,7 @@ https://fivethirtyeight.com/features/are-you-a-pinball-wizard
 ## Express
 
 Riddler Township is having its quadrennial presidential election.
-Each of the town''s 10 “shires” is allotted a certain number of electoral votes: two, plus one additional vote for every 10 citizens (rounded to the nearest 10).
+Each of the town's 10 “shires” is allotted a certain number of electoral votes: two, plus one additional vote for every 10 citizens (rounded to the nearest 10).
 
 The names and populations of the 10 shires are summarized in the table below.
 
@@ -30,19 +30,34 @@ If there are two candidates running for president of Riddler Township, and every
 
 ## Classic
 
-The tortoise and the hare are about to begin a 10-mile race along a “stretch” of road.
-The tortoise is driving a car that travels 60 miles per hour, while the hare is driving a car that travels 75 miles per hour.
-(For the purposes of this problem, assume that both cars accelerate from 0 miles per hour to their cruising speed instantaneously.)
+Riddler Pinball is a game with an infinitely long wall and a circle whose radius is 1 inch and whose center is 2 inches from the wall.
+The wall and the circle are both fixed and never move.
+A single pinball starts 2 inches from the wall and 2 inches from the center of the circle.
 
-The hare does a quick mental calculation and realizes if it waits until two minutes have passed, they'll cross the finish line at the exact same moment.
-And so, when the race begins, the tortoise drives off while the hare patiently waits.
+To play, you flick the pinball toward a spot of your choosing along the wall, specified by its distance *x* from the point on the wall that's closest to the circle, as shown in the diagram below.
 
-But one minute into the race, after the tortoise has driven 1 mile, something extraordinary happens.
-The road turns out to be magical and instantaneously stretches by 10 miles!
-As a result of this stretching, the tortoise is now 2 miles ahead of the hare, who remains at the starting line.
+![diagram](https://github.com/kennethaw88/Riddler/blob/master/2020-07-24/pinball_diagram.png)
 
-At the end of every subsequent minute, the road stretches by 10 miles.
-With this in mind, the hare does some more mental math.
+The goal of the game is simple: Get the ball to bounce as many times as possible.
 
-How long after the race has begun should the hare wait so that both the tortoise and the hare will cross the finish line at the same exact moment?
+(Note: This is a geometry problem, not a physics problem.
+In other words, assume the system is frictionless and that all collisions are perfectly elastic.)
+
+Let's take a look at some games to see how they play out.
+
+If you aim too far to the right (i.e., your value of *x* is too small), the pinball will quickly bounce its way through the gap between the circle and the wall.
+That's what happened in the game below, when x was 0.75 inches, resulting in a rather pedestrian four bounces.
+
+![richochet1](https://github.com/kennethaw88/Riddler/blob/master/2020-07-24/ricochet1.gif)
+
+But if you aim too far to the left (i.e., your value of *x* is too big), the pinball will quickly come back out the same side it went in.
+That's what happened in the next game, when x was 0.9 inches, again yielding just four bounces.
+
+![richochet2](https://github.com/kennethaw88/Riddler/blob/master/2020-07-24/ricochet2.gif)
+
+As you can see, Riddler Pinball is an unforgiving game—the slightest error can tank your chances of victory.
+But if you strategize *just* right, it's possible to do quite well.
+
+What's the greatest number of bounces you can achieve?
+And, more importantly, what value of *x* gets you the most bounces?
 
