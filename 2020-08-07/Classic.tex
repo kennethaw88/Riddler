@@ -1,0 +1,112 @@
+\documentclass{article}
+
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 7 August 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+We usually think of addition as an operation applied to a field like the rational numbers or the real numbers.
+And there is good reason for that---as Kareem says, ``Mathematicians have done all the hard work of figuring out how to make calculations track with reality.
+They kept modifying and refining the number system until everything worked out.
+It took centuries of brilliant minds to do this!''
+
+Now suppose we defined addition another (admittedly less useful) way, using a classic model organism: the nematode.
+To compute the sum of $x$ and $y$, you combine groups of $x$ and $y$ nematodes and leave them for 24 hours.
+When you come back, you count up how many you have---and that's the sum!
+
+It turns out that, over the course of 24 hours, the nematodes pair up, and each pair has one offspring 50 percent of the time.
+(If you have an odd number of nematodes, they will still pair up, but one will be left out.)
+So if you want to compute 1+1, half the time you'll get 2 and half the time you'll get 3.
+If you compute 2+2, 25 percent of the time you get 4, 50 percent of the time you'll get 5, and 25 percent of the time you'll get 6.
+
+While we're at it, let's define exponentiation for sums of nematodes.
+Raising a sum to a power means leaving that sum of nematodes for the number of days specified by the exponent.
+
+With this number system, what is the expected value of $(1+1)^{4}$?
+
+\textit{Extra credit}: As $N$ gets larger and larger, what does the expected value of $(1+1)^{N}$ approach?
+
+\section*{Solution:}
+
+These numbers are small enough that they can just be calculated by hand.
+First, I have calculated the probability distributions after 1 iteration for each starting number.
+For example, starting with 2 (or 1+1), the results are 2 or 3, each with 50\% probability (as listed in the riddle).
+I list the others below:
+
+\begin{center}
+\begin{tabular}{c c}
+Start & Result (Probability) \\
+\hline
+3 & 3 (\nicefrac{1}{2}), 4 (\nicefrac{1}{2}) \\
+4 & 4 (\nicefrac{1}{4}), 5 (\nicefrac{1}{2}), 6 (\nicefrac{1}{4}) \\
+5 & 5 (\nicefrac{1}{4}), 6 (\nicefrac{1}{2}), 7 (\nicefrac{1}{4}) \\
+6 & 6 (\nicefrac{1}{8}), 7 (\nicefrac{3}{8}), 8 (\nicefrac{3}{8}), 9 (\nicefrac{1}{8})
+\end{tabular}
+\end{center}
+
+After iterating out the calculation four times, the possible outcomes and probabilities are 2 (\nicefrac{1}{16}), 3 (\nicefrac{1}{4}), 4 (\nicefrac{17}{64}), 5 (\nicefrac{3}{16}), 6 (\nicefrac{19}{128}), 7 (\nicefrac{7}{128}), 8 (\nicefrac{3}{128}), and 9 (\nicefrac{1}{128}).
+Combining these yields an expected result of
+\fcolorbox{red}{white}{$\bm{{\nicefrac{141}{32}=4.40625}}$}\,.
+
+I don't have any idea about how to approach the extra credit.
+I could probably simulate it many many times, but I'm not sure how large $N$ to use to get a useful pattern, or what the long-term pattern should be.
+
+\end{document}
