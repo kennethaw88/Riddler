@@ -57,52 +57,29 @@
 
 \vspace{0.15in}
 
-{\Large 24 July 2020}
+{\Large 31 July 2020}
 \end{center}
 
 
 \section*{Riddle:}
 
-Riddler Township is having its quadrennial presidential election.
-Each of the town's 10 ``shires'' is allotted a certain number of electoral votes: two, plus one additional vote for every 10 citizens (rounded to the nearest 10).
+The rules are simple: Rock beats scissors, scissors beat paper, and paper beats rock.
+Moreover, the game is ``sudden death,'' so the first person to win a single round is immediately declared the grand champion.
+If there's a tie, meaning \textit{both} players choose the same object, then you simply play another round.
 
-The names and populations of the 10 shires are summarized in the table below.
+Fortunately, your opponent is someone you've studied well.
+Based on the motion of their arm, you can tell whether they will (1) play rock or paper with equal probability, (2) play paper or scissors with equal probability or (3) play rock or scissors with equal probability.
+(Every round falls into one of these three categories.)
 
-\vspace{0.1in}
-\begin{center}
-\begin{tabular*}{0.6\textwidth}{ @{\extracolsep{\fill}} l c c}
-\textbf{Shire} & \textbf{Population} & \textbf{Electoral Votes} \\
-\hline
-Oneshire   & 11  & 3 \\
-Twoshire   & 21  & 4 \\
-Threeshire & 31  & 5 \\
-Fourshire  & 41  & 6 \\
-Fiveshire  & 51  & 7 \\
-Sixshire   & 61  & 8 \\
-Sevenshire & 71  & 9 \\
-Eightshire & 81  & 10 \\
-Nineshire  & 91  & 11 \\
-Tenshire   & 101 & 12 \\
-\end{tabular*}
-\end{center}
-\vspace{0.1in}
-
-As you may know, under this sort of electoral system, it is quite possible for a presidential candidate to lose the popular vote and still win the election.
-
-If there are two candidates running for president of Riddler Township, and every single citizen votes for one or the other, then what is the \textit{lowest} percentage of the popular vote that a candidate can get while still winning the election?
+If you strategize correctly, what are your chances of winning the tournament?
 
 \section*{Solution:}
 
-There are 75 total electoral votes in this scenario.
-The best way to get the minimum number of actual votes is to just barely get a majority of electoral votes, which is 38.
-Whatever combination of shires gets to 38 electoral votes, those shires shires should also just barely get a majority of votes to swing their shires.
-The remaining shires should have 100\% of their actual votes go the other way.
-The majority combination of shires should also be preferentially lower-population shires.
-For example, although Eightshire has as many electoral votes as Twoshire and Fourshire, it represents a larger actual voter population, so in this case, Twoshire and Fourshire would be preferred to Eightshire in forming an electoral majority.
-
-By my non-exhaustive calculations, the best way to get to 38 electoral votes is with Oneshire (3), Threeshire (5), Fourshire (6), Fiveshire (7), Sixshire (8), and Sevenshire (9).
-With each shire winning only a majority by one actual vote, that totals $6+16+21+26+31+36=136$ electoral votes.
-The total population is 560, so my solution is \nicefrac{136}{560}~$\approx$~\fcolorbox{red}{white}{\bf 24.29\%}\,.
+In this scenario, there is really no way to lose.
+If you see (1), then you can play paper, and at worst, tie.
+Similarly, for (2) play scissors, and for (3) play rock.
+The probability of tying infinitely many times becomes vanishingly small, so the only outcome is to win, with probability
+\fcolorbox{red}{white}{\bf 100\%}\,.
 
 
 \end{document}
