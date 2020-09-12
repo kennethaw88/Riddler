@@ -1,0 +1,102 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 11 September 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+This month, the Tour de France is back, and so is the Tour de FiveThirtyEight!
+
+For every mountain in the Tour de FiveThirtyEight, the first few riders to reach the summit are awarded points.
+The rider with the most such points at the end of the Tour is named ``King of the Mountains'' and gets to wear a special polka dot jersey.
+
+At the moment, you are racing against three other riders up one of the mountains.
+The first rider over the top gets 5 points, the second rider gets 3, the third rider gets 2, and the fourth rider gets 1.
+
+All four of you are of equal ability---that is, under normal circumstances, you all have an equal chance of reaching the summit first.
+But there's a catch---two of your competitors are on the same team.
+Teammates are able to work together, drafting and setting a tempo up the mountain.
+Whichever teammate happens to be slower on the climb will get a boost from their faster teammate, and the two of them will both reach the summit at the faster teammate's time.
+
+As a lone rider, the odds may be stacked against you.
+In your quest for the polka dot jersey, how many points can you expect to win on this mountain, on average?
+
+\section*{Solution:}
+
+This problem is small enough that every possibility can be listed out.
+First, because every rider individually has the same probability to be in any position, your own probability of being the fastest (and therefore coming in first) is simply \nicefrac{1}{4}, so you win 5 points with probability \nicefrac{1}{4}.
+Similarly, you are the slowest, and win 1 point with probability \nicefrac{1}{4}.
+These are independent of the team configurations, because the teamed riders are either both behind or ahead of you together.
+
+If you are the second-fastest rider (which happens with probability \nicefrac{1}{4}), then you have to consider the team.
+There are three possibilities for the team: the fastest and third-fastest riders, the fastest and slowest riders, or the third fastest and slowest riders.
+In both of the possibilities with the fastest rider, you are bumped down a position, coming in third.
+In the other possibility, you stay in second place.
+So you get 2 points with probability \nicefrac{2}{12} and 3 points with probability \nicefrac{1}{12}.
+
+If you are the third-fastest rider (probability \nicefrac{1}{4}), then the team arrangement actually doesn't matter.
+Every combination of the teams involves at least one rider faster than you, so you always get bumped down to last place.
+So you win 1 point with probability \nicefrac{1}{4}.
+
+Putting these together leads to an average score of
+\fcolorbox{red}{white}{\bf \nicefrac{7}{3}}\,.
+
+
+\end{document}

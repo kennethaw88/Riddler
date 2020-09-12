@@ -1,0 +1,107 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 11 September 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+Once a week, folks from Blacksburg, Greensboro, and Silver Spring get together for a game of pickup basketball.
+Every week, anywhere from one to five individuals will show up from each town, with each outcome equally likely.
+
+Using all the players that show up, they want to create exactly two teams of equal size.
+Being a prideful bunch, everyone wears a jersey that matches the color mentioned in the name of their city.
+However, since it might create confusion to have one jersey playing for both sides, they agree that the residents of two towns will combine forces to play against the third town's residents.
+
+What is the probability that, on any given week, it's possible to form two equal teams with everyone playing, where two towns are pitted against the third?
+
+\textit{Extra credit}: Suppose that, instead of anywhere from one to five individuals per town, anywhere from one to \textit{N} individuals show up per town.
+Now what's the probability that there will be two equal teams?
+
+\section*{Solution:}
+
+It is possible to write out each possible group of players for this problem, then just count how many form a valid solution.
+But the counting can be simplified.
+First, there are only solutions when the three towns don't have the same number of players each, so that eliminates 5 possibilities (out of 125).
+And since each solution is just a permutation of another solution, there's no need to write out everything to begin with.
+
+For my enumeration of the solutions, I wrote out strings with Bs, Gs and Ss for the players from each town. I assumed (without loss of generality) that B$\leq$G$\leq$S, and of course B$<$S.
+With this assumption, there is no solution with B$\geq$3.
+Here are all possible solutions, with the number of permutations:
+
+\vspace{0.1in}
+\begin{center}
+\begin{tabular}{c c}
+Players & Permuations \\
+\hline
+BGSS       & 3 \\
+BGGSSS     & 6 \\
+BGGGSSSS   & 6 \\
+BGGGGSSSSS & 6 \\
+BBGGSSSS   & 3 \\
+BBGGGSSSSS & 6 \\
+\end{tabular}
+\end{center}
+\vspace{0.1in}
+
+This is a total of 30 solutions out of 125, so the solution is
+\fcolorbox{red}{white}{\bf \nicefrac{6}{25}=0.24}\,.
+
+
+\end{document}
