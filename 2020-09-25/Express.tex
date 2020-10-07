@@ -1,0 +1,88 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 25 September 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+The U.S. Open concluded last weekend, with physics major Bryson DeChambeau emerging victorious.
+Seeing his favorite golfer win his first major got Dan thinking about the precision needed to be a professional at the sport.
+
+A typical hole is about 400 yards long, while the cup measures a mere 4.25 inches in diameter.
+Suppose that, with every swing, you hit the ball X percent closer to the center of the hole.
+For example, if $X$ were 75 percent, then with every swing the ball would be four times closer to the hole than it was previously.
+
+For a 400-yard hole, assuming there are no hazards (water, sand or otherwise) in the way, what is the minimum value of $X$ so that you'll shoot par, meaning you'll hit the ball into the cup in exactly four strokes?
+
+\section*{Solution:}
+
+This is a pretty simple problem with exponents.
+Besides the explicit assumptions in the puzzle, I am also assuming that the golf ball is point-like (or, alternately, is perfectly spherical, and touches the perfectly flat ground at a single point).
+If the starting and ending distances from the center of the hole are $d_{tee}$ and $d_{edge}$, the desired number of strokes is $n$, and the $X$ value is used as a fraction (instead of a percent), then $X$ is the solution to the equation
+
+\[
+(1-X)^{n}=\frac{d_{edge}}{d_{tee}}
+\]
+
+In this case, $n=4$, $d_{edge}=2.125\ \rm{in}$, $d_{tee}=400\ \rm{yd}$, giving a ratio $\nicefrac{d_{edge}}{d_{tee}}\approx0.0001476$.
+Solving for $X$ gives the (approximate) solution of 0.8898, or
+\fcolorbox{red}{white}{\bf 88.98\%}
+
+\end{document}

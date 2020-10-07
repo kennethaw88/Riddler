@@ -13,7 +13,7 @@ If you've never heard this puzzle before, the answer is surprisingly small—abo
 Also, spoiler alert!
 (Darn, I was one sentence too late.)
 
-Now, instead of tying the Earth up with rope, you've moved on to covering the globe with a giant sheet that lies flat on the ground.
+Now, instead of tying the Earth up with *rope*, you've moved on to covering the globe with a giant *sheet* that lies flat on the ground.
 If you want the sheet to be 1 meter off the ground (just like the rope), by how much would you have to increase the area of your sheet?
 
 *Extra credit*: What city, country, land mass or body of water has an area that is very close to your answer?
@@ -26,7 +26,7 @@ War is a two-player game in which a standard deck of cards is first shuffled and
 In every turn of the game, both players flip over and reveal the top card of their deck.
 The player whose card has a higher rank wins the turn and places both cards on the bottom of their pile.
 In the event that both cards have the same rank, the rules get a little more complicated, with each player flipping over additional cards to compare in a mini “War” showdown.
-Duane's friend's granddaughter said that for every turn of the game, she always drew the card of higher rank, with no mini “Wars.”
+Duane's friend's granddaughter said that for *every* turn of the game, she always drew the card of higher rank, with no mini “Wars.”
 
 Assuming a deck is randomly shuffled before every game, how many games of War would you expect to play until you had a game that lasted just 26 turns with no “Wars,” like Duane's friend's granddaughter?
 

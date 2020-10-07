@@ -1,0 +1,100 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 28 August 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+Duane's friend's granddaughter claimed that she once won a game of War that lasted exactly 26 turns.
+
+War is a two-player game in which a standard deck of cards is first shuffled and then divided into two piles with 26 cards each---one pile for each player.
+In every turn of the game, both players flip over and reveal the top card of their deck.
+The player whose card has a higher rank wins the turn and places both cards on the bottom of their pile.
+In the event that both cards have the same rank, the rules get a little more complicated, with each player flipping over additional cards to compare in a mini “War” showdown.
+Duane's friend's granddaughter said that for \textit{every} turn of the game, she always drew the card of higher rank, with no mini “Wars.”
+
+Assuming a deck is randomly shuffled before every game, how many games of War would you expect to play until you had a game that lasted just 26 turns with no “Wars,” like Duane's friend's granddaughter?
+
+\section*{Solution:}
+
+This problem sounds like it might be too enormous to calculate.
+First, there are $52!>10^{67}$ possible ways to shuffle a deck.
+Of course, there are much fewer possible games of War, because the pairs of cards can be permuted, and there is some redundancy because of the suits.
+Still, it seems nearly impossible to find the exact solution, and any simulation with statistically significant results might take way too long.
+
+I decided to simulate the games of War, and count the perfect games.
+My code can be found in \texttt{War.C}\,.
+One fact I used in the simulation is that in order for one player to win, all of the aces need to be in one hand, and all of the twos need to be in the other.
+The probability of this happening at all is
+\[
+P=\frac{25}{51}\cdot\frac{24}{50}\cdot\frac{23}{49}\cdot\frac{26}{48}\cdot\frac{25}{47}\cdot\frac{24}{46}\cdot\frac{23}{45} =0.00848566\dots
+\]
+Thus, in my simulation, I forced this scenario, thereby increasing the chance of a perfect  game by a factor of $\sim\!120$.
+I defined my deck as an array of 1-byte characters, with four of each number 1--13.
+Then I shuffled everything but the 1s and 13s, to keep them on their own half of the deck.
+Then I shuffled only the first half of the deck, to randomize the 1s, while keeping them in the same hand.
+Four billion games gives a total of 3,004 perfect games.
+This seems significant, but small enough to not be a major coding error, so that is what I'm sticking with.
+
+The fraction of games I simulated that became perfect was $7.51\times10^{-7}$, so including my earlier probability, my estimate for the probability of a perfect game is $6.4\times10^{-9}$.
+The expetected number of games until a single perfect game is simply the inverse of the probability, which is
+\fcolorbox{red}{white}{$\bm{1.6\times10^8}$ \bf games}\,.
+
+\end{document}
