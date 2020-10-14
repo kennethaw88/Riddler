@@ -1,6 +1,5 @@
 \documentclass{article}
 
-
 \usepackage{amsmath} % math stuff
 \usepackage{amssymb} % math stuff
 \usepackage{array} % equations and stuff
@@ -12,6 +11,7 @@
 \usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
 \usepackage{graphicx} % for graphics
 %\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
 \usepackage{lipsum} % lorem ipsum filler text
 \usepackage{lmodern} % scalable font?
 \usepackage{longtable} % multi-page tables
@@ -19,6 +19,7 @@
 \usepackage{mhchem} % easier chemical formula
 \usepackage{microtype} % allows disabling of ligatures
 %\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
 \usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
 %\usepackage{setspace} % adjust text spacing and indents
 \usepackage{siunitx} % decimal alignment
@@ -27,6 +28,7 @@
 \usepackage{textcomp} % symbols
 \usepackage{threeparttablex} % better footnotes with longtable
 \usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
 %\usepackage{url} % superceded by hyperref
 \usepackage{verbatim} % verbatim environment
 \usepackage{xcolor} % colors and color boxes
@@ -43,6 +45,7 @@
 }
 
 \DisableLigatures[f]{encoding = *, family = * } % disable ff, fi, fl ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
 
 \begin{document}
 
@@ -50,50 +53,54 @@
 
 % custom title
 \begin{center}
-{\LARGE Riddler Express}
+{\LARGE Express Riddler}
 
 \vspace{0.15in}
 
-{\Large 1 November 2019}
+{\Large 9 October 2020}
 \end{center}
 
 
 \section*{Riddle:}
 
-Six snails are situated at the corners of a regular hexagon whose sides are all 10 meters.
-Each snail is determined to reach its clockwise neighbor, and they all travel at the same speed.
-But keep in mind that as each snail moves along, slowly but surely, the snail it’s traveling toward is \textit{also} moving toward another snail.
+Every weekend, I drive into town for contactless curbside pickup at a local restaurant.
+Across the street from the restaurant are six parking spots, lined up in a row.
 
-The result is six snails---and six trails of slime---that spiral inward toward the center of the hexagon, as shown in the animation below:
-
-\begin{center}
-\includegraphics[width=3in]{hexagon1.png}
-\end{center}
-
-How long is each snail’s slimy trail?
-
+While I \textit{can} parallel park, it's definitely not my preference.
+No parallel parking is required when the rearmost of the six spots is available or when there are two consecutive open spots.
+If there is a random arrangement of cars currently occupying four of the six spots, what's the probability that I will have to parallel park?
 
 \section*{Solution:}
 
-This is a pursuit problem, which have been extensively solved by people much smarter than me.
-In general, I don't know enough to solve them outright, but I am familiar with the ``easy'' version, which is four pursuers in a square formation.
-For this problem, I will call the pursuer A and the target B for any pair of pursuer and target.
-The solution to the square problem is that A moves exactly one side length.
-Although B is constantly moving, its velocity is perpendicular to the A's velocity, so the distance between A and B only changes based on A's velocity.
-
-Now for the hexagonal version.
-I have added labeled the hexagon below, which shows that the exterior angle of each side is 60\textdegree.
-This is a basic result of the geometry of a regular hexagon.
-This also means that B is moving at \ang{60} relative to A, not perpendicular as in the square case.
-Now, B is moving away from A, but at a smaller velocity.
-The rate at which it moves away from A is just $\cos(\ang{60})=0.5$.
-Now A's relative velocity is only half, so it takes twice as long to reach B.
-In this time, it will move twice a single side length, so the solution is
-\fcolorbox{red}{white}{\bf 20~m}\,.
+This problem is small enough that it is possible to enumerate all arrangements of cars.
+There are only $\binom{6}{4}=15$ ways to arrange four cars in six sponts, which are listed below:
 
 \begin{center}
-\includegraphics[width=3in]{hexagon2.png}
+\begin{tabular}{c c c}
+1-2-3-4 & 1-2-3-5 & 1-2-3-6 \\
+1-2-4-5 & 1-2-4-6 & 1-2-5-6 \\
+1-3-4-5 & 1-3-4-6 & 1-3-5-6 \\
+1-4-5-6 & 2-3-4-5 & 2-3-4-6 \\
+2-3-5-6 & 2-4-5-6 & 3-4-5-6 \\
+\end{tabular}
 \end{center}
+
+Equivalently, there are 15 ways to have two open spots among six:
+
+\begin{center}
+\begin{tabular}{c c c}
+1-2 & 1-3 & 1-4 \\
+1-5 & 1-6 & 2-3 \\
+2-4 & 2-5 & 2-6 \\
+3-4 & 3-5 & 3-6 \\
+4-5 & 4-6 & 5-6 \\
+\end{tabular}
+\end{center}
+
+Looking at these, there are six arrangements (1-3, 1-4, 1-5, 2-4, 2-5, 3-5) in which both the sixth spot is filled and there are no consecutive spots open.
+Thus the solution is
+\fcolorbox{red}{white}{$\bm{{\nicefrac{6}{15}=0.4}}$}\,.
+
 
 
 \end{document}
