@@ -1,0 +1,106 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+	bookmarks=true,
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue,
+	pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 16 October 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+This week, we return to the brilliant and ageless game show, ``The Price is Right.''
+In a modified version of the bidding round, you and two (not three) other contestants must guess the price of an item, one at a time.
+
+Assume the true price of this item is a randomly selected value between 0 and 100.
+(Note: The value is a real number and does not have to be an integer.)
+Among the three contestants, the winner is whoever guesses the closest price \textit{without going over}.
+For example, if the true price is 29 and I guess 30, while another contestant guesses 20, then they would be the winner even though my guess was technically closer.
+
+In the event all three guesses exceed the actual price, the contestant who made the lowest (and therefore closest) guess is declared the winner.
+I mean, \textit{someone} has to win, right?
+
+If you are the first to guess, and all contestants play optimally (taking full advantage of the guesses of those who went before them), what are your chances of winning?
+
+\section*{Solution:}
+
+This solution can be built up from the two-contestant case.
+In that case, the best solution is for the first contestant to guess 50 (i.e., \nicefrac{1}{2}*100).
+If the second player guesses any amount above 50, even by some infinitessimal $\varepsilon$, then that player's chance of winning is less than 50\%, (specifically $\nicefrac{(50-\varepsilon)}{100}$).
+The second player's best guess then is any number below 50, so that there is a win in both cases where the number is either between the two guesses or less than both guesses.
+In this case, the second player's chance of winning is 50\%.
+So the best that the last player can do is to have a chance of winning of \nicefrac{1}{2}.
+If the first player guesses anything below 50 (call the guess $x$), the second player could seize the opportunity and guess \nicefrac{(50+x)}{2}, giving the second player an advantage; the chance of winning is now $\nicefrac{(150-x)}{200}>\nicefrac{1}{2}$.
+If $x$ is above 50, the second player guesses anything below $x$, with a chance of winning of $x>\nicefrac{1}{2}$.
+So the only strategy for the first player which gives the best chance of winning is 100*\nicefrac{1}{2}.
+No strategy for the first player leads to a chance of winning over \nicefrac{1}{2}.
+
+The case for any other number (say $N$) of players is similar.
+The best any contestant can do, given ideal play from all previous players is to end with a chance of winning of \nicefrac{1}{2}.
+The first player should guess \nicefrac{(N-1)}{N}*100.
+No subsequent player will guess higher, because it would reduce that player's chance of winning.
+The next player should treat the remaining space like the first player: try to get a \nicefrac{1}{(N-1)} chance of winning out of the \nicefrac{(N-1)}{N} that is left.
+This player's guess should be \nicefrac{(N-2)}{N}.
+
+In general, the $i$th player should always guess \nicefrac{(N-$i$)}{N}.
+This leaves each player with the same \nicefrac{1}{N} chance of winning, so nobody can do better.
+
+For the specific case of three contestants, the first player should guess \nicefrac{2}{3}, which leaves that player with a chance of winning of
+\fcolorbox{red}{white}{\bf{\nicefrac{1}{3}}}\,.
+
+
+\end{document}
