@@ -1,4 +1,4 @@
-#Can You Reach The Summit First? (11 September 2020)
+# Can You Reach The Summit First? (11 September 2020)
 
 https://fivethirtyeight.com/features/can-you-reach-the-summit-first
 
