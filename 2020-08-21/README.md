@@ -1,4 +1,4 @@
-#Can You Corral Your Hamster? (21 August 2020)
+# Can You Corral Your Hamster? (21 August 2020)
 
 https://fivethirtyeight.com/features/can-you-corral-your-hamster
 
