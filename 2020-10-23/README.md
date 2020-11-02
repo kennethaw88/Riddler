@@ -1,4 +1,4 @@
-#Can You Feed The Hot Hand? (16 October 2020)
+#Can You Feed The Hot Hand? (23 October 2020)
 
 https://fivethirtyeight.com/features/can-you-feed-the-hot-hand
 

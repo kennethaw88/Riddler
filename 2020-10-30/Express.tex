@@ -58,46 +58,45 @@
 
 \vspace{0.15in}
 
-{\Large 23 October 2020}
+{\Large 30 October 2020}
 \end{center}
 
 
 \section*{Riddle:}
 
-This season, on the way to winning her fourth WNBA championship in her 17-year career, Sue Bird made approximately 50 percent of her field goal attempts.
-Suppose she and Seattle Storm teammate Breanna Stewart are interested in testing whether Bird has a ``hot hand''---that is, if her chances of making a basket depend on whether or not her previous shot went in.
-Bird happens to know that her chances of making any given shot is always 50 percent, independent of her shooting history, but she agrees to perform an experiment.
+While waiting in line to vote early last week, I overheard a discussion between election officials.
+Apparently, there may have been a political sign that was within 100~feet of the polling place, against New York State law.
 
-In each trial of the experiment, Bird will take three shots, while Stewart will record which shots Bird made or missed.
-Stewart will then look at all the trials that had at least one shot that was immediately preceded by a made shot.
-She will randomly pick one of these trials and then randomly pick a shot that was preceded by a made shot.
-(If there was only one such shot to pick from, she will choose that shot.)
+This got me thinking.
+Suppose a polling site is a square building whose sides are 100 feet in length.
+An election official takes a string that is also 100 feet long and ties one end to a door located in the middle of one of the building’s sides.
+She then holds the other end of the string in her hand.
 
-What is the probability that Bird made the shot that Stewart picked?
+What's the area of the region outside of the building she can reach while holding the string?
 
 \section*{Solution:}
 
-For three shots in each trial, there are only 8 ($=2^{3}$) possible outcomes for each trial.
-I list them below, using 1s for scores and 0s for misses:
+The path traced out by the end of the string is a circular arc.
+When the string hits the edge of the building, it continues in a smaller arc along the sides of the building.
+The shape is shown below:
 
+\vspace{0.1in}
 \begin{center}
-\begin{tabular}{cc}
-0-0-0 & 0-0-1 \\
-0-1-0 & 0-1-1 \\
-1-0-0 & 1-0-1 \\
-1-1-0 & 1-1-1
-\end{tabular}
+\includegraphics[width=3in]{polling_radius.png}
 \end{center}
+\vspace{0.1in}
 
-Each of these possible outcomes is equally likely for any trial.
-Six of these have a made shot preceding some other shot.
-Of these six, three (0-1-0, 1-0-0, and 1-0-1) have a made shot followed only by a missed shot, so by choosing one of these trials, Stewart will pick a missed shot.
-Two (0-1-1 and 1-1-1) have made shots followed only by made shots, and by choosing either of these trials, Stewart will pick a made shot.
-The fifth (1-1-0) has both a missed and a made shot after a made shot.
-Since the choice of shot within a trial is evenly distributed, Stewart has a 50\% chance of picking either a missed or made shot.
-So in a sense, there is a 3\,\nicefrac{1}{2} out of 6 chance, or \nicefrac{7}{12}, of picking a missed shot, and a 2\,\nicefrac{1}{2} out of 6 chance, or \nicefrac{5}{12}, of picking a made shot.
-So the solution is
-\fcolorbox{red}{white}{\bf \nicefrac{5}{12}}\,.
+The region traced out by the string forms a semicircle and two quarter circles.
+The radius of the large semicircle is of course 100~ft, and the radius of the quarter circles is 50~ft.
+So the area $A$ is
+
+\[
+A=\frac{1}{2}\pi 100^2+2\frac{1}{4}\pi 50^2
+\]
+
+The solution is therefore (approximately)
+\fcolorbox{red}{white}{\bf 19,635~sq~ft}\,.
+
 
 
 

@@ -1,0 +1,168 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 30 October 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+Instead of playing hot potato, you and 60 of your closest friends decide to play a socially distanced game of hot pumpkin.
+
+Before the game starts, you all sit in a circle and agree on a positive integer $N$.
+Once the number has been chosen, you (the leader of the group) start the game by counting ``1'' and passing the pumpkin to the person sitting directly to your left.
+She then declares ``2'' and passes the pumpkin one space to \textit{her} left.
+This continues with each player saying the next number in the sequence, wrapping around the circle as many times as necessary, until the group has collectively counted up to $N$.
+At that point, the player who counted ``$N$'' is eliminated, and the player directly to his or her left starts the next round, again proceeding to the same value of $N$.
+The game continues until just one player remains, who is declared the victor.
+
+In the game's first round, the player 18 spaces to your left is the first to be eliminated.
+Ricky, the next player in the sequence, begins the next round.
+The second round sees the elimination of the player 31 spaces to Ricky's left.
+Zach begins the third round, only to find himself eliminated in a cruel twist of fate.
+(Woe is Zach.)
+
+What was the smallest value of $N$ the group could have used for this game?
+
+\textit{Extra credit}: Suppose the players were numbered from 1 to 61, with you as Player No. 1, the player to your left as Player No. 2 and so on.
+Which player won the game?
+
+\textit{Extra extra credit}: What's the smallest $N$ that would have made you the winner?
+
+\section*{Solution:}
+
+I went about this problem in a few different ways.
+To answer the first question, I set up a script that searches for and checks possible solutions.
+Based on the description, the number $N$ must satisfy the following equations:
+
+\begin{align*}
+N&=19 \mod 61 \\
+N&=32 \mod 60 \\
+N&=1 \mod 59
+\end{align*}
+
+The script I set up can be found at the beginning of \texttt{hot\_pumpkin.C}\,.
+It starts counting integers $i$ and calculates $N=61i+19$.
+Then it checks the modulus for both 60 and 59.
+If it's a match, then it outputs the results.
+The first few results are 136,232; 352,172; 568,112; and 999,992.
+The solutions are all of the form $N=136,232+215,940n$ for any non-negative integer $n$.
+Notably, $215,940=61*60*59$.
+So the solution to the first part is
+\fcolorbox{red}{white}{\bf 136,232}\,.
+
+For the second part, I decided to play out the game by hand.
+My work can be seen in \texttt{Hot\_pumpkin.xlsx}\,.
+The calculation was made much easier, because it's only necessary to pass the pumpkin based on the modulus for each round.
+The modulus ($N\mod\rm{round \#}$) is calculated in the file.
+I also set up the entire game in my C++ script.
+In both cases, the player that won (and the solution) is
+\fcolorbox{red}{white}{\bf player 58}\,.
+
+For the third part, I extended my work from part two in the C++ script.
+It starts counting $N$ from 1, and calculates the winner for a game with 61 players.
+For fun, I outputted all the winners up through a win for player 1.
+The solution is that player 1 wins for
+\fcolorbox{red}{white}{$\bm{ N=120}$}\,.
+All the other winners for a 61-player game are shown in the table below.
+Interestingly, the original game could have been shortened by a whole lot by choosing $N=84$, since player 58 would have won anyway.
+
+\begin{center}
+\begin{tabular*}{0.8\textwidth}{@{\extracolsep{\fill}} cccccccc}
+$N$ & Winner & $N$ & Winner & $N$ & Winner & $N$ & Winner \\
+\cline{1-2} \cline{3-4} \cline{5-6} \cline{7-8}
+1  & 61 & 31 & 12 & 61 & 33 & 91  & 60 \\
+2  & 59 & 32 & 59 & 62 & 19 & 92  & 22 \\
+3  & 10 & 33 & 4  & 63 & 14 & 93  & 25 \\
+4  & 27 & 34 & 24 & 64 & 6  & 94  & 19 \\
+5  & 49 & 35 & 28 & 65 & 13 & 95  & 23 \\
+6  & 7  & 36 & 22 & 66 & 7  & 96  & 33 \\
+7  & 35 & 37 & 57 & 67 & 39 & 97  & 18 \\
+8  & 46 & 38 & 20 & 68 & 39 & 98  & 23 \\
+9  & 48 & 39 & 35 & 69 & 30 & 99  & 50 \\
+10 & 22 & 40 & 56 & 70 & 44 & 100 & 50 \\
+11 & 14 & 41 & 30 & 71 & 30 & 101 & 7  \\
+12 & 6  & 42 & 31 & 72 & 5  & 102 & 12 \\
+13 & 61 & 43 & 12 & 73 & 31 & 103 & 33 \\
+14 & 10 & 44 & 30 & 74 & 28 & 104 & 40 \\
+15 & 15 & 45 & 41 & 75 & 20 & 105 & 41 \\
+16 & 53 & 46 & 59 & 76 & 26 & 106 & 48 \\
+17 & 19 & 47 & 4  & 77 & 48 & 107 & 18 \\
+18 & 25 & 48 & 42 & 78 & 20 & 108 & 24 \\
+19 & 18 & 49 & 12 & 79 & 19 & 109 & 12 \\
+20 & 20 & 50 & 51 & 80 & 7  & 110 & 31 \\
+21 & 13 & 51 & 2  & 81 & 40 & 111 & 51 \\
+22 & 53 & 52 & 41 & 82 & 15 & 112 & 20 \\
+23 & 56 & 53 & 24 & 83 & 59 & 113 & 42 \\
+24 & 16 & 54 & 34 & 84 & 58 & 114 & 25 \\
+25 & 35 & 55 & 44 & 85 & 47 & 115 & 27 \\
+26 & 16 & 56 & 46 & 86 & 13 & 116 & 37 \\
+27 & 47 & 57 & 51 & 87 & 11 & 117 & 17 \\
+28 & 49 & 58 & 49 & 88 & 21 & 118 & 53 \\
+29 & 49 & 59 & 2  & 89 & 20 & 119 & 3  \\
+30 & 3  & 60 & 37 & 90 & 5  & 120 & 1  \\
+\end{tabular*}
+\end{center}
+
+
+
+
+
+\end{document}
