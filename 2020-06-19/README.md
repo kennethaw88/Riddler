@@ -1,4 +1,4 @@
-#Can You Flip The Magic Coin? (19 June 2020)
+# Can You Flip The Magic Coin? (19 June 2020)
 
 https://fivethirtyeight.com/features/can-you-flip-the-magic-coin
 
