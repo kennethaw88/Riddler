@@ -1,4 +1,4 @@
-#Are You A Pinball Wizard? (24 July 2020)
+# Are You A Pinball Wizard? (24 July 2020)
 
 https://fivethirtyeight.com/features/are-you-a-pinball-wizard
 
