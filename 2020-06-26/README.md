@@ -1,4 +1,4 @@
-#Can You Connect The Dots? (26 June 2020)
+# Can You Connect The Dots? (26 June 2020)
 
 https://fivethirtyeight.com/features/can-you-connect-the-dots
 

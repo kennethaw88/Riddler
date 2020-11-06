@@ -1,4 +1,4 @@
-#Beware The Hot Pumpkin (30 October 2020)
+# Beware The Hot Pumpkin (30 October 2020)
 
 https://fivethirtyeight.com/features/beware-the-hot-pumpkin
 

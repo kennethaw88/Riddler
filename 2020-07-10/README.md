@@ -1,4 +1,4 @@
-#Can You Make 24? (10 July 2020)
+# Can You Make 24? (10 July 2020)
 
 https://fivethirtyeight.com/features/can-you-make-24
 

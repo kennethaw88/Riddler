@@ -1,4 +1,4 @@
-#Is The Price Right? (16 October 2020)
+# Is The Price Right? (16 October 2020)
 
 https://fivethirtyeight.com/features/is-the-price-right
 

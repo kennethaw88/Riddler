@@ -1,4 +1,4 @@
-#Can You Cover The Globe? (28 August 2020)
+# Can You Cover The Globe? (28 August 2020)
 
 https://fivethirtyeight.com/features/can-you-cover-the-globe
 
