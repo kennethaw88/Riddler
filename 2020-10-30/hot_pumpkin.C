@@ -139,6 +139,7 @@ void DoQuestion3( const int M_players )
 		for( int i = 0; i < M_players; i++ )
 			players[i] = 1;
 		test_sum = 0;
+		position = -1;
 
 		if( N < 0 )	// check if it overflows before finding solution
 		{
