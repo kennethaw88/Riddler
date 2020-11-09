@@ -1,0 +1,167 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 6 November 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+Mathematician John von Neumann is credited with figuring out how to take a biased coin (whose probability of coming up heads is $p$, not necessarily equal to 0.5) and ``simulate'' a fair coin.
+Simply flip the coin twice.
+If it comes up heads both times or tails both times, then flip it twice again.
+Eventually, you'll get two different flips---either a heads and then a tails, or a tails and then a heads, with each of these two cases equally likely.
+Once you get two different flips, you can call the second of those flips the outcome of your ``simulation.''
+
+For any value of $p$ between zero and one, this procedure will always return heads half the time and tails half the time.
+This is pretty remarkable!
+But there's a downside to von Neumann's approach---you don't know how long (i.e., how many flips) the simulation will last.
+
+Suppose I want to simulate a fair coin in at most \textit{three} flips.
+For which values of $p$ is this possible?
+
+\textit{Extra credit}: Suppose I want to simulate a fair coin in at most $N$ flips. For how many values of $p$ is this possible?
+
+
+\section*{Solution:}
+
+We can imagine each coin flip as dividing a unit cube along one axis, with each slice separating the cube into regions with volumes $p$ and $1-p$.
+After three flips there are 8 sections of the cube, with 4 distinct volumes; each section is a rectangular prism.
+
+Letting section A represent the sequence HHH, it has volume $p^{3}$.
+Sections B, C, and D represent HHT, HTH, THH (in any order) and have volume $p^{2}(1-p)$.
+Sections E, F, and G represent HTT, THT, TTH (in any order) and have volume $p(1-p)^{2}$.
+Finally, section H represents TTT and has volume $(1-p)^{3}$.
+
+Solving the riddle involves finding some combination of these sections whose total volume is \nicefrac{1}{2}, meaning that after three flips, there is some specific combination of flip sequences whose total probability is \nicefrac{1}{2}.
+Each combination creates a (potentially) cubic equation which gives a solution to the riddle if there is a root for $0<p<1$.
+Specifically, the equation is 
+
+\[
+\sum V_{i}=\frac{1}{2}
+\]
+
+where the sum is over the volumes $V_{i}$ of the specific combination of sections.
+In principle, there are up to $256=2^{8}$ possible combinations to check.
+However, the empty combination and the combination with every section cannot be solutions.
+Further, only half of the combinations need to be checked anyway, since the reverse combination will necessarily have the same area of \nicefrac{1}{2}.
+Additionally, many distinct combinations represent the same volume.
+I list all of the combinations below and the numerical solutions below.
+Because of the symmetry of the problem, I have only searched for solutions involving section A.
+Most solutions have closed forms when solved in Wolfram Alpha, but not all of them; I have not bothered to manually find all closed form solutions, so I only list the numerical solutions.
+Combinations without valid solutions are marked with ``--''.
+
+\vspace{0.2in}
+\begin{center}
+\begin{tabular*}{0.9\textwidth}{@{\extracolsep{\fill}}cccccc}
+Combination & $p$ & Combination & $p$ & Combination & $p$ \\
+\cline{1-2} \cline{3-4} \cline{5-6}
+A & 0.7937 & \makecell{AB\\AC\\AD} & 0.7071 & \makecell{AE\\AF\\AG} & 0.7718 \\
+\cline{1-2} \cline{3-4} \cline{5-6}
+AH & \makecell{0.7887\\0.2113} & \makecell{ABC\\ABD\\ACD} & 0.5970 & \makecell{ABE\\ABF\\ABG\\ACE\\ACF\\ACG\\ADE\\ADF\\ADG} & 0.6478 \\
+\cline{1-2} \cline{3-4} \cline{5-6}
+\makecell{ABH\\ACH\\ADH} & \makecell{0.6846\\0.2373} & \makecell{AEF\\AEG\\AFG} & 0.7347 & \makecell{AEH\\AFH\\AGH} & \makecell{0.7627\\0.3154} \\
+\cline{1-2} \cline{3-4} \cline{5-6}
+ABCD & 0.5 & \makecell{ABCE\\ABCF\\ABCG\\ABDE\\ABDF\\ABDG\\ACDE\\ACDF\\ACDG} & 0.5 & \makecell{ABCH\\ABDH\\ACDH} & \makecell{0.5\\0.2929} \\
+\cline{1-2} \cline{3-4} \cline{5-6}
+\makecell{ABEF\\ABEG\\ABFG\\ACEF\\ACEG\\ACFG\\ADEF\\ADEG\\ADFG} & 0.5 & \makecell{ABEH\\ABFH\\ABGH\\ACEH\\ACFH\\ACGH\\ADEH\\ADFH\\ADGH} & 0.5 & AEFG & 0.5 \\
+\cline{1-2} \cline{3-4} \cline{5-6}
+\makecell{AEFH\\AEGH\\AFGH} & \makecell{0.5\\0.7071} & \makecell{ABCDE\\ABCDF\\ABCDG} & 0.4030 & ABCDH & -- \\
+\cline{1-2} \cline{3-4} \cline{5-6}
+\makecell{ABCEF\\ABCEG\\ABCFG\\ABDEF\\ABDEG\\ABDFG\\ACDEF\\ACDEG\\ACDFG} & 0.3522 & \makecell{ABCEH\\ABCFH\\ABCGH\\ABDEH\\ABDFH\\ABDGH\\ACDEH\\ACDFH\\ACDGH} & -- & \makecell{ABEFG\\ACEFG\\ADEFG} & 0.2653 \\
+\cline{1-2} \cline{3-4} \cline{5-6}
+\makecell{ABEFH\\ABEGH\\ABFGH\\ACEFH\\ACEGH\\ACFGH\\ADEFH\\ADEGH\\ADFGH} & -- & AEFGH & -- & \makecell{ABCDEF\\ABCDEG\\ABCDFG} & 0.2929 \\
+\cline{1-2} \cline{3-4} \cline{5-6}
+\end{tabular*}
+\end{center}
+
+\vspace{0.2in}
+\begin{center}
+\begin{tabular*}{0.9\textwidth}{@{\extracolsep{\fill}}cccccc}
+Combination & $p$ & Combination & $p$ & Combination & $p$ \\
+\cline{1-2} \cline{3-4} \cline{5-6}
+\makecell{ABCDEH\\ABCDFH\\ABCDGH} & -- & \makecell{ABCEFG\\ABDEFG\\ACDEFG} & 0.2282 &
+\makecell{ABCEFH\\ABCEGH\\ABCFGH\\ABDEFH\\ABDEGH\\ABDFGH\\ACDEFH\\ACDEGH\\ACDFGH} & -- \\
+\cline{1-2} \cline{3-4} \cline{5-6}
+\makecell{ABEFGH\\ACEFGH\\ADEFGH} & -- & ABCDEFG & 0.2063 & \makecell{ABCDEFH\\ABCDEGH\\ABCDFGH} & -- \\
+\cline{1-2} \cline{3-4} \cline{5-6}
+\makecell{ABCEFGH\\ABDEFGH\\ACDEFGH} & --
+\end{tabular*}
+\end{center}
+
+In total, there are
+\fcolorbox{red}{white}{\bf 19} possibilities for $p$.
+In an easier-to-read list, they are:
+
+\vspace{0.2in}
+\begin{center}
+\begin{tabular*}{0.55\textwidth}{@{\extracolsep{\fill}}ccccc}
+0.2063 & 0.2113 & 0.2282 & 0.2373 & 0.2653 \\
+0.2929 & 0.3154 & 0.3522 & 0.4030 & 0.5 \\
+0.5970 & 0.6478 & 0.6846 & 0.7071 & 0.7347 \\
+0.7627 & 0.7718 & 0.7887 & 0.7937
+\end{tabular*}
+\end{center}
+
+
+
+
+\end{document}

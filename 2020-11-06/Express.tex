@@ -1,0 +1,122 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 6 November 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+Last weekend's New York City Marathon was canceled.
+But runners from Des Linden---one of the top American marathoners---to FiveThirtyEight's own Santul Nerkar---my number one editor---still went out there and braved the course.
+Santul finished in a time of 3:41:43 (3 hours, 41 minutes, 43 seconds), which averaged to 8 minutes, 27 seconds per mile.
+
+Suppose, while training, Santul completed two 20-mile runs on a treadmill.
+For the first run, he set the treadmill to a constant speed so that he ran every mile in 9 minutes.
+
+The second run was a little different.
+He started at a 10 minute-per-mile pace and accelerated continuously until he was running at an 8-minute-per mile pace at the end.
+Moreover, Santul's minutes-per-mile pace (i.e., \textit{not} his speed) changed linearly over time.
+So a quarter of the way through the duration (in time, not distance) of the run, his pace was 9 minutes, 30 seconds per mile, halfway through it was 9 minutes per mile, etc.
+
+Which training run was faster (i.e., took less time) overall?
+And what were Santul's times for the two runs?
+
+
+\section*{Solution:}
+
+I will label the constant-speed time $t_{1}$ and the accelerating-speed time $t_{2}$.
+The first time is easy to calculate:
+
+\begin{align*}
+t_{1} &= 9~\rm{min/mile}*20~\rm{mile} \\
+      &= 180~\rm{min}
+\end{align*}
+
+The second time is more complicated.
+The pace is given as an inverse rate $\nicefrac{1}{v}(t)$.
+Based on the parameters given, the inverse rate can be written as
+
+\[
+\frac{1}{v}(t)=10-\frac{2}{t_{2}}t
+\]
+
+so that the pace is 10~min/mile at $t=0$ and 8~min/mile at $t=t_{2}$.
+The total distance of 20~miles is the integral of the velocity with respect to time, the pace must be inverted and integrated.
+
+\begin{align*}
+20 &= \int v(t)\,dt \\
+   &= \int_{0}^{t_{2}}\frac{1}{10-\frac{2}{t_{2}}t}\,dt \\
+   &= -\frac{t_{2}}{2}\left.\ln\left(10-\frac{2}{t_{2}}\right)\right|_{0}^{t_{2}} \\
+   &= -\frac{t_{2}}{2}\left[\ln(8)-\ln(10)\right] \\
+   &= \frac{t_{2}}{2}\ln\left(\frac{5}{4}\right)
+\end{align*}
+\begin{align*}
+t_{2} &= \frac{40}{\ln\left(\frac{5}{4}\right)} \\
+      &= 179.2568\dots~\rm{min}
+\end{align*}
+
+So the solution is that
+\fcolorbox{red}{white}{\bf the second run is faster by about 45~seconds}\,.
+
+
+
+\end{document}
