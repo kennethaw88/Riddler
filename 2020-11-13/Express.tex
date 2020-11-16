@@ -1,0 +1,107 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 13 November 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+You're playing the (single) Jeopardy! Round, and your opponents are simply no match for you.
+You choose first and never relinquish control, working your way horizontally across the board by first selecting all six \$200 clues, then all six \$400 clues, and so on, until you finally select all the \$1,000 clues.
+You respond to each clue correctly before either of your opponents can.
+
+One randomly selected clue is a Daily Double.
+Rather than award you the prize money associated with that clue, it instead allows you to double your current winnings or wager up to \$1,000 should you have less than that.
+Being the aggressive player you are, you always bet the most you can.
+(In reality, the Daily Double is more likely to appear in certain locations on the board than others, but for this problem assume it has an equal chance of appearing anywhere on the board.)
+
+How much money do you expect to win during the Jeopardy! round?
+
+\textit{Extra credit}: Suppose you change your strategy.
+Instead of working your way horizontally across the board, you select random clues from anywhere on the board, one at a time.
+Now how much money do you expect to win during the Jeopardy! round?
+
+
+\section*{Solution:}
+
+I set up both of these problems in the script \texttt{jeopardy.C}\,.
+For the first problem, since the order of clue selections is the same in all cases, the only possible variation in games is the location of the Daily Double; there are 30 possible locations.
+Because this is a small number, it is easy to search through the games exhaustively.
+I did this in the first part of the script, where there are 30 games, and the Daily Double is incremented for each game.
+The total is calculated for each game, and then the average is printed out at the end.
+The average winnings, adn the solution to the riddle is
+\fcolorbox{red}{white}{\bf \$23,800}\,.
+
+For the second part, there are many more possible games.
+Specifically, there are $(30!)/(6!)^{5}>1.37\times10^{18}$ games.
+This is much too large to go through exhaustively.
+So instead I only simulated a few million games.
+For this part, I somewhat reversed the premise of the riddle: I randomized the ordering of the clue values in a vector, and went through the vector in order.
+The location of the Daily Double was also randomized.
+The result is that the average winnings are about
+\fcolorbox{red}{white}{\bf \$26,150}\,.
+Of course, the answer is larger than before, because the higher-value clues aren't necessarily chosen toward the end of the game.
+But I'm a bit surprised that it's that close; I thought it would be much higher.
+
+
+
+\end{document}
