@@ -1,0 +1,106 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+%\usepackage{mathtools} % displaystyle for cases environment (dcases)
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 20 November 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+Depending on the year, there can be one, two or three Friday the 13ths.
+Last week happened to be the second Friday the 13th of 2020.
+
+What is the \textit{greatest} number of Friday the 13ths that can occur over the course of four consecutive calendar years?
+
+\textit{Extra credit}: What's the greatest number of Friday the 13ths that can occur over a four-year period (i.e., a period that doesn't necessarily begin on January 1)?
+
+
+\section*{Solution:}
+
+The question (the extra credit, really) basically boils down to finding a 48-month span with the most Friday-the-13ths.
+The actual particulars of what the start date are don't matter as much as what is the first month in which the 13th occurs (i.e., starting a four-year period on the 1st of a month is really the same as starting on the 2nd, or the 3rd, up through the 13th.)
+
+There are several cases to consider.
+First, a four-year period could have zero or one leap year.
+For one leap year, it could happen in the first, second, third, or fourth year.
+Actually, considering the general case, the 48-month period could start and end on a leap year.
+But what's important is that the leap day can only occur once in the 48-month period, or not occur at all.
+
+For the no-leap-year case, there are 12 possible months to start with, and seven permutations of weekdays, so 84 possibilities.
+For the leap-year case, there are 48 possible months, so including the seven weekdays, there are 336 possibilities.
+This is a manageable total number of cases, so I listed them all out in an Excel spreadsheet, which is at \texttt{Months.xlsx}\,.
+It is nice that Excel can do modular arithmetic with days.
+
+For each yearly cycle, I calculated how the days are iterated for the 13th of each month.
+For example, if January 13th is a Monday, February 13th is always a Thursday.
+Once each iteration was set up, I copied it for several years in a row, and for each possible weekday permutation.
+Then, for each possible starting month, I counted how many times Friday occurs for the following 47 months.
+The maximum number of Fridays was 9, which happens in four cases.
+These are when the 48-month span starts with Wednesday April 13th, Friday May 13th, or Tuesday December 13th of a year preceding a leap year; or Friday January 13th of a leap year.
+
+This happened for real for the 4-year periods beginning March 14 -- May 13, 1983 and beginning November 13, 1984 -- January 13, 1984.
+This happens to include the full calendar years 1984--1987.
+So the solution to both parts of the riddle is
+\fcolorbox{red}{white}{\bf 9}\,.
+
+
+\end{document}

@@ -1,0 +1,120 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+%\usepackage{mathtools} % displaystyle for cases environment (dcases)
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 20 November 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+To celebrate Thanksgiving, you and 19 of your family members are seated at a circular table (socially distanced, of course).
+Everyone at the table would like a helping of cranberry sauce, which happens to be in front of you at the moment.
+
+Instead of passing the sauce around in a circle, you pass it randomly to the person seated directly to your left or to your right.
+They then do the same, passing it randomly either to the person to \textit{their} left or right.
+This continues until everyone has, at some point, received the cranberry sauce.
+
+Of the 20 people in the circle, who has the greatest chance of being the \textit{last} to receive the cranberry sauce?
+
+
+\section*{Solution:}
+
+I suppose there's a way to solve this analytically, but I don't want to bother with that.
+I wrote a script to simulate this process many times; the code can be found in \texttt{cranberry\_pass.C}\,.
+It basically counts the number of times each person gets the sauce last.
+I numbered the people 2--20 (1 is the first person, and doesn't really count).
+Some sample results from the 100,000,000 simulations are:
+
+\vspace{0.1in}
+\begin{center}
+\begin{tabular}{cc}
+\textbf{Position} & \textbf{Count} \\
+2  & 5266781 \\
+3  & 5258326 \\
+4  & 5262347 \\
+5  & 5260950 \\
+6  & 5264241 \\
+7  & 5269333 \\
+8  & 5266353 \\
+9  & 5262939 \\
+10 & 5257483 \\
+11 & 5261289 \\
+12 & 5258953 \\
+13 & 5265369 \\
+14 & 5264188 \\
+15 & 5270231 \\
+16 & 5264248 \\
+17 & 5262048 \\
+18 & 5262265 \\
+19 & 5256353 \\
+20 & 5266303 \\
+\end{tabular}
+\end{center}
+\vspace{0.1in}
+
+Clearly, each person got the sauce last with very nearly the same frequency, which is about 5,260,000/100,000,000=0.0526.
+Since there is no obvious coding error (the numbers are different, and in any case sum to 10,000,000), I'm going to claim this is proof that the frequencies are in fact equal.
+Therefore the solution is that each other person (besides the first person) has an equal probability of being served last, with probability
+\fcolorbox{red}{white}{\bf\nicefrac{1}{19}~=~0.5263\dots}\,.
+
+
+\end{document}
