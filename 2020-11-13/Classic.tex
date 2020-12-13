@@ -91,7 +91,7 @@ w(k,h)=\binom{k}{h}=\frac{k!}{h!(k-h)!}
 Of course, any larger number of heads will still win the game, so the number of ways to win in any fashion $W(k,h)$ is
 
 \[
-W(k,h)=\sum_{i=h}^{k}w(k,h)=\sum_{i=h}^{k}\binom{k}{h}
+W(k,h)=\sum_{i=h}^{k}w(k,i)=\sum_{i=h}^{k}\binom{k}{i}
 \]
 
 But this must be turned into a probability.
@@ -108,9 +108,9 @@ Noting the specific cases when $h=0$ (the game is already won) and $h>k$ (winnin
 \[
 P(k,h)=
 \begin{cases}
-1                                         & h=0 \\
-\displaystyle \frac{1}{2^{k}}\sum_{i=h}^{k}\binom{k}{h} & 0<h<k \\
-0                                         & h=k
+1                                                       & h=0 \\
+\displaystyle \frac{1}{2^{k}}\sum_{i=h}^{k}\binom{k}{h} & 0<h\leq k \\
+0                                                       & h>k
 \end{cases}
 \]
 

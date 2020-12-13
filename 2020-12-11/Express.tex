@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 11 December 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+Yesterday was the first night of Hanukkah, which means millions of Jews began lighting their menorahs.
+It is traditional to start with one candle in the rightmost position, which is lit using a central candle called a shamash.
+On the second night, a second candle is added to the left of the first.
+On the third night, a third candle is added to the left of the second, and so on, until all eight candles have been added on the final night.
+
+With this system for adding candles, whether you are looking at the menorah from the front (i.e., in your home) or back (i.e., through a window), you can easily determine which of the eight nights of Hanukkah it is by counting the number of candles (other than the shamash).
+But what if you wanted to make that same menorah capable of tracking \textit{more} than eight nights?
+
+To do that, you'd have to devise a new system of adding or moving candles (other than the shamash in the middle, which is always lit) around the menorah so that it can uniquely indicate as many nights as possible.
+Your system must read the same forward and backward, so that regardless of whether you're looking at the menorah from the front or the back you will still know what night it is.
+What is the greatest number of nights that could be indicated using your system?
+
+
+\section*{Solution:}
+
+An upper limit to the solution is just $2^{8}=256$, since the status of each candle (lit or unlit) could be interpreted as a binary digit.
+(Of course, the lower limit is 8.)
+Because the seeing the menorah from the front or back simply represents a reflection of the lighting arrangement, any arrangement in the solution must represent the same night as its reflected arrangement.
+Arrangements which are different when reflected would be double counted (in a sense) in the 256-night total.
+Therefore, the number of reflection-asymmetric asymmetric arrangements must be subtracted from 256 to reach the solution.
+
+It is actually easier to count the number of reflection-symmetric arrangements, which are not double counted.
+Considering only one half of the menorah, there are four candles, and therefore $2^4=16$ lighting arrangements of these candles.
+For each of these arrangements, there is one way to produce the reflected arrangement in the remaining four candles.
+Thus, there are 16 of the 256 total arrangements are reflection-symmetric.
+The remaining 240 are paired into reflection-asymmetric arrangements.
+
+Therefore, 120 nights can be represented by the 240 pairs, and an additionaly 16 nights can be represented by the other 16 arrangements.
+So the solution is
+\fcolorbox{red}{white}{\bf 136 nights}\,.
+This is of course also the result if the 120 pairs are subtracted from 256.
+
+
+
+
+
+\end{document}
