@@ -1,0 +1,98 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 11 December 2020}
+\end{center}
+
+
+\section*{Riddle:}
+
+There are many ways to slice a big square into smaller squares (not necessarily of equal size), so that the smaller squares don’t overlap, while still making up the entire area of the big square.
+
+For example, you can slice the big square into four smaller squares, each a quarter of the area of the big square.
+Or you could slice it into seven squares, if you take one of those four squares and slice it into four yet smaller squares.
+
+What whole numbers of squares can you \textit{not} slice the big square into?
+
+
+\section*{Solution:}
+
+Each slicing operation changes a single square into another number of squares, which is always a square number (of the form $n^{2}$).
+In other words, each operation adds $n^{2}-1$ squares to the total.
+The final number will be obtained by a sum of consecutive slicing operations.
+
+The first few numbers of the form $n^{2}-1$ for $n\geq2$ are 3, 8, 15, 24, and so on.
+I will call these the slice numbers.
+So the riddle is essentially asking for what numbers cannot be written as a sum of slice numbers.
+In fact, many larger numbers have multiple ways to be written as a sum of those numbers, but only the numbers that have no sum contribute to the solution.
+This question is essentially the Frobenius problem, which asks specifically for the largest number which cannot be written as a sum of numbers.
+In this case, just using the first two slice numbers (3 and 8), the solution to the Frobenius problem is 13 ($=3\times8-3-8$).
+So the 15, 24, and higher slice numbers don't even matter.
+
+Besides 13, the other (positive) numbers that aren't a sum of slice numbers are 1, 2, 4, 5, 7, and 10.
+Taking into account the original square as part of the riddle and shifting these numbers by 1, the solution is
+\fcolorbox{red}{white}{\bf 2, 3, 5, 6, 8, 11, and 14}\,.
+
+
+
+
+
+\end{document}
