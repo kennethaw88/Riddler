@@ -1,0 +1,122 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 8 January 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+Robin of Foxley has entered the FiveThirtyEight archery tournament.
+Her aim is excellent (relatively speaking), as she is guaranteed to hit the circular target, which has no subdivisions---it’s just one big circle.
+However, her arrows are equally likely to hit each location within the target.
+
+Her true love, Marian, has issued a challenge.
+Robin must fire as many arrows as she can, such that each arrow is closer to the center of the target than the previous arrow.
+For example, if Robin fires three arrows, each closer to the center than the previous, but the fourth arrow is farther than the third, then she is done with the challenge and her score is \textit{four}.
+
+On average, what score can Robin expect to achieve in this archery challenge?
+
+\textit{Extra credit}: Marian now uses a target with 10 concentric circles, whose radii are 1, 2, 3, etc., all the way up to 10---the radius of the entire target.
+This time, Robin must fire as many arrows as she can, such that each arrow falls within a smaller concentric circle than the previous arrow.
+On average, what score can Robin expect to achieve in \textit{this} version of the archery challenge?
+
+
+\section*{Solution:}
+
+It is tricky to generate uniform random points on a circle.
+Just choosing a radius from a uniform distribution will result in a higher density of points near the center.
+The correct way is to choose a radius from a distribution that is weighted linearly.
+The (normalized) probability distribution function $f(x)$ for a random radius $x$ between 0 and 1 is
+\[
+f(x)=2x
+\]
+Pairing this with an angle chosen at random from a uniform distribution will result in uniformly distributed points across a circle.
+But for this problem, the angle doesn't matter, only the radius.
+
+I decided to tackle this problem with a simulation.
+It is easy to generate a uniform distribution with any computer program, but it's not necessarily straightforward to get other distributions (such as $f(x)$ above).
+However, any other distribution can be obtained from uniform distribution as follows.
+First, the cumulative distribution $F(x)$ is obtained:
+\[
+F(x)=\int_{0}^{x}f(t)\,dt=x^{2}
+\]
+Next, the inverse function $F'(y)$ is obtained (in this case trivially):
+\[
+F'(y)=\sqrt{y}
+\]
+Now, if $y$ is obtained from a uniform distribution between 0 and 1, then $F'(y)$ will be distributed as necessary.
+That is to say, the probability of getting the radius between $x$ and $x+dx$ will be $f(x)$.
+
+With this function in the code, it is simply left to generate these numbers and compare them one-by-one, count the total number of arrows shot, and average the scores.
+
+After $10^{7}$ trial games, I obtained an average of 2.71768.
+The result is very clearly $e$ (although I haven't checked if it is consistent in a formal statistical manner).
+This is puzzling to me.
+I know that the answer would be $e$ if the distribution was uniform, but it's not obvious why it should be true for other distributions.
+I adjusted the code to change the function applied to the uniformly generated number, and the result was still the same.
+My guess it that the result of playing this game will always be the same for any distribution, since the ``old'' and ``new'' numbers that are being compared have the same function applied anyway.
+So my solution to the riddle is
+\fcolorbox{red}{white}{$\bm{e\approx2.71828}$}\,.
+
+
+
+\end{document}
