@@ -108,6 +108,7 @@ That is to say, the probability of getting the radius between $x$ and $x+dx$ wil
 
 With this function in the code, it is simply left to generate these numbers and compare them one-by-one, count the total number of arrows shot, and average the scores.
 
+The code I used is saved in \texttt{arrow\_game.C}\,.
 After $10^{7}$ trial games, I obtained an average of 2.71768.
 The result is very clearly $e$ (although I haven't checked if it is consistent in a formal statistical manner).
 This is puzzling to me.
@@ -116,6 +117,9 @@ I adjusted the code to change the function applied to the uniformly generated nu
 My guess it that the result of playing this game will always be the same for any distribution, since the ``old'' and ``new'' numbers that are being compared have the same function applied anyway.
 So my solution to the riddle is
 \fcolorbox{red}{white}{$\bm{e\approx2.71828}$}\,.
+
+I have not attempted the extra credit, but it wouldn't be much harder to implement.
+The answer is clearly less than the first solution, both because there is a strict upper limit to the number of arrows (11), and because each shot results in a necessarily tighter constraint than before.
 
 
 
