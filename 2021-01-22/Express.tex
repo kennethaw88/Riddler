@@ -1,0 +1,106 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 22 January 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+You're reviewing some of the survey data that was randomly collected from the residents of Riddler City.
+As you'll recall, the city is quite large.
+
+Ten randomly selected residents were asked how many people (including them) lived in their household.
+As it so happened, their answers were 1, 2, 3, 4, 5, 6, 7, 8, 9 and 10.
+
+It's your job to use this (admittedly limited) data to estimate the average household size in Riddler City.
+Your co-worker suggests averaging the 10 numbers, which would give you an answer of about 5.5 people.
+But you're not so sure.
+
+Would your best estimate be exactly 5.5, less than 5.5 or greater than 5.5?
+
+
+\section*{Solution:}
+
+The correct interpretation of the co-worker's average is that the average resident lives in a 5.5-member household, or equivalently, each resident has on average 4.5 housemates.
+This is the average from the ``perspective'' of the residents.
+From the perspective, of the households themselves, the average should be lower.
+To illustrate, in a 10-person household would have 10 people contributing to the residents' average, but only a single household contributing to the household average.
+
+The sample data indicate that 10\% of residents live in a one-person household, 10\% live in a two-person household, and so on.
+So for every single ten-person household, there are 10 one-person households, 5 two-person households, 3.33\dots three-person households, 2.5 four-person households, 2 five-person households, 1.66\dots six-person households, 1.42\dots seven-person households, 1.25 eight-person households, and 1.11\dots nine-person households.
+In general the number of $n$-person households (per ten-person household) is \nicefrac{10}{n}.
+From this, the relative number of residents in each size household is $n(\nicefrac{10}{n})=10$, so the household sizes are equally distributed among residents.
+
+To calculate the average household size $H$, the sizes must be added according to the relative weight (the number of households of each size) and normalized to the weighting:
+
+\[
+H=\frac{\displaystyle\sum_{n=1}^{10}n\left(\frac{10}{n}\right)}{\displaystyle\sum_{n=1}^{10}\frac{10}{n}}
+\]
+
+Evaluating this sum gives an average household size of
+\fcolorbox{red}{white}{$\bm{H\approx3.415}$}\,.
+
+
+
+
+
+\end{document}

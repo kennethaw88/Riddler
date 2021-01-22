@@ -1,0 +1,92 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 15 January 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+You're a contestant on the hit new game show, ``You Bet Your Fife.''
+On the show, a random real number (i.e., decimals are allowed) is chosen between 0 and 100. Your job is to guess a value that is \textit{less than} this randomly chosen number.
+Your reward for winning is a novelty fife that is valued precisely at your guess.
+For example, if the number is 75 and you guess 5, you'd win a \$5 fife, but if you'd guessed 60, you'd win a \$60 fife.
+Meanwhile, a guess of 80 would win you nothing.
+
+What number should you guess to maximize the average value of your fifing winnings?
+
+
+\section*{Solution:}
+
+Call the number you choose $x$.
+Then, your fife is worth $x$ dollars if you win.
+The probability that you win is the probability than the randomly chosen number is between $x$ and 100, which is $100-x$.
+The expected winnings is therefore $x(100-x)$.
+This function is an inverted parabola with a maximum value for $x=50$.
+At this value, the expected winnings is \$25.
+So the solution is to guess
+\fcolorbox{red}{white}{\bf 50}\,.
+
+
+
+
+
+\end{document}

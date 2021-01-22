@@ -1,0 +1,113 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 22 January 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+Congratulations, you've made it to the finals of the Riddler Ski Federation's winter championship!
+There's just one opponent left to beat, and then the gold medal will be yours.
+
+Each of you will complete \textit{two} runs down the mountain, and the times of your runs will be added together.
+Whoever skis in the least overall time is the winner.
+Also, this being the \textit{Riddler} Ski Federation, you have been presented detailed data on both you and your opponent.
+You are evenly matched, and both have the same normal probability distribution of finishing times for each run.
+And for both of you, your time on the first run is completely independent of your time on the second run.
+
+For the first runs, your opponent goes first.
+Then, it's your turn.
+As you cross the finish line, your coach excitedly signals to you that you were faster than your opponent.
+Without knowing either exact time, what's the probability that you will still be ahead after the second run and earn your gold medal?
+
+\textit{Extra credit}: Over in the snowboarding championship, there are 30 finalists, including you (apparently, you're a dual-sport threat!).
+Again, you are the last one to complete the first run, and your coach signals that you are in the lead.
+What is the probability that you'll win gold in snowboarding?
+
+
+\section*{Solution:}
+
+There are four possibilities for the results of the two individual runs: W-W, W-L, L-W, and L-L.
+Each of these outcomes has equal probability of happening.
+The current riddle is only concerned with the two outcomes W-W and W-L.
+While the other outcomes may happen, they don't factor into this solution, since it is only asking about the relative probability of winning after winning the first run specifically.
+
+Relative to winning the first run, the two outcomes W-W and W-L now each have a 50\% probability of happening.
+The W-W outcome can only result in a final win, so the solution must be at least 50\%.
+The W-L outcome can be further divided into a final win and a final loss.
+The final win will happen if the lead in the first run is larger than the deficit in the second run.
+I claim that by symmetry the deficit will be smaller than the lead with 50\% probability.
+The times in both runs by both players have the same distribution and are independent, so the distribution of possible lead times in the first round is the same as the distribution of possible deficit times in the second run.
+Because they are the same distribution, the probability that one is larger than the other is the same as the probability of being smaller; therefore the probability for either is 50\%.
+Combining this with the total chance of losing the second run of 50\%, this adds an additional 25\% probability.
+So the solution is
+\fcolorbox{red}{white}{$\bm{{\nicefrac{3}{4}=75\%}}$}\,.
+
+\begin{comment}
+For the extra credit, I believe that the answer should be
+\fcolorbox{red}{white}{$\bm{{\nicefrac{31}{60}=51.66\dots\%}}$}\,, but I'm not too sure how to rigorously prove it.
+\end{comment}
+
+
+
+
+\end{document}
