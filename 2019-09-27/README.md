@@ -8,11 +8,11 @@ Riddler Nation's Jibriel Taha, an avid baseball fan, saw the following tweet fro
 
 >The Brewers are...
 >
->    5-5 last 10g
->10-10 last 20g
->15-15 last 30g
->20-20 last 40g
->25-25 last 50g
+>    5-5 last 10g<br/>
+>10-10 last 20g<br/>
+>15-15 last 30g<br/>
+>20-20 last 40g<br/>
+>25-25 last 50g<br/>
 >30-30 last 60g
 >
 >— Adam McCalvy (@Adam McCalvy) September 6, 2019
