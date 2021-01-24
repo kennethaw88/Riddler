@@ -1,4 +1,4 @@
-# Can You Break The Riddler Bank?  (18 October 2019)
+# Can You Break The Riddler Bank? (18 October 2019)
 
 https://fivethirtyeight.com/features/can-you-break-the-riddler-bank
 

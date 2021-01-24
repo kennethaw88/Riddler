@@ -1,0 +1,96 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 4 October 2019}
+\end{center}
+
+
+\section*{Riddle:}
+
+The classic birthday problem asks about how many people need to be in a room together before you have better-than-even odds that at least two of them have the same birthday.
+Ignoring leap years, the answer is, paradoxically, only 23 people---fewer than you might intuitively think.
+
+But Joel noticed something interesting about a well-known group of 100 people: In the U.S. Senate, three senators happen to share the same birthday of October 20: Kamala Harris, Brian Schatz and Sheldon Whitehouse.
+
+And so Joel has thrown a new wrinkle into the classic birthday problem.
+How many people do you need to have better-than-even odds that at least three of them have the same birthday?
+(Again, ignore leap years.)
+
+
+\section*{Solution:}
+
+I'm sure that there is an analytical solution that could be found with an absurd number of factorials and other large numbers.
+But it was rather easy to set this up in a script, which I put in \texttt{Three\_birthdays.C}\,.
+The script tests a given number of people to determine the probability that three have the same birthday.
+I also make the assumption that each of the 365 birthdays is equally likely (which is not actually true).
+The script doesn't bother making a calculation if there are more than 730 people; by the pigeon-hole principle, there will always be at least three people who share a birthday in this situation.
+It is up to the user to test individual numbers of people one-by-one until the probability goes over 50\%.
+
+In my tests, with 87 people, the average probability was 49.95\%, and with 88 people, the average was 51.09\%.
+I'm not absolutely certain that the 87-person probability is definitely below 50\%, but I can't do any better than what I have.
+So my solution is
+\fcolorbox{red}{white}{\bf 88}\,.
+
+
+
+
+\end{document}

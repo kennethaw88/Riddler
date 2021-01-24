@@ -1,0 +1,111 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+\npthousandsep{,\allowbreak} % allow breaks at any thousands separator for numprint values
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 11 October 2019}
+\end{center}
+
+
+\section*{Riddle:}
+
+An auditorium with 200 seats, numbered from 1 to 200, is filled to capacity.
+A speaker, who happens to be a mathematician, steps up to the podium overlooking the audience and pauses for a moment.
+``You know,'' she says, ``I'm thinking of a rather large whole number.
+Every seat number in this auditorium evenly divides my number, except for two of them---and those two seats happen to be next to each other.''
+
+As you'd expect, adjacent seats in the auditorium have consecutive numbers.
+Which two numbers was the speaker referring to?
+
+
+\section*{Solution:}
+
+The two adjacent numbers which are excluded must be powers of prime numbers.
+Otherwise, their factorization will still show up in the final product.
+For example, if 35 ($=5\times7$) is excluded, the factors of 5 and 7 would still show up because 5 and 7 themselves are not excluded.
+Further, the excluded numbers must be the highest possible powers that are less than 200.
+For example, if the number 27 ($=3^{3}$) is excluded, all the 3s would still show up because 81 ($=3^{4}$) is not excluded.
+
+All of the highest prime powers below 200 are listed below.
+
+\begin{center}
+\begin{tabular*}{5.5in}{@{\extracolsep{\fill}}cccccccccc}
+128 ($2^{7}$)  & 169 ($13^{2}$) & 31 & 53 & 73 & 101 & 127 & 151 & 179 & 199 \\
+81 ($3^{4}$)   & 17             & 37 & 59 & 79 & 103 & 131 & 157 & 181 & \\
+125 ($5^{3}$)  & 19             & 41 & 61 & 83 & 107 & 137 & 163 & 191 & \\
+49 ($7^{2}$)   & 23             & 43 & 67 & 89 & 109 & 139 & 167 & 193 & \\
+121 ($11^{2}$) & 29             & 47 & 71 & 97 & 113 & 149 & 173 & 197 & \\
+\end{tabular*}
+\end{center}
+
+The only two adjacent numbers on this list, and the solution, are
+\fcolorbox{red}{white}{\bf 127 and 128}\,.
+
+There isn't a particular answer to the ``rather large'' whole number about which the speaker is thinking.
+However, it must have all of the other factors above at least, in addition to the remaining factors of 2 that shows up in 64.
+Plugging those into Wolfram Alpha gives me \numprint{1327927515090260884407345538562367745796828278681721394601759928808007945120777126248000}\,, a number with 88 digits.
+Any multiple of this number could be the speaker's number, as long as that multiple itself isn't divisible by 2 or 127.
+
+
+
+
+\end{document}
