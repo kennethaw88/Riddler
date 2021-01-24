@@ -1,0 +1,100 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 27 September 2019}
+\end{center}
+
+
+\section*{Riddle:}
+
+Riddler Nation's Jibriel Taha, an avid baseball fan, saw the following tweet from the Milwaukee Brewers' beat writer Adam McCalvy:
+
+\begin{quote}
+The Brewers are...
+
+\quad5-5 last 10g \\
+10-10 last 20g \\
+15-15 last 30g \\
+20-20 last 40g \\
+25-25 last 50g \\
+30-30 last 60g
+
+— Adam McCalvy (@AdamMcCalvy) \href{https://twitter.com/AdamMcCalvy/status/1170170706983866368}{September 6, 2019}
+\end{quote}
+
+Inspired by the Brewers' apparent mediocrity (they've since gone on a roll to clinch a playoff spot) Jibriel asks the following:
+
+If a baseball team is truly .500, meaning it has a 50 percent chance of winning each game, what's the probability that it has won two of its last four games and four of its last eight games?
+
+\section*{Solution:}
+
+With eight games, there are $2^{8}=256$ possible outcomes, and each occurs with equal probability.
+The best way to calculate the solution is to consider the first four games and last four games separately.
+For each set of four games, there are $\binom{4}{2}=6$ ways to win exactly two games, in any order.
+Since the two sets of four games are independent, there are $6\times6=36$ ways to win two games in each set.
+So the solution is \nicefrac{36}{256}, or
+\fcolorbox{red}{white}{\bf 14.0625\%}\,.
+
+
+
+
+\end{document}
