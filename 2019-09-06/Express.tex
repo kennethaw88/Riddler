@@ -1,0 +1,94 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 6 September 2019}
+\end{center}
+
+
+\section*{Riddle:}
+
+You and your friend are playing a game of ``Acchi, Muite, Hoi'' (or what some on Twitter have been calling the ``lookaway challenge'').
+In the first round, you point in one of four directions: up, down, left or right.
+At the exact same time, your friend also looks in one of those four directions.
+If your friend looks in the same direction you're pointing, you win!
+Otherwise, you switch roles as the game continues to the next round---now your friend points in a direction and you try to look away.
+As long as no one wins, you keep switching off who points and who looks.
+
+It \textit{seems} like your chances of winning should be 50 percent, since there are exactly two players.
+But surely it's not that simple.
+If both you and your friend choose your directions randomly in each round, what are your chances of winning?
+
+
+\section*{Solution:}
+
+In the first round, you have a \nicefrac{1}{4} chance of winning.
+The other \nicefrac{3}{4} of the time, the game continues with your opponent now having the same \nicefrac{1}{4} chance.
+If no one wins after two rounds, the game essentially starts over from the beginning.
+So the entire game can be represented by the first two rounds.
+You have a \nicefrac{1}{4} chance of winning, and your opponent has a $\nicefrac{3}{4}*\nicefrac{1}{4}=\nicefrac{3}{16}$ chance of winning.
+That gives you a 4:3 advantage over your opponent, and normalizing these probabilities gives you a chance of wininnging of
+\fcolorbox{red}{white}{\bf\nicefrac{4}{7}}\,.
+With increasingly more than four options to choose, this chance of winning would approach \nicefrac{1}{2}.
+
+
+
+\end{document}

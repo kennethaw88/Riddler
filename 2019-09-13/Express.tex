@@ -1,0 +1,92 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 13 September 2019}
+\end{center}
+
+
+\section*{Riddle:}
+
+At long last, Dakota Jones is close to finding the Lost Arc, a geometric antiquity buried deep in the sands of Egypt.
+Along the way, she discovered what she described as a ``highly symmetric crystal'' that's needed to precisely locate the Arc.
+Dakota measured the crystal using her laser scanner and relayed the results to you.
+But nefarious agents have gotten wind of her plans, and Dakota and the crystal are nowhere to be found.
+
+Locating the Arc is now up to you.
+To do that, you must recreate the crystal using the data from Dakota's laser scanner.
+The scanner takes a 3D object, and records 2D cross-sectional slices along the third dimension.
+Here's the looping animation file the scanner produced for the crystal: \href{https://fivethirtyeight.com/wp-content/uploads/2019/09/jones_538.gif}{Link}
+
+What sort of three-dimensional shape is the crystal?
+No pressure---Dakota Jones, nay, the entire world, is counting on you to locate the Lost Arc and ensure its place in a museum!
+
+
+\section*{Solution:}
+
+The shape is a
+\fcolorbox{red}{white}{\bf cube}\,.
+The cross-sectional planes are normal to a diagonal which connects any two opposite vertices of the cube.
+The shape is not unique, though, and the cube could be stretched or compressed along that diagonal.
+But the riddle hints that it is highly symmetric, and a cube itself is more symmetric than the stretched or compressed shapes.
+
+
+\end{document}
