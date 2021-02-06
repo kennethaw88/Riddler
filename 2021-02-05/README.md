@@ -8,46 +8,7 @@ For your first weekly CrossProduct, there are five three-digit numbers—each be
 The products of the three digits of each number are shown in the rightmost column.
 Meanwhile, the products of the digits in the hundreds, tens and ones places, respectively, are shown in the bottom row.
 
-<table>
-<tbody>
-<tr style="border-top: 1px solid #cdcdcd">
-<td style="text-align: center;border-right: 1px solid #cdcdcd;width: 25%;border-left: 1px solid #cdcdcd"></td>
-<td style="text-align: center;border-right: 1px solid #cdcdcd;width: 25%"></td>
-<td style="text-align: center;border-right: 2px solid;width: 25%"></td>
-<td style="border-right: 1px solid #cdcdcd;width: 25%">135</td>
-</tr>
-<tr>
-<td style="text-align: center;border-right: 1px solid #cdcdcd;width: 25%;border-left: 1px solid #cdcdcd"></td>
-<td style="text-align: center;border-right: 1px solid #cdcdcd;width: 25%"></td>
-<td style="text-align: center;border-right: 2px solid;width: 25%"></td>
-<td style="border-right: 1px solid #cdcdcd;width: 25%">45</td>
-</tr>
-<tr>
-<td style="text-align: center;border-right: 1px solid #cdcdcd;width: 25%;border-left: 1px solid #cdcdcd"></td>
-<td style="text-align: center;border-right: 1px solid #cdcdcd;width: 25%"></td>
-<td style="text-align: center;border-right: 2px solid;width: 25%"></td>
-<td style="border-right: 1px solid #cdcdcd;width: 25%">64</td>
-</tr>
-<tr>
-<td style="text-align: center;border-right: 1px solid #cdcdcd;width: 25%;border-left: 1px solid #cdcdcd"></td>
-<td style="text-align: center;border-right: 1px solid #cdcdcd;width: 25%"></td>
-<td style="text-align: center;border-right: 2px solid;width: 25%"></td>
-<td style="border-right: 1px solid #cdcdcd;width: 25%">280</td>
-</tr>
-<tr>
-<td style="text-align: center;border-right: 1px solid #cdcdcd;width: 25%;border-left: 1px solid #cdcdcd"></td>
-<td style="text-align: center;border-right: 1px solid #cdcdcd;width: 25%"></td>
-<td style="text-align: center;border-right: 2px solid;width: 25%"></td>
-<td style="border-right: 1px solid #cdcdcd;width: 25%">70</td>
-</tr>
-<tr style="border-top: 2px solid;border-bottom: 1px solid #cdcdcd">
-<td style="text-align: center;border-right: 1px solid #cdcdcd;width: 25%;border-left: 1px solid #cdcdcd">3,000</td>
-<td style="text-align: center;border-right: 1px solid #cdcdcd;width: 25%">3,969</td>
-<td style="text-align: center;border-right: 2px solid;width: 25%">640</td>
-<td style="border-right: 1px solid #cdcdcd;width: 25%"></td>
-</tr>
-</tbody>
-</table>
+![grid](https://github.com/kennethaw88/Riddler/blob/master/2021-02-05/number-grid.png)
 
 Can you find all five three-digit numbers and complete the table?
 

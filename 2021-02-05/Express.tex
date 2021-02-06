@@ -1,0 +1,163 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 5 February 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+For your first weekly CrossProduct, there are five three-digit numbers — each belongs in a row of the table below, with one digit per cell. The products of the three digits of each number are shown in the rightmost column. Meanwhile, the products of the digits in the hundreds, tens and ones places, respectively, are shown in the bottom row.
+
+\begin{center}
+\begin{tabular}{|C{0.75in}|C{0.75in}|C{0.75in}!{\vrule width 1.5pt}R{0.75in}|}
+\hline
+ & & & 135 \\
+\hline
+ & & & 45 \\
+\hline
+ & & & 64 \\
+\hline
+ & & & 280 \\
+\hline
+ & & & 70 \\
+\noalign{\hrule height 1.5pt}
+3,000 & 3,969 & 640 & \\
+\hline
+\end{tabular}
+\end{center}
+
+Can you find all five three-digit numbers and complete the table?
+
+\section*{Solution:}
+
+The riddle is essentially asking for 15 digits to be placed in a $5\times3$ table.
+The first step is to decompose each number into either three or five (not-necessarily-prime) single-digit factors.
+For some, there are multiple sets of possible factors.
+I list these below:
+
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lllll}
+135  & $=3\cdot5\cdot9$ \\
+45   & $=3\cdot3\cdot5$ & $=1\cdot5\cdot9$  \\
+64   & $=1\cdot8\cdot8$ & $=2\cdot4\cdot8$ & $=4\cdot4\cdot4$ \\
+280  & $=5\cdot7\cdot8$ \\
+70   & $=2\cdot5\cdot7$ \\
+3000 & $=4\cdot5\cdot5\cdot5\cdot6$ & $=3\cdot5\cdot5\cdot5\cdot8$ \\
+3969 & $=3\cdot3\cdot7\cdot7\cdot9$ & $=1\cdot7\cdot7\cdot9\cdot9$ \\
+640  & $=1\cdot2\cdot5\cdot8\cdot8$ & $=1\cdot4\cdot4\cdot5\cdot8$ & $=2\cdot2\cdot4\cdot5\cdot8$ & $=2\cdot4\cdot4\cdot4\cdot5$ \\
+\end{tabular}
+\end{center}
+
+The set of factors that appear for the first five numbers must match the set of factors for the final three.
+Additionally, each of the three digits from the first five numbers must come from a different factorization of the bottom three numbers, and each of the five digits from the final three numbers must come from a different factorization of the first five numbers.
+In the factorization of 3,969, the two 7s must come from the 280 and 70.
+The remaining factors are either $3\cdot3\cdot9$ or $1\cdot9\cdot9$.
+The $3\cdot3\cdot9$ is not possible, because the factorization of 64 does not have any factor of 3.
+This means that the middle column must be (in order) 9, 9, 1, 7, 7.
+
+Now that the third row has a 1, the only possible factorization of 64 is $1\cdot8\cdot8$.
+Since the 1 is in the middle, this row is 8, 1, 8.
+
+The first factorization of 3,000 is not possible because a 6 does not appear in any other factorization.
+So the first column must use $3\cdot5\cdot5\cdot5\cdot8$.
+The 8 is in the third row.
+The 3 cannot appear in the bottom two rows, so those must be 5s.
+This means that the bottom two rows are 5, 7, 8 and 5, 7, 2.
+
+The third column now has two 8s and a 2 in the last three rows.
+The only factorization of 640 with these is $1\cdot2\cdot5\cdot8\cdot8$.
+So the third column has a 1 and a 5 in either of the first two rows.
+
+The only factors left are a 3 and 5 in the first column, and 1 and 5 in the last column.
+The 135 needs an additional factor of 3 with the 9 in the middle.
+Therefore, the first column has 3 in the first row and 5 in the second row.
+This means the first row is 3, 9, 5, and the second row is 5, 9, 1.
+
+The final solution is
+
+\begin{center}
+\begin{tabular}{|C{0.75in}|C{0.75in}|C{0.75in}|}
+\hline
+3 & 9 & 5 \\
+\hline
+5 & 9 & 1 \\
+\hline
+8 & 1 & 8 \\
+\hline
+5 & 7 & 8 \\
+\hline
+5 & 7 & 2 \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\end{document}
