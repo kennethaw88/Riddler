@@ -19,12 +19,17 @@ Except for the initial arrangement (and winning arrangements), all arrangements 
 
 Using 1e6 games, the average is
 
-2 discs: 10.6
+2 discs: 10.7
 3 discs: 70.7
-4 discs: 404
+4 discs: 403
 5 discs: 2150
-6 discs: 11111
-7 discs: 
+6 discs: 11155
+7 discs: 56985
+
+Using 1e4 games, the average is
+7 discs: 57415
+8 discs: 289664
+9 discs: 1459583
 */
 
 bool IsWinner( std::vector<unsigned short int> &x )
@@ -83,11 +88,10 @@ int main()
 	double trials = 1e6;	// number of games
 	double moves; // counter for moves in each game
 	double average_moves = 0;	// keep track of moves
-	//unsigned short int a, b, c;
-	std::vector<unsigned short int> tower;
-	double dummy;
-	unsigned int max_discs = 7;
-	signed int disc_to_move = -1;
+	std::vector<unsigned short int> tower; // vector of peg positions
+	double dummy;	// keep track of random number
+	unsigned int max_discs = 7;	// how many games to do
+	signed int disc_to_move = -1;	// keep track of discs available for moving
 
 	// put first two discs in first peg (no point in solving 1-disc game)
 	tower.push_back(1);
@@ -164,9 +168,11 @@ int main()
 						do
 						{
 							tower.at( disc_to_move )++;
+							// keep it in the range 1-3
 							if( tower.at( disc_to_move ) == 4 )
 								tower.at( disc_to_move ) = 1;
 						}
+						// don't move on top of smallest disc
 						while( tower.at( disc_to_move ) == tower.back() );
 					}
 				}
@@ -179,6 +185,7 @@ int main()
 
 		printf("\nFor %lu discs tested with %.0e games, the average number of moves was %.5f.\n", tower.size(), trials, average_moves/trials );
 
+		// increment number of discs
 		tower.push_back(1);
 	}
 

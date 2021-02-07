@@ -1,0 +1,138 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 5 February 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+Cassius the ape (a friend of Caesar's) has gotten his hands on a Lucas' Tower puzzle (also commonly referred to as the ``Tower of Hanoi'').
+This particular puzzle consists of three poles and three disks, all of which start on the same pole.
+The three disks have different diameters---the biggest disk is at the bottom and the smallest disk is at the top.
+The goal is to move all three disks from one pole to any other pole, one at a time, but there's a catch.
+At no point can a larger disk ever sit atop a smaller disk.
+
+For $N$ disks, the minimum number of moves is $2^{N}-1$.
+(Spoiler alert! If you haven't proven this before, give it a shot.
+It's an excellent exercise in mathematical induction.)
+
+But this week, the \textit{minimum} number of moves is not in question.
+It turns out that Cassius couldn't care less about solving the puzzle, but he is very good at following directions and understands a larger disk can never sit atop a smaller disk.
+With each move, he randomly chooses one among the set of valid moves.
+
+On average, how many moves will it take for Cassius to solve this puzzle with three disks?
+
+\textit{Extra credit}: On average, how many moves will it take for Cassius to solve this puzzle in the general case of $N$ disks?
+
+\section*{Solution:}
+
+I set up the script \texttt{Towers\_of\_Hanoi.C} to solve this riddle.
+It solves this game for an arbitrary number of discs, although for practicality, I have stopped at seven discs.
+
+The script creates a vector with one entry for each disc, and the value of each entry (1, 2, or 3) represents the peg position of that disc.
+For $N$ discs, there are $3^{N}$ possible vectors, and each of these vectors corresponds to exactly one legal arrangement of the discs on the pegs.
+Specifically, each arrangement can be made by placing the discs from largest to smallest according to the order of the peg numbers in the vector.
+
+From the initial arrangement (a vector of all 1s), there are only two legal moves; the smallest peg can be moved to either of the two empty pegs.
+For all other arrangements (except all 2s or all 3s, which are winning arrangements), there are exactly three legal moves.
+The smallest peg can still be moved to either of the other two pegs, or a larger disc can be moved.
+This third move is forced because it cannot be moved to the smallest disc's peg, and only the smallest remaining peg could be moved, anyway.
+
+Based on a random number generator, the discs are moved among the legal moves, with a probability of \nicefrac{1}{2} for the initial move (or any subsequent move from the initial arrangement), and a probability of \nicefrac{1}{3} for the other moves.
+The script counts the moves being made then calculates and displays the average for each number of discs.
+I decided to run $1\times10^{6}$ simulations for each number of discs, to get the answers (hopefully) reasonably converged.
+It could probably handle more discs with fewer simulations.
+
+For three discs, the script calculated an average of
+\fcolorbox{red}{white}{\bf 70.7 moves}\,.
+
+Here are my other averages so far:
+
+\begin{center}
+\begin{tabular}{cc}
+\textbf{Discs} & \textbf{Average moves} \\
+\hline
+1 & 1 (trivial) \\
+2 & 10.6 \\
+3 & 70.7 \\
+4 & 404 \\
+5 & 2150 \\
+6 & 11155 \\
+7 & 56985
+\end{tabular}
+\end{center}
+
+Of course, they are increasing faster than $2^{N}$, but I don't have enough points to examine the long-term behavior.
+Nor do I have the mathematical skills to find an analytical answer.
+From what I have, it looks like they are increasing around $5^{N}$, but not quite.
+Perhaps they eventually approach $4^{N}=2^{2N}$, which sounds nice, but I can't prove it.
+
+
+\end{document}
