@@ -1,0 +1,179 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 12 February 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+It’s the second week in our four weeks of CrossProduct™ puzzles!
+
+This time around, there are \textit{six} three-digit numbers---each belongs in a row of the table below, with one digit per cell.
+The products of the three digits of each number are shown in the rightmost column.
+Meanwhile, the products of the digits in the hundreds, tens and ones places, respectively, are shown in the bottom row.
+
+\begin{center}
+\begin{tabular}{|C{0.75in}|C{0.75in}|C{0.75in}!{\vrule width 1.5pt}R{0.75in}|}
+\hline
+ & & & 210 \\
+\hline
+ & & & 144 \\
+\hline
+ & & & 54 \\
+\hline
+ & & & 135 \\
+\hline
+ & & & 4 \\
+\hline
+ & & & 49 \\
+\noalign{\hrule height 2pt}
+6,615 & 15,552 & 420 & \\
+\hline
+\end{tabular}
+\end{center}
+
+Can you find all six three-digit numbers and complete the table?
+
+\section*{Solution:}
+
+The riddle is essentially asking for 18 digits to be placed in a $6\times3$ table.
+The first step is to decompose each number into either three or six (not-necessarily-prime) single-digit factors.
+For most, there are multiple sets of possible factors.
+I list these below:
+
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lllll}
+210   & $=5\cdot6\cdot7$ \\
+144   & $=2\cdot8\cdot9$ & $=3\cdot6\cdot8$ & $=4\cdot4\cdot9$ & $=4\cdot6\cdot6$ \\
+54    & $=1\cdot6\cdot9$ & $=2\cdot3\cdot9$ & $=3\cdot3\cdot6$ \\
+135   & $=3\cdot5\cdot9$
+4     & $=1\cdot1\cdot4$ & $=1\cdot2\cdot2$ \\
+49    & $=1\cdot7\cdot7$ \\
+6615  & $=1\cdot3\cdot5\cdot7\cdot7\cdot9$ & $=3\cdot3\cdot3\cdot5\cdot7\cdot7$ \\
+15552 & $=1\cdot3\cdot8\cdot8\cdot9\cdot9$ & $=1\cdot4\cdot6\cdot8\cdot9\cdot9$ & $=1\cdot6\cdot6\cdot6\cdot8\cdot9$ & $=2\cdot2\cdot6\cdot8\cdot9\cdot9$ \\
+      & $=2\cdot3\cdot4\cdot8\cdot9\cdot9$ & $=2\cdot4\cdot4\cdot6\cdot9\cdot9$ & $=2\cdot4\cdot6\cdot6\cdot6\cdot9$ & $=2\cdot6\cdot6\cdot6\cdot6\cdot6$ \\
+      & $=3\cdot4\cdot4\cdot4\cdot9\cdot9$ & $=3\cdot4\cdot6\cdot6\cdot6\cdot6$ \\
+420   & $=1\cdot1\cdot2\cdot5\cdot6\cdot7$ & $=1\cdot1\cdot3\cdot4\cdot5\cdot7$ & $=1\cdot2\cdot2\cdot3\cdot5\cdot7$
+\end{tabular}
+\end{center}
+
+The easiest first step is to notice that the last row (49) only has two possible factors: 1 and 7.
+Because 7 is not a factor of 15,552, the 1 must go in the center column, with the 7s in the left and right columns.
+So the sixth row is 7,1,7.
+
+Now that the 6,615 has one of its 7s accounted for, the other 7 must come from the 210 in the first row.
+The only remaining factors in 210 are 5 and 6.
+Again, the 5 is not a factor of 15,552, so the middle column is 6, and the right column is 5.
+The top row is thus 7,6,5.
+
+Because one of the two factors of 5 was used for 210, the only other row that has a 5 is the fourth row (135).
+Its factor of 5 must belong to the 6,615 in the first column.
+In the fourth row, the other two factors are 3 and 9.
+The 9 is not a factor of 420, so the 9 is in the middle column, leaving the 3 in the right column.
+The fourth row is therefore 5,9,3.
+
+At this point, several of the factorizations listed above can be eliminated.
+Because the middle column (15,552) now has a 1, 6, and 9,all but two factorizations are eliminated.
+Similarly, the last column (420) has a 3, 5, and 7, so that the $1\cdot1\cdot2\cdot5\cdot6\cdot7$ factorization is eliminated.
+The 6,615 and 4 have no factors in common besides 1, so the 1 must go in the first column of the fifth row.
+This eliminates $3\cdot3\cdot3\cdot5\cdot7\cdot7$ as a factorization of 6,615.
+For the first column, the two factors not yet assigned are 3 and 9.
+Thus the factorization of 144 must include one of these numbers, so $4\cdot6\cdot6$ is eliminated.
+
+At this point, my procedure is to list out all sets of remaining factors for both the rows and columns.
+There are eight positions left unassigned.
+There are eighteen possible ways to factor the second, third, and fifth rows, and four ways to factor the second and third columns.
+Looking at these, the only factorizations that match up are $1\cdot2\cdot2\cdot3\cdot4\cdot8\cdot9\cdot9$, $1\cdot2\cdot2\cdot3\cdot6\cdot6\cdot8\cdot9$, and $1\cdot1\cdot3\cdot4\cdot6\cdot6\cdot7\cdot9$.
+
+Trying to place all of these factors in the table is impossible for the last two factorizations.
+Only the first of the three matches can have the factors placed correctly.
+The final solution is
+
+\begin{center}
+\begin{tabular}{|C{0.75in}|C{0.75in}|C{0.75in}|}
+\hline
+7 & 6 & 5 \\
+\hline
+9 & 8 & 2 \\
+\hline
+3 & 9 & 2 \\
+\hline
+5 & 9 & 3 \\
+\hline
+1 & 4 & 1 \\
+\hline
+7 & 1 & 7 \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\end{document}
