@@ -1,0 +1,159 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{2.0} % extra vertical space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 26 February 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+This is the fourth and final week of CrossProduct™ puzzles---for now.
+This time, there are \textit{four} four-digit numbers---each belongs in a row of the table below, with one digit per cell.
+The products of the four digits of each number are shown in the rightmost column.
+Meanwhile, the products of the digits in the thousands, hundreds, tens and ones places, respectively, are shown in the bottom row.
+
+\begin{center}
+\begin{tabular}{|C{0.7in}|C{0.7in}|C{0.7in}|C{0.7in}!{\vrule width 2pt}R{0.7in}|}
+\hline
+ & & & & 1,458 \\
+\hline
+ & & & & 128 \\
+\hline
+ & & & & 2,688 \\
+\hline
+ & & & & 360 \\
+\hline
+ & & & & 125 \\
+\noalign{\hrule height 2pt}
+960 & 384 & 630 & 270 & \\
+\hline
+\end{tabular}
+\end{center}
+
+Can you find all four four-digit numbers and complete the table?
+
+\section*{Solution:}
+
+The riddle is essentially asking for 16 digits to be placed in a $4\times4$ table.
+Generally, the first step is to decompose each number into either four (not-necessarily-prime) single-digit factors.
+For this riddle, though, I only decomposed the rows into factors.
+I list all possible sets of factors for each row below:
+
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lllll}
+1458 & $=2\cdot9\cdot9\cdot9$ & $=3\cdot6\cdot9\cdot9$ \\
+128  & $=1\cdot2\cdot8\cdot8$ & $=1\cdot4\cdot4\cdot8$ & $=2\cdot2\cdot4\cdot8$ & $=2\cdot4\cdot4\cdot4$ \\
+2688 & $=6\cdot7\cdot8\cdot8$ \\
+125  & $=1\cdot5\cdot5\cdot5$
+\end{tabular}
+\end{center}
+
+My first step is that 384 is not divisible by 5, so the bottom row must have a 1 in the second column.
+The rest of the row is 5s.
+Therefore the bottom row is 5,1,5,5.
+
+The only products which have a factor of 7 are 2,688 and 630, so the third row, third column must be 7.
+Since the 630 already has factors of $5\cdot7=35$, the remaining product is 18.
+The only factor in common with 128 is 2, so the second row of the third column must be 2, leaving 9 for the top row.
+
+The 270 has a factor of 5, so its remaining product is 54.
+The 2,688 only has remaining factors of $6\cdot8\cdot8$, and the only factor in common with 54 is 6, which goes in the last column of the third row.
+This leaves 8s for the first and second column.
+The third row is therefore 8,8,7,6.
+
+The 960 has factors of 5 and 8, leaving it with a remaining product of 24.
+The 384 has factors of 1 and 8, leaving it with a remaining product of 48.
+The 270 has factors of 5 and 6, leaving it with a remaining product of 9.
+With a 9 already placed in the top row, there is only one remaining product with a factor of 9, so the factorization of $2\cdot9\cdot9\cdot9$ is ruled out.
+The 9 must go in the last column, leaving factors of 3 and 6.
+The 6 must go in the second column, leaving 3 in the first column.
+The first row is therefore 3,6,9,9.
+
+The only remaining factors for the columns are 8, 8, and 1.
+Therefore the second row is 8,8,2,1.
+
+The final solution is
+
+\begin{center}
+\begin{tabular}{|C{0.7in}|C{0.7in}|C{0.7in}|C{0.7in}|}
+\hline
+3 & 6 & 9 & 9 \\
+\hline
+8 & 8 & 2 & 1 \\
+\hline
+8 & 8 & 7 & 6 \\
+\hline
+5 & 1 & 5 & 5 \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\end{document}

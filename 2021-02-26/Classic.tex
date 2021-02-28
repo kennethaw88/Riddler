@@ -1,0 +1,198 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures, without f option, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 26 February 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+You have 10 blocks with which to build four steps against a wall.
+The first step is one block high, the second is two blocks high, the third is three blocks high and the fourth is four blocks high.
+
+However, the ground ever-so-slightly slopes down toward the wall, and both the floor and the blocks are a little bit slippery.
+As a result, whenever you place a block at ground level, it slides toward the wall until it hits the wall or another block.
+And when you place a block atop another block, it will similarly slide toward the wall until it hits the wall or another block.
+
+Suppose the four blocks in the bottom row are labeled A, the three blocks in the second row are labeled B, the two blocks in the next row are labeled C and the topmost block is labeled D.
+One way to build the steps would be to place the blocks in the following order, one row at a time: A-A-A-A-B-B-B-C-C-D.
+You could alternatively place the blocks one column at a time: A-B-C-D-A-B-C-A-B-A.
+But you could \textit{not} place them in the order A-B-B-A-A-A-B-C-C-D because that would mean at one point you have more blocks in the second row, B, than in the bottom row, A---a physical impossibility!
+
+How many distinct ways are there to build these four steps using the 10 blocks?
+
+\textit{Extra credit}: Suppose you have precisely enough blocks to build a staircase with $N$ stairs.
+How many distinct ways are there to build this staircase?
+
+\section*{Solution:}
+
+I first note that the number of blocks required to make a simple staircase with $N$ steps is the $N$th triangular number, $T_{N}$:
+
+\[
+T_{N}=\frac{N(N+1)}{2}
+\]
+
+This is because the blocks form a (right) triangle, with two sides of length $N$ in the horizontal and vertical direction.
+
+I decided to solve this problem by first counting the number of ways to stack the blocks for one, two, and three steps.
+For one step, there is trivially just a single block, and a single way to place it, since there is only one action total.
+For two steps, there are three blocks, and two ways to stack: A-A-B and A-B-A.
+
+For three steps, I had to write out and count all the possibilities:
+
+\begin{center}
+\begin{tabular}{cccc}
+A-A-A-B-B-C & A-A-A-B-C-B & A-A-B-A-B-C & A-A-B-A-C-B \\
+A-A-B-B-A-C & A-A-B-B-C-A & A-A-B-C-A-B & A-A-B-C-B-A \\
+A-B-A-A-B-C & A-B-A-A-C-B & A-B-A-B-A-C & A-B-A-B-C-A \\
+A-B-A-C-A-B & A-B-A-C-B-A & A-B-C-A-A-B & A-B-C-A-B-A
+\end{tabular}
+\end{center}
+
+This is a total of 16.
+
+For 4 steps, I did not take the time to write out all the possibilities.
+Instead, I first counted out the possibilities which reduce to the three-step solution.
+With $T_{4}=10$ blocks, if the first four blocks are placed as either A-A-A-A or A-B-C-D, the remaining six blocks are essentially a three-step staircase.
+So there are $2\times16=32$ ways to stack the blocks.
+For the other ways to stack, I only considered how the first four were placed, for a simple comparison with the previous two cases.
+
+Stacking the first four blocks in the order A-A-A-B produces the same (or mirrored) arrangement as A-A-B-A, A-B-A-A, A-A-B-C, A-B-A-C, and A-B-C-A.
+So I only listed the remaining six blocks in the A-A-A-B case, since the others would have the same number of ways to fill in the rest of the blocks.
+I list those here:
+
+\begin{center}
+\begin{tabular}{cccccc}
+A-B-B-C-C-D & A-A-B-C-D-C & A-B-C-B-C-D & A-B-C-B-D-C & A-B-C-C-B-D & A-B-C-C-D-B \\
+A-B-C-D-B-C & A-B-C-D-C-B & A-C-B-B-C-D & A-C-B-B-D-C & A-C-B-C-B-D & A-C-B-C-D-B \\
+A-C-B-D-B-C & A-C-B-D-C-B & A-C-D-B-B-C & A-C-D-B-C-B & B-A-B-C-C-D & B-A-B-C-D-C \\
+B-A-C-B-C-D & B-A-C-B-D-C & B-A-C-C-B-D & B-A-C-C-D-B & B-A-C-D-B-C & B-A-C-D-C-B \\
+B-B-A-C-C-D & B-B-A-C-D-C & B-B-C-A-C-D & B-B-C-A-D-C & B-B-C-C-A-D & B-B-C-C-D-A \\
+B-B-C-D-A-C & B-B-C-D-C-A & B-C-A-B-C-D & B-C-A-B-D-C & B-C-A-C-B-D & B-C-A-C-D-B \\
+B-C-A-D-B-C & B-C-A-D-C-B & B-C-B-A-C-D & B-C-B-A-D-C & B-C-B-C-A-D & B-C-B-C-D-A \\
+B-C-B-D-A-C & B-C-B-D-C-A & B-C-C-A-B-D & B-C-C-A-D-B & B-C-C-B-A-D & B-C-C-B-D-A \\
+B-C-C-D-A-B & B-C-C-D-B-A & B-C-D-A-B-C & B-C-D-A-C-B & B-C-D-B-A-C & B-C-D-B-C-A \\
+B-C-D-C-A-B & B-C-D-C-B-A & C-A-B-B-C-D & C-A-B-B-D-C & C-A-B-C-B-D & C-A-B-C-D-B \\
+C-A-B-D-B-C & C-A-B-D-C-B & C-A-D-B-B-C & C-A-D-B-C-B & C-B-A-B-C-D & C-B-A-B-D-C \\
+C-B-A-C-B-D & C-B-A-C-D-B & C-B-A-D-B-C & C-B-A-D-C-A & C-B-B-A-C-D & C-B-B-A-D-C \\
+C-B-B-C-A-D & C-B-B-C-D-A & C-B-B-D-A-C & C-B-B-D-C-A & C-B-C-A-B-D & C-B-C-A-D-B \\
+C-B-C-B-A-D & C-B-C-B-D-A & C-B-C-D-A-B & C-B-C-D-B-A & C-B-D-A-B-C & C-B-D-A-C-B \\
+C-B-D-B-A-C & C-B-D-B-C-A & C-B-D-C-A-B & C-B-D-C-B-A & C-D-A-B-B-C & C-D-A-B-C-B \\
+C-D-B-A-B-C & C-D-B-A-C-B & C-D-B-B-A-C & C-D-B-B-C-A & C-D-B-C-A-B & C-D-B-C-B-A
+\end{tabular}
+\end{center}
+
+That is 96 possibilities, adding $6\times96=576$ to the solution.
+There are only two other ways to stack the first four blocks: A-A-B-B and A-B-A-B.
+Starting with either of these, the remaining six blocks can be arranged as follows:
+
+\begin{center}
+\begin{tabular}{ccccc}
+A-A-B-C-C-D & A-A-B-C-D-C & A-A-C-B-C-D & A-A-C-B-D-C & A-A-C-C-B-D \\
+A-A-C-C-D-B & A-A-C-D-B-C & A-A-C-D-C-B & A-B-A-C-C-D & A-B-A-C-D-C \\
+A-B-C-A-C-D & A-B-C-A-D-C & A-B-C-C-A-D & A-B-C-C-D-A & A-B-C-D-A-C \\
+A-B-C-D-C-A & A-C-A-B-C-D & A-C-A-B-D-C & A-C-A-C-B-D & A-C-A-C-D-B \\
+A-C-A-D-B-C & A-C-A-D-C-B & A-C-B-A-C-D & A-C-B-A-D-C & A-C-B-C-A-D \\
+A-C-B-C-D-A & A-C-B-D-A-C & A-C-B-D-C-A & A-C-C-A-B-D & A-C-C-A-D-B \\
+A-C-C-B-A-D & A-C-C-B-D-A & A-C-C-D-A-B & A-C-C-D-B-A & A-C-D-A-B-C \\
+A-C-D-A-C-B & A-C-D-B-A-C & A-C-D-B-C-A & A-C-D-C-A-B & A-C-D-C-B-A \\
+C-A-A-B-C-D & C-A-A-B-D-C & C-A-A-C-B-D & C-A-A-C-D-B & C-A-A-D-B-C \\
+C-A-A-D-C-B & C-A-B-A-C-D & C-A-B-A-D-C & C-A-B-C-A-D & C-A-B-C-D-A \\
+C-A-B-D-A-C & C-A-B-D-C-A & C-A-C-A-B-D & C-A-C-A-D-B & C-A-C-B-A-D \\
+C-A-C-B-D-A & C-A-C-D-A-B & C-A-C-D-B-A & C-A-D-A-B-C & C-A-D-A-C-B \\
+C-A-D-B-A-C & C-A-D-B-C-A & C-A-D-C-A-B & C-A-D-C-B-A & C-C-A-A-B-D \\
+C-C-A-A-D-B & C-C-A-B-A-D & C-C-A-B-D-A & C-C-A-D-A-B & C-C-A-D-B-A \\
+C-C-D-A-A-B & C-C-D-A-B-A & C-D-A-A-B-C & C-D-A-A-C-B & C-D-A-B-A-C \\
+C-D-A-B-C-A & C-D-A-C-A-B & C-D-A-C-B-A & C-D-C-A-A-B & C-D-C-A-B-A
+\end{tabular}
+\end{center}
+
+That is 80 possibilties, adding $2\times80=160$ to the solution.
+In total, I have counted
+\fcolorbox{red}{white}{\bf 768} ways to stack the blocks.
+
+So for one, two, three, and four blocks, the sequence seems to be 1, 2, 16, and 768.
+Plugging this into the OEIS gives three known sequences.
+The most promising seems to be A108400, which is simply listed as the product:
+
+\[
+a(n)=\prod_{k=0}^{n}k!\cdot2^{k}
+\]
+
+Compared to the current riddle, there is an offset of 1, so that my proposed solution for the number of ways to build $b(N)$ for $N\geq1$ blocks is
+
+\[
+b(N)=\prod_{k=0}^{N-1}k!\cdot2^{k}
+\]
+
+
+
+
+
+\end{document}
