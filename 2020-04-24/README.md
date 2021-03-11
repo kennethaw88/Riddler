@@ -29,5 +29,6 @@ If Monty is able to open another door, revealing a goat, he will do so.
 But if no other doors have goats behind them, he will tell you that is the case.
 
 It just so happens that when you play, Monty is able to open another door, revealing a goat behind it.
-Should you stay with your original selection or switch? And what are your chances of winning the prize?
+Should you stay with your original selection or switch?
+And what are your chances of winning the prize?
 

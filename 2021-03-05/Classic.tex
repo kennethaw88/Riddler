@@ -1,0 +1,122 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 5 March 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+On Feb. 23, baseball statistician Jim Passon tweeted out some recent stats for baseball's God of WAR, Mike Trout:
+
+\begin{quote}
+Mike Trout's past$\dots$
+
+$\dots$299 games = .299 BA
+
+$\dots$440 games = .440 OBP
+
+$\dots$610 games = .610 SLG
+
+$\dots$1,020 games = 1.020 OPS
+
+— Jim Passon (@PassonJim) \href{https://twitter.com/PassonJim/status/1364086333581393923}{February 23, 2021}
+\end{quote}
+
+Yes, Trout's numbers are gaudy.
+But what caught social media's attention was that each stat (batting average, on-base percentage, slugging percentage and OPS) \textit{somehow} had a corresponding number of games over which Trout averaged those stats.
+For example, Trout batted .299 over his last 299 games. Could this possibly be a coincidence?
+
+If you think about it for a minute, you'll realize that there's nothing magical at all about having a batting average that matches a corresponding number of games.
+
+Suppose a baseball player has four at-bats per game (not including walks), so their batting average is the number of hits they got divided by four times the number of games they played.
+For many games, it's possible to have a corresponding batting average that, when rounded to three digits, equals the number of games divided by 1,000.
+For example, if a player typically gets one hit per game in their at-bats, then they could very well have a .250 average over 250 games.
+
+What is the greatest number of games for which it is \textit{not} possible to have a matching rounded batting average?
+Again, assume four at-bats per game.
+
+
+
+\section*{Solution:}
+
+I set up the math for this riddle in a spreadsheet, called \texttt{Batting\_average.xlsx}\,.
+I started counting down from 1,000 games in order to find the first instance where having a matching stat is not possible.
+For each number of games, I multiplied by the corresponding fraction to get an exact (decimal) value for number of hits.
+This decimal was rounded up and down to get the best estimates for the integer number of hits.
+Then the actual stat was calculated for each of these integer values.
+Finally, I just searched for the first instance where neither of these calculated stats matched the number of games.
+
+The first instance where this occurs is for 239 games (956 at-bats).
+The closest possible stats are $\nicefrac{228}{239}\approx0.238$ and $\nicefrac{229}{239}\approx0.240$.
+So the solution is
+\fcolorbox{red}{white}{\bf 239}\,.
+
+
+\end{document}
