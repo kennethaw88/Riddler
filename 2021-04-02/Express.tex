@@ -1,0 +1,116 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 2 April 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+You and Wenjun are playing a game in which you alternate taking turns, removing pennies from a pile.
+On your turn, you can remove either one or two pennies from the pile.
+On Wenjun's turn, he can remove either two or three pennies.
+Whoever takes the last penny \textit{loses}.
+(If there is only one penny left and it's Wenjun's turn, then he skips his turn, which means you will lose).
+Suppose both you and Wenjun play optimally.
+
+1) If you go first, then what initial numbers of pennies mean \textit{you} will win the game?
+
+2) If Wenjun goes first, then what initial numbers of pennies mean \textit{he} will win the game?
+
+
+
+\section*{Solution:}
+
+Like other NIM games, the way to solve is starting from the end of the game when somebody loses.
+In order for Wenjun to lose, he has to start a turn with exactly 2 pennies.
+Since he can't remove 3 coins, he must remove both of the remaining pennies.
+If there is 1 penny left, he gets to pass, and you lose by removing the last penny.
+(If there are 0 pennies left, that means you have already lost.)
+With 3 pennies left, he can choose to remove only 2, leaving you to remove the last penny.
+Similarly, with 4 pennies left, he can choose to remove 3, also leaving you to remove the last penny.
+
+So in order to make sure that Wenjun loses, you must finish a turn with 2 pennies left.
+This can be done if you start your turn with 3 (and remove 1) or start your turn with 4 (and remove 2).
+Thus, if Wenjun finishes a turn with 3 or 4 pennies left, you can win.
+If Wenjun starts a turn with 6 pennies, then he can only finish his turn with 3 or 4 pennies, and he will lose in the end.
+
+This is where the pattern starts to repeat.
+Wenjun will lose (and you will win) if his turn starts with 2, 6, 10, 14\dots pennies, or more generally, any number of the form $4n+2$.
+Following the same pattern, Wenjun will also lose if your turn starts with 3, 4, 7, 8, 11, 12\dots, which are numbers of the form $4n$ and $4n+3$.
+
+So to answer the specific questions in the riddle:
+When you go first, you will win if the game starts with
+\fcolorbox{red}{white}{\bf $\bm{4n}$ or $\bm{4n+3}$ pennies}\,.
+When Wenjun goes first, Wenjun will win if the game starts with\\
+\fcolorbox{red}{white}{\bf $\bm{4n}$, $\bm{4n+1}$, or $\bm{4n+3}$ pennies}\,.
+
+
+
+\end{document}

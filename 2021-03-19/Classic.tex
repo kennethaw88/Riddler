@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 19 March 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+A few weeks ago, Scott Matlick reached out to me with observations about the relative likelihood that a positive integer with a given number of digits would be a perfect square.
+And that got us both wondering.
+For some perfect squares, when you remove the last digit, you get another perfect square.
+For example, when you remove the last digit from 256 ($16^{2}$), you get 25 ($5^{2}$).
+
+The first few squares for which this happens are 16, 49, 169, 256 and 361.
+What are the \textit{next} three squares for which you can remove the last digit and get a different perfect square?
+How many more can you find?
+(Bonus points for not looking this up online or writing code to solve it for you!
+There are interesting ways to do this by hand, I swear.)
+
+\textit{Extra credit}: Did you look up the sequence and spoil the puzzle for yourself?
+Good news, there’s more!
+In the list above, 169 ($13^{2}$) is a little different from the other numbers.
+Not only when you remove the last digit do you get a perfect square, 16 ($4^{2}$), but when you remove the last two digits, you again get a perfect square: 1 ($1^{2}$).
+Can you find another square with \textit{both} of these properties?
+
+
+
+\section*{Solution:}
+
+To solve this, I just started listing out square numbers and trying to match them up.
+The next three squares for which this occurs are 1444 ($38^{2}$), 3249 ($57^{2}$), and 18,496 ($136^{2}$).
+After removing the last digit, these correspond to 144 ($12^{2}$), 324 ($18^{2}$), and 1849 ($43^{2}$).
+So the solution is
+\fcolorbox{red}{white}{\bf 1,444; 3,249; and 18,496}\,.
+
+
+\end{document}

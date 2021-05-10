@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 7 May 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+Can you find three distinct numbers such that the second is the square of the first, the third is the square of the second, and the first is the sqaure of the third?
+Assuming you can, what are the three such numbers?
+
+\textit{Extra credit}: Can you find three \textit{other} numbers with the same property?
+
+
+
+\section*{Solution:}
+
+The only way that squaring a number (once or more) and return to the same number itself is for a number located on the unit circle in the complex plane.
+All such numbers have magnitude 1, so that squaring (or raising to any power) will have the effect of rotating around the circle, while maintaining the same magnitude.
+
+In this problem, squaring a number three times is equivalent to doubling its angle from the positive real axis three times.
+This results in a rotation which ends up at 8 times the initial angle.
+If the intial angle is some fraction of the circle, say $\nicefrac{a}{b}$, then the final angle will be $\nicefrac{8a}{b}$.
+Removing the whole part of the fraction is equivalent to subtracting $nb$ from the numerator for some integer $n$.
+Thus the solution(s) to the riddle comes from solving the equation $8a-nb=a$, or $7a=nb$.
+Thus, the solution exists for $b=7$, and $a=1,2,3,4,5,6$.
+Letting $a=0$ or 7 results in a solution of 1, which simply results in 1 after squaring, so doesn't meet the distinct criterion in the riddle.
+Other values of $a$ outside this range result in duplicated solutions; for example the fraction $\nicefrac{-1}{7}$ is equivalent to \nicefrac{6}{7}.
+
+Analyzing these solutions, there are two sets of three distinct numbers.
+$a=1,2,4$ forms one loop of squares, and $a=3,5,6$ forms another.
+Turning these fractions into riddle solutions requires using them as the exponential argument, multiplied by $2\pi i$.
+Thus the first set of solutions are
+\fcolorbox{red}{white}{$\bm{e^{2\pi i*1/7},\ e^{2\pi i*2/7},\ e^{2\pi i*4/7}}$}\,, and the second set of solutions are
+\fcolorbox{red}{white}{$\bm{e^{2\pi i*3/7},\ e^{2\pi i*5/7},\ e^{2\pi i*6/7}}$}\,.
+
+\end{document}
