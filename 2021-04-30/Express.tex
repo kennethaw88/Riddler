@@ -1,0 +1,144 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.2} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 30 April 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+You're playing a game of cornhole with your friends, and it's your turn to toss the four bean bags.
+For every bean bag you toss onto your opponents' board, you get 1 point.
+For every bag that goes through the hole on their board, you get 3 points.
+And for any bags that don't land on the board or through the hole, you get 0 points.
+
+Your opponents had a terrible round, missing the board with all their throws.
+Meanwhile, your team currently has 18 points---just 3 points away from victory at 21.
+You're also playing with a special house rule: To win, you must score \textit{exactly} 21 points, without going over.
+
+Based on your history, you know there are three kinds of throws you can make:
+
+\begin{itemize}
+\item An \textit{aggressive} throw, which has a 40 percent chance of going in the hole, a 30 percent chance of landing on the board and a 30 percent chance of missing the board and hole.
+\item A \textit{conservative} throw, which has a 10 percent chance of going in the hole, an 80 percent chance of landing on the board and a 10 percent chance of missing the board and hole.
+\item A \textit{wasted} throw, which has a 100 percent chance of missing the board and hole.
+\end{itemize}
+
+For each bean bag, you can choose any of these three throws.
+Your goal is to maximize your chances of scoring exactly 3 points with your four tosses. What is the probability that your team will finish the round with exactly 21 points and declare victory?
+
+
+
+\section*{Solution:}
+
+For this problem I define a state $(M,N)$ as having $M$ moves left ($M=0,1,2,4$) and $N$ points left to win ($N=0,1,2,3$ or $X$ for an overshoot).
+Each state has an associated probability $P(M,N)$ that is the probability to win using the best strategy.
+The simplest probabilities to define are for $M=0$ (after the fourth throw).
+For $N=0$, $P=1$, and for all other $N$, $P=0$.
+For $N=X$ and any $M$, clearly $P=0$.
+It is also obvious that from any state $(M>0,0)$, the best strategy is wasted throws until $M=0$, which ensures that $P=1$.
+
+From these base set of states, I built up the other probabilities one move at a time, considering the outcomes of either the aggressive or conservative throws.
+For example, starting at $(1,1)$ and throwing aggressively ends at the winning state (0,0) 30\% of the time and loses otherwise, but throwing conservatively ends at the winning state 80\% of the time.
+So from this state the best strategy is the conservative throw, and $P(1,1)=0.8$.
+Conversely, from the state (1,2), the only possible throws lead to (0,1), (0,2), and $(0,X)$, which are all losing positions, so $P(1,2)=0$.
+
+It turns out that the ideal strategy is pretty intuitive, as follows:
+
+\begin{itemize}
+\item If exactly 0 points are still needed, throw wastes.
+\item If exactly 3 points are still needed, throw aggressively.
+\item Otherwise, throw conservatively.
+\end{itemize}
+
+This results in the following probabilities for all the relevant $M$ and $N$:
+
+\vspace{0.1in}
+\begin{center}
+\begin{tabular}{C{0.2in}C{0.2in}|C{0.32in}|C{0.32in}|C{0.32in}|C{0.32in}|C{0.32in}|}
+ & \multicolumn{1}{c}{} & \multicolumn{5}{c}{$N$} \\
+ & \multicolumn{1}{c}{} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{$X$} \\
+\cline{3-7}
+ & 0 & 1 & 0 & 0 & 0 & 0 \\
+\cline{3-7}
+ & 1 & 1 & 0.8 & 0 & 0.4 & 0 \\
+\cline{3-7}
+M & 2 & 1 & 0.88 & 0.64 & 0.52 & 0 \\
+\cline{3-7}
+ & 3 & 1 & 0.888 & 0.768 & 0.748 & 0 \\
+\cline{3-7}
+ & 4 & 1 & 0.8888 & 0.7872 & 0.8548 & 0 \\ 
+\cline{3-7}
+\end{tabular}
+\end{center}
+
+So the final chance of winning 3 points in 4 throws is
+\fcolorbox{red}{white}{\bf 85.48\%}\,.
+
+\end{document}
