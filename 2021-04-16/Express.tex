@@ -1,0 +1,107 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 16 April 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+You are creating a variation of a Romulan pixmit deck.
+Each card is an equilateral triangle, with one of the digits 0 through 9 (written in Romulan, of course) at the base of each side of the card.
+No number appears more than once on each card.
+Furthermore, every card in the deck is unique, meaning no card can be rotated so that it matches (i.e., can be superimposed on) any other card.
+
+What is the greatest number of cards your pixmit deck can have?
+
+\textit{Extra credit}: Suppose you allow numbers to appear two or three times on a given card.
+Once again, no card can be rotated so that it matches any other card.
+Now what is the greatest number of cards your pixmit deck can have?
+
+
+
+\section*{Solution:}
+
+I think it is a safe assumption that the cards are one-sided, which means that if a given card is mirrored, it produces a different card.
+To choose three different numbers for the sides of each card, there are 10 available numbers for the first side, 9 for the second side, and 8 for the third side.
+This gives a total of $10\times9\times8=720$ possible ways to number a card.
+But because rotating the card doesn't change it, there are actually fewer possibilities.
+The card could be rotated \nicefrac{1}{3} or \nicefrac{2}{3} of the way around, so each card actually accounts for 3 possible sets of three numbers (the two rotations in addition to the original set of three numbers).
+So the correct solution is that there are $\nicefrac{10\times9\times8}{3}$=
+\fcolorbox{red}{white}{\bf 240} possible cards.
+
+When including cards with two numbers, there are now 10 options for the number which appears twice, and 9 resulting options for the number that appears once.
+This adds $10\times9=90$ new cards.
+This number does not change, because rotating one of these sets of numbers does create a new set of numbers.
+
+When including cards with a single number, there are simply 10 additional cards: one for each digit 0--9.
+Considering all these together, there would be
+\fcolorbox{red}{white}{\bf 340} total cards.
+
+\end{document}
