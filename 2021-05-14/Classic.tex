@@ -1,0 +1,131 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 14 May 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+From Matt Yeager comes a game that is immensely popular with his fourth-grade class:
+
+Three of Matt's students---Players A, B and C---are engaged in a game of \textit{veinte}.
+In each round, players take turns saying numbers in order (Player A, then B, then C, then A again, etc.).
+The first player to go says the number ``1.''
+Each number must be either one, two, three or four more than the number said by the previous player.
+When someone says ``20,'' the round is over and the next person is eliminated, with the following person beginning the subsequent round.
+For example, if Player A says ``20,'' then Player B is eliminated, while Player C begins the next round by saying ``1.''
+At no point can anyone say a number greater than 20.
+
+All three players want to be the winner (i.e., the only player remaining) after the two rounds.
+But if they realize they can't win, then they will prioritize making it to the second round.
+
+Player A starts things off by saying ``1.''
+Which player will win?
+
+Extra credit: Instead of three players, now suppose there are four---Players A, B, C and D---all of whom want to make it through as many rounds of the game as possible.
+Again, Player A starts things off by saying ``1.''
+Which player will win?
+
+
+
+\section*{Solution:}
+
+The key to solving this is to start at the end of the game.
+When there are only two players left, each player wants to be able to say 20, thereby eliminating there opponent.
+The player (say, player A) can get to 20 if their opponent has just said 16, 17, 18, or 19.
+By saying 15 in the previous turn, A's opponent will be stuck with these choices, ensuring a win for A.
+Similarly, A needs to have said 10, and 5 to ensure a win.
+If A's opponent starts with 1, A will will say 5 and stay on the path to victory.
+So whichever player starts the two-person game with 1 will lose.
+
+Knowing that the starting player will lose the two-person game helps to inform the three-person game.
+Each player doesn't want the player before them to say 20 (and come in third place), but also doesn't want to let the player just after them say 20 (thereby making them start the next round and come in second place).
+Each player's best strategy is to be the one to say 20 if possible, or otherwise let the player after them say 20.
+
+Again, working from the end is the key.
+If a player (again, A) says 20, A will ultimately win.
+If A says 16, 17, 18, or 19, B will say 20 and win, and A will come in second.
+If A says 12, 13, 14, or 15, B will say 16, 17, 18, or 19.
+Then C will say 20, and A will come in third.
+If A says 11, B must say 12, 13, 14, or 15.
+C will say 16, 17, 18, or 19, and a will say 20 and win.
+Continuing this pattern, A will win by saying 2.
+But when A starts with 1, B will say 2 and ultimately win, leaving A in second place.
+
+So for the three-player game with A starting, the winner is
+\fcolorbox{red}{white}{\bf Player B}\,, with A coming in second, and C in third.
+
+The four-player game can then be solved, once the relative winning order is known for the three-player game.
+In this case, whoever says 20 will ultimately come in third, while the winning numbers are 19 and 9.
+With A starting, the winner is Player C, followed by B, D, and A losing.
+
+
+
+\end{document}

@@ -1,0 +1,150 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 14 May 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+You and your infinitely many friends are sharing a cake, and you come up with two rather bizarre ways of splitting it.
+
+For the first method, Friend 1 takes half of the cake, Friend 2 takes a third of what remains, Friend 3 takes a quarter of \textit{what remains} after Friend 2, Friend 4 takes a fifth of what remains after Friend 3, and so on.
+After your infinitely many friends take their respective pieces, you get whatever is left.
+
+For the second method, your friends decide to save you a little more of the take.
+This time around, Friend 1 takes $1/2^{2}$ (or one-quarter) of the cake, Friend 2 takes $1/3^{2}$ (or one-ninth) of \textit{what remains}, Friend 3 takes $1/4^{2}$ of what remains after Friend 3 [sic], and so on.
+Again, after your infinitely many friends take their respective pieces, you get whatever is left.
+
+Question 1: How much of the cake do you get using the first method?
+
+Question 2: How much of the cake do you get using the second method?
+
+\textit{Extra credit}: Your friends are feeling rather guilty for not saving enough of the cake for you, so they try one more method. This time, they only take the fractions with even denominators from the second method. So Friend 1 takes $1/2^{2}$ of the cake, Friend 2 takes $1/4^{2}$ of what remains, Friend 3 takes $1/6^{2}$ of what remains after Friend 2, and so on.
+After your infinitely many friends take their respective pieces, how much of the cake do you get?
+
+
+\section*{Solution:}
+
+In the first scenario, friend $n$ takes a fraction $\nicefrac{1}{(n+1)}$ of the remaining cake.
+That leaves the fraction $\nicefrac{n}{n+1}$ left.
+After the $k$-th friend, the total amount of cake left $C$ is the product of all the fractions up to friend k:
+
+\[
+C=\frac{1}{2}\cdot\frac{2}{3}\cdot\frac{3}{4}\cdots\frac{k-1}{k}\cdot\frac{k}{k+1}
+\]
+
+This is a telescoping product:
+
+\begin{align*}
+C &=\prod_{n=1}^{k}\frac{n}{n+1} \\
+  &=\frac{1}{k+1}
+\end{align*}
+
+Applying the limit in the case of infinite friends gives the first solution:
+
+\[
+\lim_{k\rightarrow\infty}\frac{1}{k+1}=0
+\]
+
+So in the first case, you are left with no cake.
+
+In the second case, the set-up is the same, but the individual terms in the product change.
+From the first case, the fraction $\nicefrac{n}{n+1}$ is equivalent to $(1-\nicefrac{1}{n+1})$.
+Now this fraction becomes $(1-(\nicefrac{1}{n+1})^{2})$.
+So the final amount of cake becomes
+
+\begin{align*}
+C &=\prod_{n=1}^{k}\left(1-\frac{1}{(n+1)^{2}}\right) \\
+  &=\frac{k+2}{2k+2}
+\end{align*}
+
+with the answer from Wolfram Alpha.
+Again, taking the limit to infinity,
+
+\[
+\lim_{k\rightarrow\infty}\frac{k+2}{2k+2}=\frac{1}{2}
+\]
+
+In this case, you actually do get cake.
+
+So the solution is that you get
+\fcolorbox{red}{white}{\bf no cake} with the first method and
+\fcolorbox{red}{white}{\bf half the cake} with the second method.
+
+With the third method, the product becomes
+
+\[
+C=\prod_{n=1}^{k}\left(1-\frac{1}{(2n)^{2}}\right)
+\]
+
+Wolfram Alpha will only let me plug in the infinite sum directly, which it very conveniently tells me is $\nicefrac{2}{\pi}\approx0.6366$.
+
+
+\end{document}
