@@ -63,49 +63,58 @@
 
 % custom title
 \begin{center}
-{\LARGE Express Riddler}
+{\LARGE Classic Riddler}
 
 \vspace{0.15in}
 
-{\Large 21 May 2021}
+{\Large 28 May 2021}
 \end{center}
 
 
 \section*{Riddle:}
 
-The Riddler Cheese Company is producing what are called ``craft triples''---triangular slices of cheese whose side lengths are Pythagorean triples, when measured in inches.
+Dakota Jones is back in action!
+To gain access to a hidden temple deep in the Riddlerian Jungle, she needs a crystal key.
 
-However, the company's slicing machine recently malfunctioned and produced a stock of square slices with side lengths of 5 inches.
-To salvage this situation, what is the greatest number of whole Pythagorean slices that can be made from each 5-inch square?
-(Note: You can only cut pieces out of the square.
-No melting or gluing pieces together!)
+She already knows the crystal is a polyhedron.
+And according to an ancient text, it has exactly six edges, five of which are 1 inch long.
+Cryptically, the text does not specify the length of the sixth edge.
+Instead, it says that the key is the largest such polyhedron (i.e., with six edges, five of which have length 1) by volume.
 
-\textit{Extra credit}: What is the smallest square of cheese such that 100 percent of the square can be partitioned into craft triples?
-
+Once again, Dakota Jones needs your help. What is the volume of the crystal key?
 
 
 \section*{Solution:}
 
-My hand-drawn, not-to-scale solution is shown on the following page.
-The $5\times5$ square can be divided into four 3-4-5 triangles.
-Each triangle has a hypotenuse on an edge of the square, and there is a $1\times1$ square leftover in the center.
-The triangles fit because the 3-5 and 4-5 angles of the triangle are complimentary.
-Further, the area of each triangle is $\nicefrac{1}{2}*3*4=6$, so together they take up 24 of the 25 square inches of cheese.
-The remaining 1 square inch is formed by the leftover lengths of sides: with each 3-inch side lined up against a 4-inch side leaves the 1 inch each time.
-So the solution to the riddle is
-\fcolorbox{red}{white}{\bf 4 triangles}.
+The only polyhedron with six edges is a tetrahedron, which has four triangular faces.
+With five edges of length 1, two of the faces are necessarily equilateral triangles.
+These two triangles meet at one edge.
+The remaining faces are isosceles (or possibly also equilateral) triangles whose size depend on the length of the last edge.
+The length of the last edge is determined by the angle at which the two equilateral faces meet.
 
-For the extra credit, I believe that the answer is a 12-inch square.
-This would be formed by doubling each 3-4-5 triangle, matching the hypotenuses to form $3\times4$ rectangles.
-Arranging these $3\times4$ rectangles 4 across and 3 high would achieve a total length of 12 on each side.
-I can't prove this is the answer, though.
+I show this in the images below.
+On the left is an equilateral triangle, with the perpendicular height $h$ labeled.
+On the right is a cross section of the total tetrahedron, with the equilateral faces on the bottom and left.
+The two isosceles faces would take up the space shown (with some depth either in or out).
+The last edge spans the right side, with the top and right vertices at a distance $h$ from where the equilateral faces meet.
 
-\newpage
-
+\vspace{0.1in}
 \begin{center}
-\includegraphics[width=5in]{Square_drawing.jpg}
+\includegraphics[width=1.75in]{triangle_1.png}
+\hspace{1.25in}
+\includegraphics[width=1.75in]{triangle_2.png}
 \end{center}
+\vspace{0.1in}
 
+The area $A$ of any triangle is $A=\nicefrac{b*h}{2}$, where $b$ is the length of the base.
+For the equilateral faces, $b=1$ and $h=\nicefrac{\sqrt{3}}{2}$, so the area is $\nicefrac{\sqrt{3}}{4}$.
+The volume $V$ of a tetrahedron can essentially be calculated as the volume of a pyramid: $V=\nicefrac{A*H}{3}$, where $H$ is the height of the pyramid measured from the base with area $A$.
+
+Based on the right drawing above, the volume of the tetrahedron can be calculated with an equilateral triangle as the base.
+Then, the volume is maximized when the height $H$ is maximized.
+This occurs when the angle between the equilateral faces is 90\textdegree, so that $H=h$.
+Plugging in the values above, the volume is
+\fcolorbox{red}{white}{$\bm{{\nicefrac{1}{8}}}$}\,.
 
 
 \end{document}

@@ -1,0 +1,143 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.1} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 4 June 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+Max the Mathemagician is calling for volunteers.
+He has a magic wand of length 10 that can be broken anywhere along its length (fractional and decimal lengths are allowed).
+After the volunteer chooses these breakpoints, Max will multiply the lengths of the resulting pieces.
+For example, if they break the wand near its midpoint and nowhere else, the resulting product is $5\times5$, or 25.
+If the product is the largest possible, they will win a free backstage pass to his next show.
+(Amazing, right?)
+
+You raise your hand to volunteer, and you and Max briefly make eye contact.
+As he calls you up to the stage, you know you have this in the bag.
+What is the maximum product you can achieve?
+
+\textit{Extra credit}: Zax the Mathemagician (no relation to Max) has the same routine in his show, only the wand has a length of 100.
+What is the maximum product now?
+
+
+\section*{Solution:}
+
+It is trivial to show that for two numbers with a given sum, the maximum product occurs when the two numbers are equal to each other, and equal to half of the sum.
+That is, if A+B=C for some constant C, then, the product AB is maximized if A=B=\nicefrac{C}{2}.
+This can be generalized to more numbers with a constant sum.
+For any two numbers among a larger set to have a maximum product, they must be equal.
+Applying this logic to the current problem, the overall product (for any number of wand pieces) will be maximized if all the pieces have equal length.
+So if the wand is broken into $n$ pieces, then each piece will have length $\nicefrac{10}{n}$.
+Multiplying each of the $n$ lengths will give the total product $(\nicefrac{10}{n})^{n}$.
+I list the first few products below:
+
+\vspace{0.1in}
+\begin{center}
+\begin{tabular}{cc}
+$n$ & $\left(\frac{10}{n}\right)^{n}$ \\
+\hline
+1 & 10 \\
+2 & 25 \\
+3 & 37.037$\dots$ \\
+4 & 39.0625 \\
+5 & 32
+\end{tabular}
+\qquad\qquad
+\begin{tabular}{cc}
+$n$ & $\left(\frac{10}{n}\right)^{n}$ \\
+\hline
+6 & 21.433$\dots$ \\
+7 & 12.142$\dots$ \\
+8 & 5.960$\dots$ \\
+9 & 2.581$\dots$ \\
+10 & 1
+\end{tabular}
+\end{center}
+\vspace{0.1in}
+
+Within this limited set of values, the largest product is obtained for 4 pieces.
+Beyond 4 it seems the product decreases, but it's not obvious whether it continues to decrease for numbers larger than 10.
+
+The answer can be found by considering the continuous function $\nicefrac{k}{n}$.
+This function has a maximum at $n=\nicefrac{k}{e}$, and decreases toward 0 for all larger values of $n$.
+In the current case, $k=10$, so the maximum occurs at $n\approx3.68$.
+So for any integer value of $n$ above 4, the product will be less than 39.0625, and this is indeed the maximum product.
+So the solution is
+\fcolorbox{red}{white}{\bf 39.0625}\,.
+
+Using the same continuous function with $k=100$ gives the maximum at $n\approx36.8$, so both 36 and 37 must be considered as solutions.
+Using $n=36$ gives a product of $9.40\times10^{15}$, and 37 gives $9.47\times10^{15}$.
+So the solution to the extra credit is (approximately)
+\fcolorbox{red}{white}{$\bm{9.47\times10^{15}}$}\, with 37 pieces.
+
+
+
+\end{document}
