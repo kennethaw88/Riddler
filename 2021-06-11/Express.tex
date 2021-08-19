@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 11 June 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+You've been hired to design a new logo for Riddler City.
+The mayor is a little eccentric and has requested that the logo have at least two lines of symmetry that intersect at an angle of precisely 1 radian, or 180/$\pi$ (approximately 57.3) degrees.
+
+What sorts of logos meet the mayor's requirements?
+(You can give one example or describe what all possible logos have in common.)
+
+
+\section*{Solution:}
+
+Logos that meet this requirement must have circular symmetry.
+In other words, the logos only consist of concentric rings or circles, and a rotation of any arbitrary angle about the center results in the same logo.
+One example of such a logo is the Target logo:
+
+\vspace{0.1in}
+\begin{center}
+\includegraphics[width=2.5in]{target.png}
+\end{center}
+\vspace{0.1in}
+
+The reason is that the demanded angle between the initial lines of symmetry is not a rational fraction of the whole circle.
+Instead, the angle is transcendental because of the inclusion of $\pi$.
+Once the first line of symmetry is established, creating a second line of symmetry necessitates a third line of symmetry which is a reflection of the second line across the first.
+Similarly, the initial two lines create two other lines reflected across the third.
+This sequence of necessary lines of symmetry continues infinitely, and each new line of symmetry is unique, never aligning with a previous line.
+It is infinite because of the transcendental angle in the beginning; if the initial angle was a rational fraction of the whole circle, say 60\textdegree, or even 180\textdegree/13, then the lines would eventually line up, creating a finite set of symmetry lines.
+Because there are infinitely many lines of symmetry, distributed evenly across the logo, the logo must have perfect circular symmetry.
+
+
+\end{document}
