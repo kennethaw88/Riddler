@@ -1,0 +1,152 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 25 June 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+A bag contains 100 marbles, and each marble is one of three different colors.
+If you were to draw three marbles at random, the probability that you would get one of each color is \textit{exactly} 20 percent.
+
+How many marbles of each color are in the bag?
+
+
+\section*{Solution:}
+
+I will label the number of marbles of each color A, B, and C.
+Since there are three unknowns, in principle, there must be three distinct equations that lead to a solution.
+The first equation is simply the total number of marbles:
+
+\[
+A+B+C=100
+\]
+
+The second equation comes from the total probability described in the problem.
+Suppose that the three marbles are drawn one at a time (without replacing them in the bag).
+The chance of drawing A followed by B, then C is
+
+\[
+\frac{A}{100}\cdot\frac{B}{99}\cdot\frac{C}{98}=\frac{ABC}{970200}
+\]
+
+But of course, the three marbles could have been drawn in any order, say A-C-B, or B-A-C.
+There are $3!=6$ ways to draw the three marbles, independent of order.
+So the above value needs to be multiplied by 6 to get the final probability:
+
+\[
+6\cdot\frac{ABC}{970200}=\frac{1}{5}
+\]
+
+Rearranging this gives the second equation used to solve the riddle:
+
+\[
+ABC=32,340
+\]
+
+These are the only two equations that can be directly realized from the problem.
+However, the other implicit condition of the problem is that A, B, and C are all integers between 0 and 100.
+This reduces the available solutions and makes it uniquely solvable.
+
+To solve the riddle, I factored 32,340 to determine what prime factors must be distributed between A, B, and C.
+The prime factorization is $2\cdot2\cdot3\cdot5\cdot7\cdot7\cdot11$.
+I solved the riddle by considering what multiple of 11 would work for one of the numbers.
+Without loss of generality, I let A have the factor of 11.
+The possible values of A are then 11, 22, 33, 44, 55, 66, and 77.
+88 has too many factors of 2, and 99 has too many factors of 3.
+
+A could not be 11, because either B or C would have to be $7^{2}=49$ ($2\cdot7^{2}=98$ is too large a sum), leaving the other with a too-large value of 60, or B and C would both be multiples of 7, which could not sum to 100.
+A could not be 22, because either B or C would be 49, leaving the other with 30, or else B and C would both be multiples of 7, which could not sum to 100.
+A could not be 33 for the same reason.
+A could not be 55, because then B or C would have to be 49 (which is too large a sum), or
+B and C would both be multiples of 7, which could not sum to 100.
+A could not be 66, because 49 is too large, and no multiples of 7 could sum to 100.
+Finally, A could not be 77, because 35 is too large, and no other multiple of 7 could be summed with a multiple of 5 to get 100.
+
+That leaves A to be 44.
+Removing the factors of $2\cdot2\cdot11$ leaves the remaining equations:
+
+\[
+B+C=56
+\]
+\[
+BC=735=3\cdot5\cdot7\cdot7
+\]
+
+Simple guessing and checking reveals that (without loss of generality) B=25 and C=21.
+So the solution is that A, B, and C are, in any order,
+\fcolorbox{red}{white}{\bf 44, 35, and 21}\,.
+
+
+
+
+\end{document}
