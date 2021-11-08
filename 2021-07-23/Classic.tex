@@ -1,0 +1,109 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 23 July 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+Today marks the beginning of the Summer Olympics!
+One of the brand-new events this year is sport climbing, in which competitors try their hands (and feet) at lead climbing, speed climbing and bouldering.
+
+Suppose the event's organizers accidentally forgot to place all the climbing holds on and had to do it last-minute for their 10-meter wall (the regulation height for the purposes of this riddle).
+Climbers won't have any trouble moving horizontally along the wall.
+However, climbers can't move between holds that are more than 1 meter apart vertically.
+
+In a rush, the organizers place climbing holds randomly until there are no vertical gaps between climbing holds (including the bottom and top of the wall).
+Once they are done placing the holds, how many will there be on average (not including the bottom and top of the wall)?
+
+\textit{Extra credit}: Now suppose climbers find it just as difficult to move horizontally as vertically, meaning they can't move between any two holds that are more than 1 meter apart in any direction.
+Suppose also that the climbing wall is a 10-by-10 meter square.
+If the organizers again place the holds randomly, how many have to be placed on average until it's possible to climb the wall?
+
+
+
+\section*{Solution:}
+
+I wrote a script to tackle this problem, which I saved as \texttt{rock\_climb.C}\,.
+The script generates random numbers one at a time, between 0 and 1.
+At every point, it sorts the full list of numbers and calculates all of the differences between adjacent numbers.
+The list of numbers also includes 0 and 1 in order to calculate the top and bottom gaps.
+It doesn't bother calculating the differences if there are fewer than 11 numbers.
+Once the largest difference between adjacent numbers is below 0.1, it counts the numbers in the list.
+After one million trials, the average is calculated.
+This could be counted for more trials, but based on one run of the program, my solution is
+\fcolorbox{red}{white}{\bf 43.05 climbing holds}\,.
+
+
+
+
+\end{document}
