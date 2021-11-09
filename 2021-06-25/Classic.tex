@@ -1,0 +1,121 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 25 June 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+Riddler solitaire is played with 11 cards: an ace, a two, a three, a four, a five, a six, a seven, an eight, a nine, a 10 and a joker.
+Each card is worth its face value in points, while the ace counts for 1 point.
+To play a game, you shuffle the cards so they are randomly ordered, and then turn them over one by one.
+You start with 0 points, and as you flip over each card your score increases by that card's points---as long as the joker hasn't shown up.
+The moment the joker appears, the game is over and your score is 0.
+The key is that you can stop any moment and walk away with a nonzero score.
+
+What strategy maximizes your expected number of points?
+
+\textit{Extra credit}: With an optimal strategy, how many points would you earn on average in a game of Riddler solitaire?
+
+
+\section*{Solution:}
+
+The way to solve this problem is by calculating the expected change in score by drawing a single card.
+For a given current score $N$ and number of cards $C$ still left in the deck, the expected change in score can be relatively easily calculated.
+Because $N$ and $C$ are the only known quantities during the game, the answer must only depend on these two values.
+If the expected change in score $E(N,C)$ is positive for a given $N$ and $C$, then the best strategy is to draw another card.
+Otherwise, if the expected change in score is negative, the best strategy is to stop.
+
+I calculated $E(N,C)$ for all possible pairs of $N$ and $C$ in the game.
+The value of $N$ ranges from 0 (start of game, no cards drawn yet) to 55 (all ten numbered cards drawn, with only the joker left).
+Several combinations of $N$ and $C$ are not possible; for example, if only one card has been drawn, any score above 10 is not possible.
+To calculate $E(N,C)$, first the difference of the current score ($N$) from 55 is calculated and divided by $C-1$, which gives the average score added by drawing one of the remaining numbered cards.
+This is then weighted by a factor of \nicefrac{(C-1)}{C}, which is the probability of drawing a numbered card.
+Then the current score is divided by $C$ and subtracted, giving the weighted average chance of drawing the joker and dropping the current to 0.
+The overal result for $E$ is
+
+\[
+E(N,C)=\frac{55-2N}{C}
+\]
+
+The results are located in \texttt{Poker.xlsx}.
+All possible values are checked if they are positive or negative.
+(Luckily, there was no result with $E=0$, which would be ambiguous strategy-wise.)
+It turns out, the best strategy is to continue taking cards as long as the score is below 28.
+Interestingly, this strategy turns out not to depend on the number of cards left.
+So the solution is to
+\fcolorbox{red}{white}{\bf draw cards as long as your score is below 28, and stop at 28 or above}\,.
+
+
+
+
+\end{document}

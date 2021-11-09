@@ -1,0 +1,142 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 30 July 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+Riddler Nation is competing against Conundrum Country at an Olympic archery event. Each team fires three arrows toward a circular target 70 meters away. Hitting the bull’s-eye earns a team 10 points, while regions successively farther away from the bull’s-eye are worth fewer and fewer points.
+
+Whichever team has more points after three rounds wins. However, if the teams are tied after each team has taken three shots, both sides will fire another three arrows. (If they remain tied, they will continue firing three arrows each until the tie is broken.)
+
+For every shot, each archer of Riddler Nation has a one-third chance of hitting the bull’s-eye (i.e., earning 10 points), a one-third chance of earning 9 points and a one-third chance of earning 5 points.
+
+Meanwhile, each archer of Conundrum Country earns 8 points with every arrow.
+
+Which team is favored to win?
+
+\textit{Extra credit}: What is the probability that the team you identified as the favorite \textit{will} win?
+
+
+
+\section*{Solution:}
+
+The first thing to do is to determine the probabilities for all possible scores after three arrows.
+Of course, Conundrum Country will score 24 with probability 1.
+For Riddler Nation, the probabilities are:
+
+\vspace{0.1in}
+\begin{center}
+\begin{tabular}{ccccc}
+Score & Probability & & Score & Probablility \\
+\cline{1-2} \cline {4-5}
+30 & \nicefrac{1}{27} & & 24 & \nicefrac{6}{27} \\
+29 & \nicefrac{3}{27} & & 23 & \nicefrac{3}{27} \\
+28 & \nicefrac{3}{27} & & 20 & \nicefrac{3}{27} \\
+27 & \nicefrac{1}{27} & & 19 & \nicefrac{3}{27} \\
+25 & \nicefrac{3}{27} & & 15 & \nicefrac{1}{27} \\
+\end{tabular}
+\end{center}
+\vspace{0.1in}
+
+Counting up the scores greater than 24 gives a total probability of \nicefrac{11}{27}.
+This is the probability that Riddler Nation wins in the first round.
+Counting up the scores less than 24 gives \nicefrac{10}{27}, the probability that Riddler Nation loses the first round.
+The remaining probability of \nicefrac{6}{27} is the probability that they tie in the first round.
+
+Because a tie just leads back to the same situation for future rounds, it is only necessary to consider the relative probability of winning or losing in a single round.
+This relative probability $P$ comes out to
+
+\begin{align*}
+P&=\frac{\nicefrac{11}{27}}{\nicefrac{11}{27}+\nicefrac{10}{27}} \\
+ &=\frac{11}{10+11} \\
+ &=\frac{11}{21}
+\end{align*}
+
+So the overall probability of Riddler Nation winning is
+\fcolorbox{red}{white}{$\bm{{\nicefrac{11}{21}}}$}\,.
+
+A more formal way of defining the total probability of winning is to consider the infinite series, which includes the probability of winning each subsequent round:
+
+\begin{align*}
+P&=\frac{11}{27}+\left(\frac{6}{27}\right)\left(\frac{11}{27}\right)+\left(\frac{6}{27}\right)^{2}\left(\frac{11}{27}\right)+\left(\frac{6}{27}\right)^{3}\left(\frac{11}{27}\right)+\dots \\
+ &=\left(\frac{11}{27}\right)\sum_{n=0}^{\infty}\left(\frac{6}{27}\right)^{n} \\
+ &=\left(\frac{11}{27}\right)\frac{1}{1-\nicefrac{6}{27}} \\
+ &=\frac{\nicefrac{11}{27}}{\nicefrac{21}{27}} \\
+ &=\frac{11}{21}
+\end{align*}
+
+
+
+
+\end{document}
