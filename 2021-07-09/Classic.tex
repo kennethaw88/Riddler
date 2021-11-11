@@ -1,0 +1,160 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 9 July 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+The astronomers of Planet Xiddler are back!
+
+This time, they have identified three planets that circularly orbit a neighboring star.
+Planet A is three astronomical units away from its star and completes its orbit in three years.
+Planet B is four astronomical units away from the star and completes its orbit in four years.
+Finally, Planet C is five astronomical units away from the star and completes its orbit in five years.
+They report their findings to Xiddler's Grand Minister, along with the auspicious news that all three planets are currently lined up (i.e., they are collinear) with their star.
+However, the Grand Minister is far more interested in the three planets than the star and wants to know how long it will be until the planets are next aligned.
+
+How many years will it be until the three planets are again collinear (not necessarily including the star)?
+
+
+\section*{Solution:}
+
+The angular frequencies of the three planets are
+
+\[
+\omega_{A}=2\pi\left(\frac{1}{3}\right)
+\]
+\[
+\omega_{B}=2\pi\left(\frac{1}{4}\right)
+\]
+\[
+\omega_{C}=2\pi\left(\frac{1}{5}\right)
+\]
+
+However, because it isn't specified in the problem, the planets aren't necessarily orbiting in the same direction.
+That means that each of the frequencies could be negative or positive, depending on whether each planet is moving in a clockwise or counterclockwise direction.
+There are eight possible combinations of orbits.
+Without loss of generality, I will assume that planet C moves counterclockwise, leaving four possibilities for A and B.
+The other four cases with C moving clockwise will result in the same four final answers.
+
+To simplify the problem, I will consider the positions of A and B relative to a fixed position for C.
+This means that A and B will orbit with modified frequencies while C does not move.
+Specifically, the modified frequencies are
+
+\[
+\omega_{A}'=2\pi\left(\pm\frac{1}{3}-\frac{1}{5}\right)
+\]
+\[
+\omega_{B}'=2\pi\left(\pm\frac{1}{4}-\frac{1}{5}\right)
+\]
+
+If the circular orbits are centered at the origin (and the x-axis directed at C), then the positions of the planets are
+
+\begin{align*}
+\left(x_{A}(t),y_{A}(t)\right)&=\left(3\cos(\omega_{A}'t),3\sin(\omega_{A}'t)\right) \\
+\left(x_{B}(t),y_{B}(t)\right)&=\left(4\cos(\omega_{B}'t),4\sin(\omega_{B}'t)\right) \\
+\left(x_{C}(t),y_{C}(t)\right)&=(5,0)
+\end{align*}
+
+With these equations the planets are aligned along the x-axis at time $t=0$, with $t$ measured in years.
+From the equations I can determine the slope of the lines passing through C and either A or B.
+If the slopes of these lines are the same, then they are the same line, and the planets are collinear.
+To determine the slope $m$ from two points, I use the equation
+
+\[
+m=\frac{y_{1}-y_{2}}{x_{1}-x{2}}
+\]
+
+so that the two slopes between A and C and B and C are
+
+\begin{align*}
+m_{AC}&=\frac{-3\sin(\omega_{A}'t)}{5-3\cos(\omega_{A}'t)} \\
+m_{BC}&=\frac{-4\sin(\omega_{B}'t)}{5-4\cos(\omega_{B}'t)}
+\end{align*}
+
+Setting these two equations equal to each other allows solving for $t$, which I did using Wolfram Alpha.
+As mentioned before, there are four possible solutions depending on the orbits of A and B.
+If both A and B are moving clockwise ($\omega{A}$ and $\omega_{B}$ are negative), then the first solution for $t$ after 0 is (approximately)
+\fcolorbox{red}{white}{\bf 1.6336 years}\,.
+If A is moving clockwise and B is moving counterclockwise ($\omega{A}$ is negative and $\omega_{B}$ is positive), then the first solution is
+\fcolorbox{red}{white}{\bf 5.3061 years}\,.
+If A is moving counterclockwise and B is moving clockwise ($\omega{A}$ is positive and $\omega_{B}$ is negative), then the first solution is
+\fcolorbox{red}{white}{\bf 1.5996 years}\,.
+Finally, if both A and B are moving counterclockwise ($\omega{A}$ and $\omega_{B}$ are positive), then the first solution is
+\fcolorbox{red}{white}{\bf 7.7668 years}\,.
+The solutions are periodic, since all the planets will line up on the same axis with the sun again every 60 years, and there are multiple solutions within a period.
+But these are simply the first times that the planets line up in any orientation.
+
+
+
+\end{document}

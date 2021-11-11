@@ -1,0 +1,112 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 9 July 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+Earlier this year, a new generation of Brood X cicadas had emerged in many parts of the U.S.
+This particular brood emerges every 17 years, while some other cicada broods emerge every 13 years.
+Both 13 and 17 are prime numbers---and relatively prime with one another---which means these broods are rarely in phase with other predators or each other.
+In fact, cicadas following a 13-year cycle and cicadas following a 17-year cycle will only emerge in the same season once every 221 (i.e., 13 times 17) years!
+
+Now, suppose there are two broods of cicadas, with periods of $A$ and $B$ years, that have just emerged in the same season.
+However, these two broods can also interfere with each other one year \textit{after} they emerge due to a resulting lack of available food.
+For example, if $A$ is 5 and $B$ is 7, then $B$'s emergence in year 14 (i.e., 2 times 7) means that when $A$ emerges in year 15 (i.e., 3 times 5) there won't be enough food to go around.
+
+If both $A$ and $B$ are relatively prime and are both less than or equal to 20, what is the longest stretch these two broods can go without interfering with one another's cycle?
+(Remember, both broods just emerged this year.)
+For example, if $A$ is 5 and $B$ is 7, then the interference would occur in year 15.
+
+
+\section*{Solution:}
+
+I basically solved this problem by hand.
+I listed out all of the multiples of the numbers 11 through 20, up to 400 ($20^{2}$).
+Then I just looked for interfering multiples for pairs of distinct numbers.
+Numbers less than 11 would have the same (or earlier) interferences because they already divide at least one number in the range 11--20, so it wasn't necessary to consider them.
+
+It wasn't actually necessary to look for these multiples for all pairs of numbers.
+For pairs of adjacent numbers of the form $n$-$(n+1)$, the first interference will always be after $n+1$ years, of which the maximum for this problem is 20 (for the pair 19-20).
+For pairs of numbers that differ by two (or four, six, or eight), pairs of even numbers didn't need to be considered, since they are not co-prime.
+Likewise for pairs of numbers (in the range 11--20) which are both multiples of three, four, five, and six.
+
+It turns out the largest possible interference year occurs for the pair 17-19.
+This interference year is 153, which is $17\times9$, and occurs immediately after $19\times8=152$.
+So the solution is
+\fcolorbox{red}{white}{\bf 153}\,.
+
+
+
+
+\end{document}
