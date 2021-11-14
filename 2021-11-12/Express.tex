@@ -1,0 +1,141 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 12 November 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+I have three dice (d4, d6, d8) on my desk that I fiddle with while working, much to the chagrin of my co-workers.
+For the uninitiated, the d4 is a tetrahedron that is equally likely to land on any of its four faces (numbered 1 through 4), the d6 is a cube that is equally likely to land on any of its six faces (numbered 1 through 6), and the d8 is an octahedron that is equally likely to land on any of its eight faces (numbered 1 through 8).
+
+I like to play a game in which I roll all three dice in ``numerical'' order: d4, then d6 and then d8.
+I win this game when the three rolls form a strictly increasing sequence (such as 2-4-7, but \textit{not} 2-4-4).
+What is my probability of winning?
+
+\textit{Extra credit}: Instead of three dice, I now have six dice: d4, d6, d8, d10, d12 and d20.
+If I roll all six dice in ``numerical'' order, what is the probability I’ll get a strictly increasing sequence?
+
+
+\section*{Solution:}
+
+There are $4\times6\times8=192$ possible ways to roll the three dice in order.
+That is in the range where it is possible to list out every winning combination.
+I've listed out those combinations here:
+
+\vspace{0.1in}
+\begin{center}
+\begin{tabular*}{3.5in}{@{\extracolsep{\fill}}cccccc}
+1-2-3 & 1-3-6 & 1-5-7 & 2-3-8 & 2-6-7 & 3-5-8 \\
+1-2-4 & 1-3-7 & 1-5-8 & 2-4-5 & 2-6-8 & 3-6-7 \\
+1-2-5 & 1-3-8 & 1-6-7 & 2-4-6 & 3-4-5 & 3-6-8 \\
+1-2-6 & 1-4-5 & 1-6-8 & 2-4-7 & 3-4-6 & 4-5-6 \\
+1-2-7 & 1-4-6 & 2-3-4 & 2-4-8 & 3-4-7 & 4-5-7 \\
+1-2-8 & 1-4-7 & 2-3-5 & 2-5-6 & 3-4-8 & 4-5-8 \\
+1-3-4 & 1-4-8 & 2-3-6 & 2-5-7 & 3-5-6 & 4-6-7 \\
+1-3-5 & 1-5-6 & 2-3-7 & 2-5-8 & 3-5-7 & 4-6-8 \\
+\end{tabular*}
+\end{center}
+\vspace{0.1in}
+
+That is a total of 48 combinations, which means the solution is \nicefrac{48}{192}, or
+\fcolorbox{red}{white}{$\bm{{\nicefrac{1}{4}}}$}\,.
+
+Another way of looking at the first solution is that there are six combinations that begin 1-2, five that begin 1-3, four that begin 1-4, three that begin 1-5, and two that begin 1-6.
+Similarly, there are five combinations that begin 2-3, four that begin 2-4, three that begin 2-5, and two that begin 2-6.
+Then there are four that begin 3-4, three that begin 3-5, and two that begin 3-6.
+Finally there are three that begin 4-5 and two that begin 4-6.
+These can be written as a sum:
+
+\[
+\sum_{j=3}^{6}\ \sum_{i=2}^{j}\ i
+\]
+
+which indeed gives the solution of 48.
+
+I starting writing out the winning combinations for the six-dice problem.
+It yields similar (though much larger) patterns of winning combinations.
+For example, there are 15 combinations that begin 1-2-3-4-5, 14 that begin 1-2-3-4-6, etc., down to eight solutions that begin 1-2-3-4-12.
+Extending this pattern ultimately gives the sum:
+
+\[
+\sum_{m=12}^{15}\ \sum_{l=11}^{m}\ \sum_{k=10}^{l}\ \sum_{j=9}^{k}\ \sum_{i=8}^{j}\ i
+\]
+
+This has a total sum of 5,434.
+I don't have an explanation for each of the indices in the sum, but it seems to work.
+Because there are $4\times6\times8\times10\times12\times20=460{,}800$ possible rolls, this means the solution is \nicefrac{5,434}{460,800}, or
+\fcolorbox{red}{white}{$\bm{{\nicefrac{2,717}{230,400}\approx0.01179}}$}\,.
+
+
+
+\end{document}
