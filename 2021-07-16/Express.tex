@@ -1,0 +1,107 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 16 July 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+I have three dogs: Fatch, Fetch and Fitch.
+Yesterday, I found a brown 12-inch stick for them to play with.
+I marked the top and bottom of the stick and then threw it for Fatch.
+Fatch, a Dalmatian, bit it in a random spot---leaving a mark---and returned it to me.
+In her honor, I painted the stick black from the top to the bite and white from the bottom to the bite.
+
+I subsequently threw the stick for Fetch and then for Fitch, each of whom retrieved the stick by biting a random spot.
+What is the probability that Fetch and Fitch both bit the same color (i.e., both black or both white)?
+
+
+\section*{Solution:}
+
+I will label the spot that Fatch marks as $x$.
+If $x$ is expressed as a fraction of the whole stick, then $0<x<1$.
+The probability that Fetch bites below $x$ (in the white region) is $x$, and the same is true for Fitch.
+So the total probability that both Fetch and Fitch bite below $x$ is $x^{2}$.
+Similarly, the probability that both Fetch and Fitch bite above $x$ is $(1-x)^{2}$.
+To get the total probability across all possible values of $x$ requires integration:
+
+\[
+\int_{0}^{1}x^{2}+(1-x)^{2}\,dx
+\]
+
+which gives the solution
+\fcolorbox{red}{white}{$\bm{{\nicefrac{2}{3}}}$}\,.
+
+
+
+
+\end{document}

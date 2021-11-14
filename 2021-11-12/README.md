@@ -4,8 +4,6 @@ https://fivethirtyeight.com/features/can-you-stick-it-to-the-genie
 
 ## Express
 
-From Adam Milligan comes a puzzle about dice, dungeons and dragons (but mostly about dice):
-
 I have three dice (d4, d6, d8) on my desk that I fiddle with while working, much to the chagrin of my co-workers.
 For the uninitiated, the d4 is a tetrahedron that is equally likely to land on any of its four faces (numbered 1 through 4), the d6 is a cube that is equally likely to land on any of its six faces (numbered 1 through 6), and the d8 is an octahedron that is equally likely to land on any of its eight faces (numbered 1 through 8).
 
