@@ -1,0 +1,119 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 13 August 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+You are very clever when it comes to solving Riddler Express puzzles.
+You are so clever, in fact, that you are in the top 10 percent of solvers in Riddler Nation (which, as you know, has a very large population).
+You don’t know \textit{where} in the top 10 percent you are---in fact, you realize that you are equally likely to be anywhere in the topmost decile.
+Also, no two people in Riddler Nation are equally clever.
+
+One Friday morning, you walk into a room with nine members randomly selected from Riddler Nation.
+What is the probability that you are the cleverest solver in the room?
+
+
+\section*{Solution:}
+
+If your cleverness is $x$, then the probability that you are more clever than nine other uniformly-distributed people is $x^{9}$.
+The probability distribution $P(x)$ of your cleverness is
+
+\[
+P(x)=
+\begin{cases}
+10 & 0.9<x<1 \\
+0  & \rm{otherwise}
+\end{cases}
+\]
+
+This ensures that $x$ is evenly distributed between 0.9 and 1, and that the total probability is normalized:
+
+\[
+\int_{-\infty}^{\infty}P(x)\,dx=1
+\]
+
+The probability of being the most clever among nine other people is given by the integral
+
+\begin{align*}
+\int_{-\infty}^{\infty}P(x)x^{9}\,dx &= 10\int_{0.9}^{1}x^{9}\, dx \\
+&= x^{10}\big|_{0.9}^{1} \\
+&= 1-\left(\frac{9}{10}\right)^{10} \\
+&= \frac{10{,}000{,}000{,}000-3{,}486{,}784{,}401}{10{,}000{,}000{,}000} \\
+&= \frac{6{,}513{,}215{,}599}{10{,}000{,}000{,}000}
+\end{align*}
+
+So the solution is
+\fcolorbox{red}{white}{$\bm{{\nicefrac{6,513,215,599}{10,000,000,000}=0.6513215599}}$}\,.
+
+\end{document}

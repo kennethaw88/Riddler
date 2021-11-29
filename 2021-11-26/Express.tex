@@ -1,0 +1,117 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 26 November 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+On the Food Network's latest game show, Cranberries or Bust, you have a choice between two doors: A and B.
+One door has a lifetime supply of cranberry sauce behind it, while the other door has absolutely nothing behind it.
+And boy, do you love cranberry sauce.
+
+Of course, there's a twist.
+The host presents you with a coin with two sides, marked A and B, which correspond to each door.
+The host tells you that the coin is weighted in favor of the cranberry door---without telling you which door that is---and that door's letter will turn up 60 percent of the time.
+For example, if the sauce is behind door A, then the coin will turn up A 60 percent of the time and B the remaining 40 percent of the time.
+
+You can flip the coin twice, after which you must make your selection.
+Assuming you optimize your strategy, what are your chances of choosing the door with the cranberry sauce?
+
+\textit{Extra credit}: Instead of two flips, what if you are allowed three or four flips?
+Now what are your chances of choosing the door with the cranberry sauce?
+
+
+\section*{Solution:}
+
+With two flips, there are four possible outcomes: AA, AB, BA, and BB.
+The optimal strategy is simple: if you get the same side both flips, choose that door; if you get each side once, choose a door randomly.
+This strategy works for either door being correct.
+Without loss of generality, assume that the correct door is A.
+Flipping AA occurs with probability $0.6^{2}=0.36$; if you flip this, you would be correct also with probability 0.36.
+Flipping BB occurs with probability $0.4^{2}=0.16$; if you flip this, you would lose with probability 0.16.
+There is a combined probability of $2\cdot0.6\cdot0.4=0.48$ of flipping AB or BA; if you flip this, you would win probability $0.48/2=0.24$.
+Thus your total probablilty of winning is $0.36+0.24=$
+\fcolorbox{red}{white}{\bf 0.6}\,.
+Interestingly, this is the same probability as flipping the coin a single time.
+
+Similarly, the probability of winning with three or four flips is the same.
+For the three-flip case, you should pick whichever side flips over at least twice.
+For the four-flip case, you should pick whichever side flips over at least twice out of the first three.
+The probability of flipping AAA is $0.6^{3}=0.216$.
+The probability of flipping any of AAB, ABA, or BAA is $3\cdot0.6^{2}\cdot0.4=0.432$.
+Thus the total probability of winning in this case is
+\fcolorbox{red}{white}{\bf 0.648}\,.
+
+
+
+\end{document}
