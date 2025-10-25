@@ -75,7 +75,7 @@
 
 \section*{Riddle:}
 
-Help, there’s a cricket on my floor!
+Help, there's a cricket on my floor!
 I want to trap it with a cup so that I can safely move it outside.
 But every time I get close, it hops exactly 1 foot in a random direction.
 
@@ -90,6 +90,36 @@ In other words, if you consider the probability distribution over all possible d
 
 \section*{Solution:}
 
+We can assume that the first jump moves from the edge of a circle (with 1-ft radius) to the center of the circle.
+Then the second jump will land somewhere on the edge of the circle.
+We can call the angle between the two jumps $\theta$, and the distance between the initial and final positions $L$.
+This is shown below:
 
+\vspace{0.1in}
+\begin{center}
+\includegraphics[width=1.5in]{circle2.png}
+\end{center}
+\vspace{0.1in}
+
+The distance $L$ can be written as
+
+\begin{align*}
+L(\theta) &= \sqrt{(1-\cos\theta)^{2}+(\sin\theta)^{2}} \\
+&= \sqrt{2-2\cos\theta}
+\end{align*}
+
+Finding the most probably distance requires maximizing this equation.
+Because $L$ is positive, it is maximized at the same points as $L^{2}$, which is easier to differentiate:
+
+\[
+L^{2} = 2-2\cos\theta
+\]
+\[
+\frac{d}{d\theta}L^{2} = 2\sin\theta
+\]
+
+Because of symmetry, this only needs to be evaluated in the range $[0,\pi]$.
+The zeroes are at $\theta=0$ and $\pi$, which conveniently are also the edges of the range.
+Evaluating these shows that the maximum is at $\theta=\pi$, with a most-likely distance of \fcolorbox{red}{white}{\textbf{2}}\,.
 
 \end{document}
