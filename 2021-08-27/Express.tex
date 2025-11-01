@@ -1,0 +1,144 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 27 August 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+Football season is almost here, which means fantasy football season is already here.
+
+You and your two best friends are in a three-person league, drafting just three positions each for your teams: quarterback, running back and wide receiver.
+Yes, this is a simplified version of fantasy football.
+
+The following table shows the top three athletes in each position, as well as the number of fantasy points they are expected to earn over the course of the season.
+You and your friends must each select exactly one player from each position.
+
+\vspace{0.1in}
+\begin{center}
+\begin{tabular}{|l|c|l|c|l|c|}
+\hline
+Quarterback & Points & Running Back & Points & Wide Receiver & Points \\
+\hline
+Matrick Pahomes & 400 & Caffrey McChristian & 300 & Avante Dadams & 250 \\
+\hline
+Osh Jallen & 350 & Calvin Dook & 225 & Hyreek Till & 225 \\
+\hline
+Myler Kurray & 300 & Herrick Denry & 200 & Defon Stiggs & 175 \\
+\hline
+\end{tabular}
+\end{center}
+\vspace{0.1in}
+
+The draft is a ``snake draft.''
+If person A drafts first, B drafts second and C drafts third, then the order of the picks is as follows: A-B-C-C-B-A-A-B-C.
+
+Your friends---being the kind people that they are---agree that you can choose your pick number.
+Which draft position should you choose to maximize your expected fantasy score?
+
+
+\section*{Solution:}
+
+When each person makes the first draft selection, there are three positions available to be filled.
+During the second selection, there are two positions, and during the third selection, there is one position remaining.
+I assume that for any given position, the drafter picks the best-available player in that position; this means that the drafters are only picking among positions, and not among all players.
+Each of drafters A, B, and C has $3\times2\times1=6$ possible ways to fill their team.
+With three drafters, there are $6^{3}=216$ possible ``paths'' toward choosing the teams.
+
+But some of these paths are redundant.
+Specifically, A can reverse their second and third picks, leading to the same final result; similarly C can reverse the first and second picks.
+This means there are only 54 unique paths for drafting.
+
+I manually listed each of the 54 possible paths and calculated the expected scores for each drafter.
+From there, I determined the optimal choice that each player would make, starting backwards from B's second pick.
+(Interestingly, A only has a single free choice; the second and third picks are whatever is leftover after B and C's second picks.)
+If two choices led to paths with the same expected score, I assumed that the drafter would choose either with 50\%\ probability.
+This probability could factor into earlier choices by other players.
+
+Working back all the way to A's first choice, I determine that the best drafter is \fcolorbox{red}{white}{\textbf{B}}\,.
+With the following draft choices, A and C are expected to each score 800, while B is expected to score 825.
+
+\vspace{0.1in}
+\begin{center}
+\begin{tabular}{ll}
+A: & Matrick Pahomes \\
+B: & Caffrey McChristian \\
+C: & Osh Jallen/Avante Dadams \\
+B: & Hyreek Till \\
+A: & Calvin Dook/Defon Stiggs \\
+B: & Myler Kurray \\
+C: & Herrick Denry \\
+\end{tabular}
+\end{center}
+\vspace{0.1in}
+
+\end{document}
