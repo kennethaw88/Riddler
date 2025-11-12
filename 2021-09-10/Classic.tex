@@ -1,0 +1,115 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 10 September 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+
+One morning, Phil was playing with his daughter, who loves to cut paper with her safety scissors.
+She especially likes cutting paper into ``strips,'' which are rectangular pieces of paper whose shorter sides are at most 1 inch long.
+
+Whenever Phil gives her a piece of standard printer paper (8.5 inches by 11 inches), she picks one of the four sides at random and then cuts a 1-inch wide strip parallel to that side.
+Next, she discards the strip and repeats the process, picking another side at random and cutting the strip.
+Eventually, she is left with nothing but strips.
+
+On average, how many cuts will she make before she is left only with strips?
+
+\textit{Extra credit}: Instead of 8.5 by 11-inch paper, what if the paper measures $m$ by $n$ inches?
+(And for a special case of this, what if the paper is square?)
+
+
+\section*{Solution:}
+
+
+I note that the paper size of $8.5\times11$ produces the same result as $9\times11$, since it will take 8 cuts along a side with any length greater than 8 and at most 9 inches.
+This allows the problem to be generalized to any two integers $m$ and $n$.
+
+Because the two opposite sides of paper are the same, any cut on those two sides results in the same new leftover paper.
+Therefore, there are only two options for cutting: the $m$ side and the $n$ side.
+Each side has a 50\%\ probability of being cut.
+I will label the expected number of remaining cuts from an $m\times n$ paper as $C(m,n)$.
+If either $m$ or $n$ is 1, then $C=0$.
+The minimum number of actual cuts starts from $m=n=2$, with $C(2,2)=1$, since a cut from either side leads to a single leftover strip with width 1.
+
+After a few steps, it is clear that there is a recursive formula for $C$:
+
+\[
+C(m,n)=1+\left(C(m,n-1)+C(m-1,n)\right)/2,\quad m,n\ge2
+\]
+
+I don't know how to turn this into a general formula for $C(m,n)$.
+For the specific case of $m=9$, $n=11$, I generated a table in Excel and got a result of \fcolorbox{red}{white}{$\bm{{\nicefrac{936,548}{65,536}\approx14.29}}$}\,.
+
+
+\end{document}
