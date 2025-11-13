@@ -1,0 +1,156 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 20 August 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+When you roll a pair of fair dice, the most likely outcome is 7 (which occurs \nicefrac{1}{6} of the time) and the least likely outcomes are 2 and 12 (which each occur \nicefrac{1}{36} of the time).
+
+Annoyed by the variance of these probabilities, I set out to create a pair of ``uniform dice.''
+These dice still have sides that are uniquely numbered from 1 to 6, and they are identical to each other.
+However, they are weighted so that their sum is more uniformly distributed between 2 and 12 than that of fair dice.
+
+Unfortunately, it is impossible to create a pair of such dice so that the probabilities of all 11 sums from 2 to 12 are identical (i.e., they are all \nicefrac{1}{11}).
+But I bet we can get pretty close.
+
+The variance of the 11 probabilities is the average value of the squared difference between each probability and the average probability (which is, again, \nicefrac{1}{11}).
+One way to make my dice as uniform as possible is to minimize this variance.
+
+So how should I make my dice as uniform as possible?
+In other words, which specific weighting of the dice minimizes the variance among the 11 probabilities?
+That is, what should the probabilities be for rolling 1, 2, 3, 4, 5 or 6 with one of the dice?
+
+
+\section*{Solution:}
+
+The probabilities of rolling each side are constrained, since the six probabilities must sum to 1.
+Further, because of the symmetry of the sums, I can determine that the probability of rolling a 1 or a 6 must be the same, and similarly with 2 and 5, and 3 and 4.
+So there are only three actual probabilities, and because of the summing constraint, only two variable probabilities.
+
+I will let $P$ be the probability of rolling a given value on one die.
+Specifically, let $P(1)=P(6)=x$ and $P(2)=P(5)=y$.
+This leaves $P(3)=P(4)=\nicefrac{1}{2}-x-y$.
+
+I will further let $Q$ be the probability of rolling a given sum of two dice.
+These probabilities are
+
+\begin{align*}
+Q(2)=Q(12) &= P(1)P(1) \\
+&= x^{2} \\
+Q(3)=Q(11) &= P(1)P(2) + P(2)P(1) \\
+&= 2xy \\
+Q(4)=Q(10) &= P(1)P(3) + P(2)P(2) + P(3)P(1) \\
+&= -2x^{2}+y^{2}-2xy+x \\
+Q(5)=Q(9) &= P(1)P(4) + P(2)P(3) + P(3)P(2) + P(4)P(1) \\
+&= -2x^{2}-2y^{2}-4xy+x+y \\
+Q(6)=Q(8) &= P(1)P(5) + P(2)P(4) + P(3)P(3) + P(4)P(2) + P(5)P(1) \\
+&= x^{2}-y^{2}+2xy-x+\nicefrac{1}{4} \\
+Q(7) &= P(1)P(6) + P(2)P(5) + P(3)P(4) + P(4)P(3) + P(5)P(2) + P(6)P(1) \\
+&= 4x^{2} +4y^{2}+4xy-2x-2y+\nicefrac{1}{2}
+\end{align*}
+
+From here, I can define the average variance $V(x,y)$ as
+
+\[
+V(x,y)=\nicefrac{1}{11}\sum_{n=2}^{12}\left(Q(n)-\nicefrac{1}{11}\right)^{2}
+\]
+
+To find the minimum, I can take the partial derivatives with respect to $x$ and $y$.
+This generates two cubic equations that must be solved simultaneously:
+
+\begin{align*}
+0 &= 144x^{3}+264x^{2}y+216xy^{2}+48y^{3}-108x^{2}-144xy-48y^{2}+30x+18y-3 \\
+0 &= 88x^{3}+216x^{2}y+144xy^{2}+112y^{3}-72x^{2}-96xy-72y^{2}+18x+18y-2
+\end{align*}
+
+Plugging these into an online equation solver gives the real solutions $x\approx0.2439$ and $y\approx0.1375$.
+This gives the following (approximate) probabilities:
+
+\begin{align*}
+P(1)=P(6) &\approx 0.2439 \\
+P(2)=P(5) &\approx 0.1375 \\
+P(3)=P(4) &\approx 0.1186 \\
+{} \\
+Q(2)=Q(12) &\approx 0.0594 \\
+Q(3)=Q(11) &\approx 0.0671 \\
+Q(4)=Q(10) &\approx 0.0768 \\
+Q(5)=Q(9) &\approx 0.0905 \\
+Q(6)=Q(8) &\approx 0.1138 \\
+Q(7) &\approx 0.1849 \\
+\end{align*}
+
+The final average variance is $V\approx0.001218$.
+
+
+\end{document}
