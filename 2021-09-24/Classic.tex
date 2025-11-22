@@ -1,0 +1,146 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 24 September 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+You may recall a previous riddle about the new Olympic event, sport climbing.
+This week, puzzle submitter Andy Esposito takes us back to this exciting event:
+
+The finals of the sport climbing competition has eight climbers, each of whom compete in three different events: speed climbing, bouldering and lead climbing.
+Based on their time and performance, each of the eight climbers is given a ranking (first through eighth, with no ties allowed) in each event, as well as a corresponding score (1 through 8, respectively).
+
+The three scores each climber earns are then multiplied together to give a final score.
+For example, a climber who placed second in speed climbing, fifth in bouldering and sixth in lead climbing would receive a score of $2\times5\times6$, or 60 points.
+The gold medalist is whoever achieves the lowest final score among the eight finalists.
+
+What is the highest (i.e., worst) score one could achieve in this event and still have a chance of winning (or at least tying for first place overall)?
+
+
+\section*{Solution:}
+
+The product of all scores in each event is $8!$, so the total product across all events is $8!^{3}$.
+If each player were to have the same score at the end (an eight-way tie), that score would be $8!^{3/8}\approx53.3$.
+Of course, this is impossible, but it sets an upper limit on the winning score; If a ``winning'' score were 54 or higher, another score would need to be 53 or lower, which would then become the winning score.
+
+A score of 53 is not possible, since it is prime.
+Similarly, 52 and 51 are not possible, since they have factors of 13 and 17, respectively.
+
+The first possible score is 50, which can come from event scores of 2, 5, and 5.
+For this to be a winning score, each other climber must have scores at or above 50.
+Using the same logic as earlier, the average score of the remaining seven climbers must be $(8!^{3}/50)^{1/7}\approx53.8$.
+So at least one other climber must have a score below 54.
+Scores of 53, 52, 51, as well as scores below 50 are excluded.
+So the next-best score must also be 50.
+However, two (or more) climbers cannot both score 50, because the total product ($8!^{3}$) only has three factors of 5.
+So 50 is not the solution.
+
+The next possible score is 49 (from 1, 7, and 7).
+After a score of 49, the remaining average is $(8!^{3}/49)^{1/7}\approx53.99$.
+Again, the next-best score must be below 54.
+It also cannot be 49, because the total product only has three factors of 7.
+If the second-best score is 50, then the remaining average is $(8!^{3}/49/50)^{1/6}\approx54.7$.
+The third-best score again cannot be 50, but it could be 54 (from 3, 3, and 6).
+The remaining average is $(8!^{3}/49/50/54)^{1/5}\approx54.8$.
+At this point, the fourth-best score would have to be 54.
+However, this is not possible, since it \textit{must} be factored as 3, 3, and 6.
+But a third-place event finish can only happen three times, so this is not possible, and 49 is also not the solution.
+
+The next possible score is 48.
+For this to be the solution, it only needs to be shown that some combination of event scores results in a lowest, winning score of 48.
+I show this below, using A--H as the players, ranked in order of total score.
+
+\vspace{0.1in}
+\begin{center}
+\begin{tabular}{ccccc}
+Player & Score 1 & Score 2 & Score 3 & Total Score \\
+\hline
+A & 1 & 6 & 8 & 48 \\
+B & 6 & 8 & 1 & 48 \\
+C & 8 & 1 & 6 & 48 \\
+D & 3 & 4 & 4 & 48 \\
+E & 2 & 5 & 5 & 50 \\
+F & 4 & 2 & 7 & 56 \\
+G & 7 & 3 & 3 & 63 \\
+H & 5 & 7 & 2 & 70 \\
+\end{tabular}
+\end{center}
+\vspace{0.1in}
+
+So in this example, there is a four-way tie for first place.
+But it is sufficient to show that the highest-possible winning score is \fcolorbox{red}{white}{\textbf{48}}\,.
+I don't know if this example (along with permutations) is unique.
+
+
+\end{document}
