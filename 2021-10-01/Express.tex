@@ -1,0 +1,124 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 1 October 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+I recently purchased a new Velo-ton stationary bike and took it for a spin.
+The bike records three key metrics throughout the ride: cadence (how fast I'm riding), resistance (how hard I have to push the pedals to keep moving) and output (the power I produce).
+
+With a little experimentation, I determine that the power (in watts) is equal to the product of the cadence and resistance values divided by 20.
+For example, if my cadence is 64 and my resistance is 25, then my power output is $(64\cdot25)/20$, or 80 watts.
+
+Whenever I ride, I always make sure that my resistance is between 20 and 60, while my cadence is between 60 and 100.
+After a particularly grueling 30-minute workout, I notice that my average resistance was 40, while my average cadence was 80.
+(Note that these averages are computed per unit of time, rather than per unit of distance traveled.)
+
+At first, I figure my average power was $(40\cdot80)/20$, or 160 watts.
+But I soon realize other values are also possible.
+What is the maximum average power that I could have produced?
+What is the minimum?
+
+
+\section*{Solution:}
+
+In order to produce maximum and minimum output product, the individual cadence and resistance must be maximized and minimized, which occur at the individual upper and lower limits.
+For the resistance to average out to 40, it would be at 20 for half the time, and 60 for the other half, i.e.,
+
+\[
+\frac{1}{2}(20)+\frac{1}{2}(60)=40
+\]
+
+Similarly the cadence would be at 60 and 100 each for half of the time:
+
+\[
+\frac{1}{2}(60)+\frac{1}{2}(100)=80
+\]
+
+To maximize the power, the maximum cadence and resistance would occur together for the same half of the workout, and the minimum cadence and resistance would occur for the other half:
+
+\[
+\frac{\frac{1}{2}(20)(60)+\frac{1}{2}(60)(100)}{20}=180
+\]
+
+On the other hand, to minimize the power, the maximum cadence would occur at the same half as the minimum resistance, and the minumum cadence and maximum resistance would occur in the other half:
+
+\[
+\frac{\frac{1}{2}(20)(100)+\frac{1}{2}(60)(60)}{20}=140
+\]
+
+So the maximum and minimum average power rates are \fcolorbox{red}{white}{\textbf{180~watts}} and \fcolorbox{red}{white}{\textbf{140~watts}}\,, respectively.
+
+
+\end{document}
