@@ -1,0 +1,138 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 15 October 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+The American League Championship Series of Riddler League Baseball determines one of the teams that will compete in the Riddler World Series.
+This year's teams---the Tampa Bay Lines and the Minnesota Twin Primes---are evenly matched.
+In other words, both teams are equally likely to win each game of the best-of-seven series.
+
+On average, how many games will the series last?
+(Note that the series ends as soon as one team has won four games.)
+
+
+\section*{Solution:}
+
+I designate a completed Riddler World series as a list of Ts and Ms corresponding to the winner of each game in order.
+For example, if the Tampa Bay Lines win the first four games, this would be TTTT; similarly, if the Minnesota Twin Primes win the first four games, this would be MMMM.
+Because the probability of either team winning a single games is fixed at \nicefrac{1}{2}, the probability of winning four games is $(\nicefrac{1}{2})^4=\nicefrac{1}{16}$.
+Because there are two ways for the series to end in four games, the total probability to end in four games is $2(\nicefrac{1}{16})=\nicefrac{1}{8}$.
+
+There are four ways for either team to win in the fifth game.
+For Tampa Bay to win, these are:
+
+\vspace{0.1in}
+\begin{center}
+TTTMT \quad TTMTT \quad TMTTT \quad MTTTT
+\end{center}
+\vspace{0.1in}
+
+Similarly, there are four ways for Minnesota to win in the fifth game.
+So there are eight ways for the series to end in five games, and the total probability is $8(\nicefrac{1}{2})^5=\nicefrac{1}{4}$.
+
+There are ten ways for Tampa Bay to win in the sixth game:
+
+\vspace{0.1in}
+\begin{center}
+TTTMMT \quad TTMTMT \quad TMTTMT \quad MTTTMT \quad TTMMTT \\
+TMTMTT \quad MTTMTT \quad TMMTTT \quad MTMTTT \quad MMTTTT
+\end{center}
+\vspace{0.1in}
+
+So the total probability to end in six games is $20(\nicefrac{1}{2})^6=\nicefrac{5}{16}$.
+
+Finally, there are 20 ways for Tampa Bay to win in the seventh game:
+
+\vspace{0.1in}
+\begin{center}
+TTTMMMT \quad TTMTMMT \quad TMTTMMT \quad MTTTMMT \quad TTMMTMT \\
+TMTMTMT \quad MTTMTMT \quad TMMTTMT \quad MTMTTMT \quad MMTTTMT \\
+TTMMMTT \quad TMTMMTT \quad MTTMMTT \quad TMMTMTT \quad MTMTMTT \\
+MMTTMTT \quad TMMMTTT \quad MTMMTTT \quad MMTMTTT \quad MMMTTTT
+\end{center}
+\vspace{0.1in}
+
+So the total probability to end in six games is $40(\nicefrac{1}{2})^7=\nicefrac{5}{16}$.
+
+The average number of games $N$ in the series is the weighted sum:
+
+\[
+N=4\left(\frac{1}{8}\right)+5\left(\frac{1}{4}\right)+6\left(\frac{5}{16}\right)
+ +7\left(\frac{5}{16}\right)
+\]
+
+which gives a sum of \fcolorbox{red}{white}{\textbf{\nicefrac{93}{16}=5.8125}}\,.
+
+\end{document}
