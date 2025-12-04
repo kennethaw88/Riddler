@@ -1,0 +1,145 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 1 October 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+You are responsible for setting the ranger schedule at Riddler River National Park. Four rangers are assigned to two locations: the mountain lookout in the north and the lakeside campground in the south.
+Each assignment lasts one week (Monday through Friday), and every week two rangers should be in the north and two should be in the south.
+
+Your task is to set an assignment schedule that lasts a certain number of weeks and then repeats indefinitely.
+
+In the spirit of fairness, the rangers propose the following conditions for the schedule:
+
+\begin{itemize}
+\item Each ranger should spend as many weeks in the north as they do in the south.
+\item Each ranger should spend the same number of weeks paired with each other ranger.
+\item All rangers should move the same number of times over the course of the schedule.
+This includes potentially moving back to their starting assignment after the last week of the schedule.
+\item Exactly two rangers should switch locations each week.
+\end{itemize}
+
+What is the shortest possible repeating schedule that meets the rangers' conditions?
+
+\section*{Solution:}
+
+I use the letters A, B, C, and D to represent each of the four rangers, and designate the location of the rangers as a fraction.
+For example, $\frac{\textrm{AB}}{\textrm{CD}}$ indicates A and B in the north location, and C and D in the south location.
+There are six possible arrangements of rangers: $\frac{\textrm{AB}}{\textrm{CD}}$, $\frac{\textrm{AC}}{\textrm{BD}}$, $\frac{\textrm{AD}}{\textrm{BC}}$, $\frac{\textrm{CD}}{\textrm{AB}}$, $\frac{\textrm{BC}}{\textrm{AD}}$, and $\frac{\textrm{BD}}{\textrm{AC}}$.
+I number these arrangements as 1, 2, 3, 4, 5, and 6, respectively.
+For each arrangement, there are four possible ways for exactly two rangers to switch, leading to another arrangement.
+For example, to move between arrangements 1 and 2, B and C must switch.
+I drew out all possible arrangements and movements between them on the attached page.
+
+Based on that drawing, it is possible to visualize each arrangement as a vertex of an octohedron, with each possible movement as an edge.
+Vertices on opposite ends of the octohedron (1 and 4, 2 and 6, 3 and 5) do not have an edge between them, because moving between those arrangements would require all four rangers to switch at the same time.
+
+With this image, I could imagine paths along the edges of the octohedron.
+By the way the paths are defined, all paths meet the fourth condition.
+In order to meet the repeating requirement, a path must end on the same vertex it started.
+Visiting every vertex along the path further ensures it meets the first and second conditions.
+It is possible to visit every vertex once using six steps.
+For example, both the paths 1-2-3-4-5-6-1 and 1-3-6-4-2-5-1 (among numerous others) use six movements to visit all six vertices.
+However, with the first path, A and B each switch twice, while C and D each switch four times.
+Similarly, with the second path, A and B each switch 4 times, while C and D each switch twice.
+In fact, all paths of six movements have this phenomenon.
+If the above two paths are combined into a 12-movement sequence, though, the original conditions are still met, and each ranger switches six times, meeting the third condition.
+
+Thus the solution is \fcolorbox{red}{white}{\textbf{12 weeks}}\,.
+Here is my full solution:
+
+\vspace{0.1in}
+\begin{center}
+\begin{tabular}{ccc}
+Week & North & South \\
+1  & AB & CD \\
+2  & AC & BD \\
+3  & AD & BC \\
+4  & CD & AB \\
+5  & BC & AD \\
+6  & BD & AC \\
+7  & AB & CD \\
+8  & AD & BC \\
+9  & BD & AC \\
+10 & CD & AB \\
+11 & AC & BD \\
+12 & BC & AD
+\end{tabular}
+\end{center}
+\vspace{0.1in}
+
+\includepdf{rangers}
+
+
+\end{document}
