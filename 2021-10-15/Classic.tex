@@ -1,0 +1,145 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 15 October 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+Over in the National League Championship Series, the Washington Rationals and the St. Louis Ordinals (known as the ``Ords'' for short) are also evenly matched.
+Again, both teams are equally likely to win each game of the best-of-seven series.
+
+You enter a competition in which you must predict the winner of each of the seven games before the series begins.
+If any or all of the fifth, sixth or seventh game are not played, you are not credited with predicting a winner.
+
+You win the competition if you predict \textit{at least two} games correctly.
+If you optimize your strategy for picking winners, what is the probability you will win the competition?
+
+\textit{Extra credit:} You enter a second competition in which you must pick the winner of the first game and then of each next game, knowing who won in all the previous games.
+Again, if you optimize your strategy, \textit{now} what is the probability you will predict at least two games correctly?
+
+
+\section*{Solution:}
+
+I designate a completed Championship Series as a list of Ws and Ss corresponding to the winner of each game in order.
+For example, if the Washington Rationals win the first four games, this would be WWWW; similarly, if the St. Louis Ordinals win the first four games, this would be SSSS.
+
+Because there are up to seven possible games to predict, there are $2^{7}=128$ possible predictions.
+However, the actual strategy does not depend on the prediction of the first game, only on the pattern after the first game.
+Any strategy that predicts Washington as the winner of the first game has a counterpart strategy that predicts St. Louis as the winner of the first game; these counterpart strategies have the same probability of winning the competition.
+Additionally, the prediction for the seventh game doesn't matter; if the championship goes to seven games, each team will win with 50\%\ probability, so both predictions are equal.
+Therefore, there are only $2^{5}=32$ strategies to consider.
+
+As for the game-by-game outcomes of the series, there are only 70 possible outcomes.
+Two outcomes (WWWW and SSSS) last only four games, and each have a probability of $(\nicefrac{1}{2})^4=\nicefrac{1}{16}$ of occurring.
+There are eight outcomes that last five games, each with probability \nicefrac{1}{32}.
+For a Washington win, these are
+
+\vspace{0.1in}
+\begin{center}
+WWWSW \quad WWSWW \quad WSWWW \quad SWWWW
+\end{center}
+\vspace{0.1in}
+
+and similar for St. Louis.
+There are eight outcomes that last five games, each with probability \nicefrac{1}{64}.
+For a Washington win, these are
+
+\vspace{0.1in}
+\begin{center}
+WWWSSW \quad WWSWSW \quad WSWWSW \quad SWWWSW \quad WWSSWW \\
+WSWSWW \quad SWWSWW \quad WSSWWW \quad SWSWWW \quad SSWWW
+\end{center}
+\vspace{0.1in}
+
+and similar for St. Louis.
+Finally, there are forty outcomes that last five games, each with probability \nicefrac{1}{128}.
+For a Washington win, these are
+
+\vspace{0.1in}
+\begin{center}
+WWWSSSW \quad WWSWSSW \quad WSWWSSW \quad SWWWSSW \quad WWSSWSW \\
+WSWSWSW \quad SWWSWSW \quad WSSWWSW \quad SWSWWSW \quad SSWWWSW \\
+WWSSSWW \quad WSWSSWW \quad SWWSSWW \quad WSSWSWW \quad SWSWSWW \\
+SSWWSWW \quad WSSSWWW \quad SWSSWWW \quad SSWSWWW \quad SSSWWWW
+\end{center}
+\vspace{0.1in}
+
+and similar for St. Louis.
+
+The number of strategies and outcomes is small enough that it is possible to type them all out and make a tally of correct predictions for each strategy.
+I have done so in \texttt{Predictions.xlsx}.
+Using W as the prediction for the first and last games, this shows that the best strategy is WWWWSSW, with a probability of winning the competition of \fcolorbox{red}{white}{\textbf{0.90625}}\,.
+
+
+
+\end{document}

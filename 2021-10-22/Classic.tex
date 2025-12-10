@@ -1,0 +1,139 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 22 October 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+Suppose you have an equilateral triangle.
+You pick three random points, one along each of its three edges, uniformly along the length of each edge---that is, each point along each edge has the same probability of being selected.
+
+With those three randomly selected points, you can form a new triangle inside the original one.
+What is the probability that the center of the larger triangle also lies inside the smaller one?
+
+
+\section*{Solution:}
+
+To solve this problem, I set up the diagram below.
+I set the side length of the triangle to be 2, with vertices located at $(0,0)$, $(2,0)$, and $(1,\sqrt{3})$.
+The center point Q of the triangle is at $(1,\nicefrac{\sqrt{3}}{3})$.
+I designate the three points along the sides as A, B, and C; $a$, $b$, and $c$ are the variables that represent the proportion along the side length where A, B, and C are located, respectively.
+
+\vspace{0.1in}
+\begin{center}
+\includegraphics[width=2.5in]{triangle1.png}
+\end{center}
+\vspace{0.1in}
+
+Based on this, point A is at $(a,\sqrt{3}a)$, B is at $(1+b,\sqrt{3}(1-b))$, and C is at $(2(1-c),0)$.
+
+There are eight scenarios for the variables.
+First, if each of $a$, $b$, and $c$ is greater than \nicefrac{1}{2}, then Q is guaranteed to be inside the smaller triangle.
+This happens because if $a$ is greater than \nicefrac{1}{2}, the line $\overline{\mathrm{AB}}$ lies above Q no matter the value of $b$.
+Similarly, if $b$ is greater than \nicefrac{1}{2}, $\overline{\mathrm{BC}}$ lies to the right of Q, and if $c$ is greater than \nicefrac{1}{2}, $\overline{\mathrm{AC}}$ lies to the left of Q.
+The same reasoning applies when $a$, $b$, and $c$ are each less than \nicefrac{1}{2}.
+Because $a$, $b$, and $c$ are evenly distributed between 0 and 1, these two scenarios each happen with probability $(\nicefrac{1}{2})^{3}=\nicefrac{1}{8}$.
+
+Each of the other six scenarios involves two variables on the same side of \nicefrac{1}{2} and the remaining variable on the other side of \nicefrac{1}{2}.
+Because of symmetry, each of these will have the same probability of having Q inside the smaller triangle.
+So without loss of generality, I consider the case with $a$ greater than \nicefrac{1}{2} and $c$ less than \nicefrac{1}{2}.
+As mentioned above, it doesn't matter what $b$ is when $a$ is greater than \nicefrac{1}{2}, so I actually consider both scenarios together for $b$ less than and greater than \nicefrac{1}{2}.
+
+For a given value of $a$, I draw the line $\overline{\mathrm{AQ}}$ and extend it to the C side of the equilateral triangle.
+I designate the point of intersection as $\mathrm{C_{0}}$.
+This is shown in the second diagram below.
+
+\vspace{0.1in}
+\begin{center}
+\includegraphics[width=2.5in]{triangle2.png}
+\end{center}
+\vspace{0.1in}
+
+I can determine that $\mathrm{C_{0}}$ is at $(\nicefrac{2a}{(3a-1)},0)$.
+Because this is an absolute point on the triangle, I can convert this to the proportion along the axis, which I designate $c_{0}$.
+The value of $c_{0}$ is \nicefrac{(2a-1)}{(3a-1)}.
+This becomes a lower limit for integration along $c$.
+The upper limit within this scenario is \nicefrac{1}{2}.
+The variable $a$ is integrated between \nicefrac{1}{2} and 1, and $b$ is ignored in the scenario.
+The probability $p$ of having Q inside the smaller triangle in this scenario is
+
+\[
+p=\int_{\frac{1}{2}}^{1}\int_{\frac{2a-1}{3a-1}}^{\frac{1}{2}}dc\,da
+\]
+
+which has a result of approximately 0.0707.
+Because this represents two of six equivalent scenarios, this must be tripled and added to the probabilities above.
+The total probability is (approximately) \fcolorbox{red}{white}{\textbf{0.4621}}\,.
+
+
+\end{document}

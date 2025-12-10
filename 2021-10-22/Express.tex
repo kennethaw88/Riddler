@@ -69,70 +69,50 @@
 
 \vspace{0.15in}
 
-{\Large 15 October 2021}
+{\Large 22 October 2021}
 \end{center}
 
 
 \section*{Riddle:}
 
-The American League Championship Series of Riddler League Baseball determines one of the teams that will compete in the Riddler World Series.
-This year's teams---the Tampa Bay Lines and the Minnesota Twin Primes---are evenly matched.
-In other words, both teams are equally likely to win each game of the best-of-seven series.
+Duke Leto Atreides knows for a fact that there are not one, but two traitors within his royal household.
+The suspects are Lady Jessica, Dr. Wellington Yueh, Gurney Halleck and Duncan Idaho.
+Leto’s advisor, Thufir Hawat, will assist him in questioning the four suspects.
+Anyone who is a traitor will tell a lie, while anyone who is not a traitor will tell the truth.
 
-On average, how many games will the series last?
-(Note that the series ends as soon as one team has won four games.)
+Upon interrogation, Jessica says that she is not the traitor, while Wellington similarly says that he is not the traitor.
+Gurney says that Jessica or Wellington is a traitor.
+Finally, Duncan says that Jessica or Gurney is a traitor.
+(Thufir, being the logician that he is, notes that when someone says thing \textit{A} is true or thing \textit{B} is true, both \textit{A} and \textit{B} can technically be true.)
+
+After playing back the interrogations in his mind, Thufir is ready to report the name of one of the traitors to the duke.
+Whose name does he report?
 
 
 \section*{Solution:}
 
-I designate a completed Championship Series as a list of Ts and Ms corresponding to the winner of each game in order.
-For example, if the Tampa Bay Lines win the first four games, this would be TTTT; similarly, if the Minnesota Twin Primes win the first four games, this would be MMMM.
-Because the probability of either team winning a single games is fixed at \nicefrac{1}{2}, the probability of winning four games is $(\nicefrac{1}{2})^4=\nicefrac{1}{16}$.
-Because there are two ways for the series to end in four games, the total probability to end in four games is $2(\nicefrac{1}{16})=\nicefrac{1}{8}$.
-
-There are four ways for either team to win in the fifth game.
-For Tampa Bay to win, these are:
+There are $\binom{4}{2}=6$ ways to have two traitors among four people, whom I designate J, W, G, and D.
+I list these scenarios below.
+They are organized by whose statements are true or false, along with whether the resulting statements are logically consistent:
 
 \vspace{0.1in}
 \begin{center}
-TTTMT \quad TTMTT \quad TMTTT \quad MTTTT
+\begin{tabular}{ccc}
+True & False & Consistent? \\
+\hline
+J W & G D & No \\
+J G & W D & Yes \\
+J D & W G & No \\
+W G & J D & No \\
+W D & J G & No \\
+G D & J W & Yes
+\end{tabular}
 \end{center}
 \vspace{0.1in}
 
-Similarly, there are four ways for Minnesota to win in the fifth game.
-So there are eight ways for the series to end in five games, and the total probability is $8(\nicefrac{1}{2})^5=\nicefrac{1}{4}$.
+There are two scenarios which are logically consistent, so the identity of both traitors cannot be determined.
+But in both of those scenarios, Wellington is one of the traitors.
+So the solution is \fcolorbox{red}{white}{\textbf{Dr. Wellington Yueh}}\,.
 
-There are ten ways for Tampa Bay to win in the sixth game:
-
-\vspace{0.1in}
-\begin{center}
-TTTMMT \quad TTMTMT \quad TMTTMT \quad MTTTMT \quad TTMMTT \\
-TMTMTT \quad MTTMTT \quad TMMTTT \quad MTMTTT \quad MMTTTT
-\end{center}
-\vspace{0.1in}
-
-So the total probability to end in six games is $20(\nicefrac{1}{2})^6=\nicefrac{5}{16}$.
-
-Finally, there are 20 ways for Tampa Bay to win in the seventh game:
-
-\vspace{0.1in}
-\begin{center}
-TTTMMMT \quad TTMTMMT \quad TMTTMMT \quad MTTTMMT \quad TTMMTMT \\
-TMTMTMT \quad MTTMTMT \quad TMMTTMT \quad MTMTTMT \quad MMTTTMT \\
-TTMMMTT \quad TMTMMTT \quad MTTMMTT \quad TMMTMTT \quad MTMTMTT \\
-MMTTMTT \quad TMMMTTT \quad MTMMTTT \quad MMTMTTT \quad MMMTTTT
-\end{center}
-\vspace{0.1in}
-
-So the total probability to end in six games is $40(\nicefrac{1}{2})^7=\nicefrac{5}{16}$.
-
-The average number of games $N$ in the series is the weighted sum:
-
-\[
-N=4\left(\frac{1}{8}\right)+5\left(\frac{1}{4}\right)+6\left(\frac{5}{16}\right)
- +7\left(\frac{5}{16}\right)
-\]
-
-which gives a sum of \fcolorbox{red}{white}{\textbf{\nicefrac{93}{16}=5.8125}}\,.
 
 \end{document}
