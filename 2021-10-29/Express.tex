@@ -1,0 +1,118 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 29 October 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+I have a spherical pumpkin.
+I carefully calculate its volume in cubic inches, as well as its surface area in square inches.
+Next, I got up to have a piece of Halloween candy (which, naturally, was a Reese's Peanut Butter Cup).
+
+But when I came back to my calculations, I saw that my units---the square inches and the cubic inches---had mysteriously disappeared from my calculations.
+But it didn't matter, because both numerical values were the same!
+
+What is the radius of my spherical pumpkin?
+
+\textit{Extra credit:} Let's dispense with 3D thinking.
+Instead, suppose I have an $n$-hyperspherical pumpkin.
+Once again, I calculate its volume (with units $\mathrm{in}^{n}$) and surface area (with units $\mathrm{in}^{n-1}$).
+Miraculously, the numerical values are once again the same!
+What is the radius of my $n$-hyperspherical pumpkin?
+
+
+\section*{Solution:}
+
+Solving this riddle simply requires setting the volume and surface area of a sphere with $r$ equal to each other:
+
+\[
+\frac{4}{3}\pi r^{3} = 4\pi r^{2}
+\]
+
+This has a solution of $r=3$ in whatever units are used.
+In the current case, the solution is \fcolorbox{red}{white}{\textbf{3~in}}\,.
+
+For the case of an $n$-hypersphere, the strategy is the same: set the $n$-dimensional ``volume'' and $n-1$-dimensional ``surface area'' equal to each other.
+I don't know the general formula for the volume of an $n$-dimensional sphere, but I do know that the surface area is the derivative of the volume.
+The volume is some constant term $k$ multiplied by the $r^{n}$ term.
+Setting this equal to its derivative yields:
+
+\begin{align*}
+kr^{n} &= \frac{d}{dr}kr^{n} \\
+       &= nkr^{n-1}
+\end{align*}
+
+This has the relatively simple solution of \fcolorbox{red}{white}{$\bm{r=n}$}\,.
+
+
+\end{document}
