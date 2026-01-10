@@ -1,0 +1,116 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+\usepackage{upgreek} % upright Greek letters
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 19 November 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+After realizing that your friends on $\upmu\upepsilon\uptau\upalpha$ (The Riddler Social Network) are more popular than you, you decide to make some new friends at your local gym, which is open daily from 5~p.m. to~8 p.m.
+
+Some gym members attend very often. Others barely show up at all.
+As a matter of fact, there's a uniform distribution for how often the different members are in the gym---from 0 percent of the time that the gym is open to 100 percent of the time.
+
+As a new member, you plan to be in the gym 50 percent of the time that it's open.
+While working out, you decide to make friends with the first person you see.
+(Aw!)
+
+What is the probability that this person visits the gym more often than you?
+
+
+\section*{Solution:}
+
+If the percent of time a member spends at the gym is $x$, then the probability that that person is at the gym at any given time is of course $x$.
+Thus, the probability distribution is simply a triangle bounded by a positively-sloped line (with a particular normalization factor).
+Randomly meeting a person at the gym is equivalent to randomly selecting a point from inside the triangle.
+To determine if that person visits the gym more often than 50\%\ of the time, it is necessary to find the proportion of the triangle to the right of the 50\%\ mark.
+This is represented by the graph below:
+
+\vspace{0.1in}
+\begin{center}
+\includegraphics[width=1.5in]{diagram}
+\end{center}
+\vspace{0.1in}
+
+This can be solved geometrically or with calculus.
+Using calculus, the probability is simply the ratio:
+
+\[
+\frac{\int_{0.5}^{1}x\,dx}{\int_{0}^{1}x\,dx}=0.75
+\]
+
+So the solution is \fcolorbox{red}{white}{\textbf{0.75}}\,.
+
+
+
+\end{document}
