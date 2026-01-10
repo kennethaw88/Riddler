@@ -1,0 +1,107 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{textgreek} % Greek letters in text mode
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+\usepackage{upgreek} % upright Greek letters
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 5 November 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+As of today, The Riddler Social Network is being rebranded as $\upmu\upepsilon\uptau\upalpha$---that's mu epsilon tau alpha.
+Those Greek letters really augment the brand, don't you think?
+
+A group of 101 people join $\upmu\upepsilon\uptau\upalpha$, and each person has a random, 50 percent chance of being friends with each of the other 100 people.
+Friendship is a symmetric relationship on $\upmu\upepsilon\uptau\upalpha$, so if you're friends with me, then I am also friends with you.
+
+I pick a random person among the 101---let's suppose her name is Marcia.
+On average, how many friends would you expect each of Marcia's friends to have?
+
+
+\section*{Solution:}
+
+I decided to tackle this problem via simulation.
+The code is located in \texttt{social\_network.C}.
+
+I started by creating a $101\times101$ array.
+This array was randomly filled with 0s or 1s; a 1 in the $a$th row and $b$th column means that $a$ and $b$ are friends.
+For completeness, and to save computing power, I only had to randomly determine the top half of the array where $a>b$; the bottom half was then simply mirrored.
+Additionally, the diagonal (where $a=b$) was filled only with 0s.
+
+Once the array was filled, I read off the friend list from the first column, then counted the total number of 1s from each of the 1 columns in that list.
+Then the friends' friend count was averaged.
+
+After several thousand simulations, the results showed that Marcia has about 50 friends on average, while her friends have about \fcolorbox{red}{white}{\textbf{50.5}}\,.
+So on average, Marcia's friends have about 0.5 more friends than her.
+
+
+\end{document}
