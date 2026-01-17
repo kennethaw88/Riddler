@@ -1,0 +1,124 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+\usepackage{upgreek} % upright Greek letters
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 10 December 2021}
+\end{center}
+
+
+\section*{Riddle:}
+
+You are the coach at Riddler Fencing Academy, where your three students are squaring off against a neighboring squad.
+Each of your students has a different probability of winning any given point in a match.
+The strongest fencer has a 75 percent chance of winning each point.
+The weakest has only a 25 percent chance of winning each point.
+The remaining fencer has a 50 percent probability of winning each point.
+
+The match will be a relay.
+First, one of your students will face off against an opponent.
+As soon as one of them reaches a score of 15, they are both swapped out.
+Then, a different student of yours faces a different opponent, continuing from wherever the score left off.
+When one team reaches 30 (not necessarily from the same team that first reached 15), both fencers are swapped out.
+The remaining two fencers continue the relay until one team reaches 45 points.
+
+As the coach, you can choose the order in which your three students occupy the three positions in the relay: going first, second or third.
+How will you order them?
+And then what will be your team's chances of winning the relay?
+
+
+\section*{Solution:}
+
+I wrote code to simulate this match at \texttt{fencing.C}.
+It repeatedly generates random numbers to determine which team wins a given point.
+For the 50\%\ player, it performs modulo 2 on a random number, while for the other players, it performs modulo 2 on two random numbers to get 25\%\ and 75\%\ using an \texttt{and} or \texttt{or} condition, respectively.
+
+By manually switching around the code blocks, I could individually calculate the probability of winning the match with different orders of students.
+The six results are as follows:
+
+\vspace{0.1in}
+\begin{center}
+\begin{tabular}{cc}
+Order & Probability \\
+\hline
+25-50-75 & 0.932 \\
+25-75-50 & 0.826 \\
+50-25-75 & 0.925 \\
+50-75-25 & 0.075 \\
+75-25-50 & 0.174 \\
+75-50-25 & 0.068
+\end{tabular}
+\end{center}
+\vspace{0.1in}
+
+So the highest probability of winning comes from the order \fcolorbox{red}{white}{\textbf{25-50-75}}\,, which gave an overall probability of approximately \fcolorbox{red}{white}{\textbf{93.2\%}}\,.
+
+
+\end{document}
