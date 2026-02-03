@@ -1,0 +1,120 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+\usepackage{upgreek} % upright Greek letters
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 7 January 2022}
+\end{center}
+
+
+\section*{Riddle:}
+
+Amare the ant is traveling within Triangle ABC, as shown below.
+Angle A measures 15 degrees, and sides AB and AC both have length 1.
+
+\vspace{0.1in}
+\begin{center}
+\includegraphics[width=4.5in]{diagram1.png}
+\end{center}
+\vspace{0.1in}
+
+Amare starts at point B and wants to ultimately arrive on side AC.
+However, the queen of his colony has asked him to make several stops along the way.
+Specifically, his path must:
+
+\begin{itemize}
+\item Start at point B.
+\item Second, touch a point---any point---on side AC.
+\item Third, touch a point---any point---back on side AB.
+\item Finally, proceed to a point---any point---on side AC (not necessarily the same point he touched earlier).
+\end{itemize}
+
+What is the shortest distance Amare can travel to complete the queen's desired path?
+
+\section*{Solution:}
+
+Traveling across the triangle three times can be reimagined as traveling across three stacked triangles.
+I show this in the diagram below, in which $\triangle\mathrm{ABC}$, $\triangle\mathrm{ACD}$, and $\triangle\mathrm{ADE}$ are all similar triangles.
+
+\vspace{0.1in}
+\begin{center}
+\includegraphics[width=2.5in]{diagram2.png}
+\end{center}
+\vspace{0.1in}
+
+In this case, the shortest total path length is simply a straight line that intersects $\overline{\mathrm{AE}}$ at a right angle.
+If the intersection point is X, then $\angle\mathrm{AXB}$ is a right angle.
+Because each of $\angle\mathrm{BAC}$, $\angle\mathrm{CAD}$, and $\angle\mathrm{DAE}$ are 15\textdegree, $\angle\mathrm{BAE}$ and $\angle\mathrm{BAX}$ are 45\textdegree.
+Thus $\angle\mathrm{ABX}$ is also 45\textdegree, and $\triangle\mathrm{ABX}$ is an isosceles right triangle with a hypotenuse of 1.
+So the two legs each have length $\nicefrac{\sqrt{2}}{2}$.
+So the solution is \fcolorbox{red}{white}{$\bm{{\nicefrac{\sqrt{2}}{2}\approx0.707}}$}\,.
+
+
+\end{document}
