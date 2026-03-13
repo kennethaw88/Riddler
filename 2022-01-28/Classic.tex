@@ -1,0 +1,109 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment, and degree symbol
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+\usepackage{upgreek} % upright Greek letters
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 28 January 2022}
+\end{center}
+
+
+\section*{Riddle:}
+
+You want to change the transmission fluid in your old van, which holds 12 quarts of fluid.
+At the moment, all 12 quarts are ``old.''
+But changing all 12 quarts at once carries a risk of transmission failure.
+
+Instead, you decide to replace the fluid a little bit at a time.
+Each month, you remove one quart of old fluid, add one quart of fresh fluid and then drive the van to thoroughly mix up the fluid.
+(I have no idea if this is mechanically sound, but I'll take Travis's word on this!)
+Unfortunately, after precisely one year of use, what was once fresh transmission fluid officially turns ``old.''
+
+You keep up this process for many, many years.
+One day, immediately after replacing a quart of fluid, you decide to check your transmission.
+What percent of the fluid is old?
+
+
+\section*{Solution:}
+
+At the moment you add in new fluid, \nicefrac{1}{12} of the fluid is brand new.
+Since one month prior, you made the same change, where \nicefrac{1}{12} of that month's fluid was brand new, of the remaining \nicefrac{11}{12}, \nicefrac{1}{12} is one month old, or $\nicefrac{11}{12}\times\nicefrac{1}{12}$ total.
+Continuing to the next previous month, $(\nicefrac{11}{12})^2\times\nicefrac{1}{12}$ of the fluid is two months old.
+For the last twelve additions of fluid, the total that is not yet old can be written as a sum:
+
+\[
+\sum_{n=0}^{11}\left(\frac{1}{12}\right)\left(\frac{11}{12}\right)^n
+\]
+
+This sums to approximately 0.648.
+The remainder of the fluid is at least twelve months old, so the solution is (approximately) \fcolorbox{red}{white}{\textbf{0.352}}\,.
+As the frequency of fluid changes increases (to say, daily or more), this value approaches $\nicefrac{1}{e}\approx0.368$.
+
+
+\end{document}
