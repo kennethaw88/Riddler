@@ -1,0 +1,162 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment, and degree symbol
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+\usepackage{upgreek} % upright Greek letters
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.4} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Express Riddler}
+
+\vspace{0.15in}
+
+{\Large 4 March 2022}
+\end{center}
+
+
+\section*{Riddle:}
+
+You have three fair coins, three fair dice and a full deck of cards in your possession.
+First, you flip all three coins and note the number of heads.
+Next, you toss all three dice and note the number of ones or sixes.
+Finally, you draw three random cards from the deck of 52 and note the number of hearts.
+
+What is the probability that all three numbers are the same?
+
+
+\section*{Solution:}
+
+The probabilities of flipping zero, one, two, and three heads are
+
+\[
+\begin{matrix}
+P(0\,\mathrm{head}) &=& \left(\frac{1}{2}\right)^{3} &=& \frac{1}{8} \\
+P(1\,\mathrm{head}) &=& 3\left(\frac{1}{2}\right)^{3} &=& \frac{3}{8} \\
+P(2\,\mathrm{head}) &=& 3\left(\frac{1}{2}\right)^{3} &=& \frac{3}{8} \\
+P(3\,\mathrm{head}) &=& \left(\frac{1}{2}\right)^{3} &=& \frac{1}{8}
+\end{matrix}
+\]
+
+The probabilities of rolling zero, one, two, and three 1s/6s are
+
+\[
+\begin{matrix}
+P(0\,1/6) &=& \left(\frac{2}{3}\right)^{3} &=& \frac{1}{8} \\
+P(1\,1/6) &=& 3\left(\frac{2}{3}\right)^{2}\left(\frac{1}{3}\right) &=& \frac{3}{8} \\
+P(2\,1/6) &=& 3\left(\frac{2}{3}\right)\left(\frac{1}{3}\right)^{2} &=& \frac{3}{8} \\
+P(3\,1/6) &=& \left(\frac{1}{3}\right)^{3} &=& \frac{1}{8}
+\end{matrix}
+\]
+
+I make the assumption that the cards are drawn without replacement, so that the probability of each draw changes.
+Then the probabilities of drawing zero, one, two, and three hearts are
+
+\[
+\begin{matrix}
+P(0\,\mathrm{heart})
+  &=& \left(\frac{39}{52}\right)\left(\frac{38}{51}\right)\left(\frac{37}{50}\right)
+  &=& \frac{703}{1700} \\
+P(1\,\mathrm{heart})
+  &=& \left(\frac{13}{52}\right)\left(\frac{39}{51}\right)\left(\frac{38}{50}\right)
+  + \left(\frac{39}{52}\right)\left(\frac{13}{51}\right)\left(\frac{38}{50}\right)
+  + \left(\frac{39}{52}\right)\left(\frac{38}{51}\right)\left(\frac{13}{50}\right)
+  &=& \frac{741}{1700} \\
+P(2\,\mathrm{heart})
+  &=& \left(\frac{13}{52}\right)\left(\frac{12}{51}\right)\left(\frac{39}{50}\right)
+  + \left(\frac{13}{52}\right)\left(\frac{39}{51}\right)\left(\frac{12}{50}\right)
+  + \left(\frac{39}{52}\right)\left(\frac{13}{51}\right)\left(\frac{12}{50}\right)
+  &=& \frac{117}{850} \\
+P(0\,\mathrm{heart})
+  &=& \left(\frac{13}{52}\right)\left(\frac{12}{51}\right)\left(\frac{11}{50}\right)
+  &=& \frac{11}{850}
+\end{matrix}
+\]
+
+The probabilities of getting all zeroes, ones, twos, and threes are the products of the respective probabilities:
+
+\[
+\begin{matrix}
+P_{0} &=& P(0\,\mathrm{head})P(0\,1/6)P(0\,\mathrm{heart})
+  &=& \frac{2,812}{183,600} \\
+P_{1} &=& P(1\,\mathrm{head})P(1\,1/6)P(1\,\mathrm{heart})
+  &=& \frac{13,338}{183,600} \\
+P_{2} &=& P(2\,\mathrm{head})P(2\,1/6)P(2\,\mathrm{heart})
+  &=& \frac{2,106}{183,600} \\
+P_{3} &=& P(3\,\mathrm{head})P(3\,1/6)P(3\,\mathrm{heart})
+  &=& \frac{11}{183,600}
+\end{matrix}
+\]
+
+The total probability is then the sum:
+
+\[
+\begin{matrix}
+P &=& P_{0} + P_{1} + P_{2}+ P_{3} &=& \frac{18,267}{183,600}
+\end{matrix}
+\]
+
+So the solution is \fcolorbox{red}{white}{$\bm{{\nicefrac{18,267}{183,600}\approx 0.0995}}$}\,.
+
+
+
+\end{document}
