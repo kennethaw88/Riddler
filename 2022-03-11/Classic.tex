@@ -1,0 +1,109 @@
+\documentclass{article}
+
+\usepackage{amsmath} % math stuff
+\usepackage{amssymb} % math stuff
+\usepackage{array} % equations and stuff
+\usepackage{bm} % bold math
+%\usepackage{booktabs} % extra table rule options
+%\usepackage{caption} % suppressed table numbering; incompatible with revtex, and longtable, I think
+\usepackage{comment} % comment environment
+%\usepackage{enumitem} % customization of enumeration, itemize, and description
+\usepackage[T1]{fontenc} % font encoding for special characters, must also use scalable font package
+\usepackage[margin=0.8in]{geometry} % paper sizes and margins (but be careful not to mess up pre-defined pages)
+\usepackage{graphicx} % for graphics
+%\usepackage{helvet} % default font is the helvetica postscript font
+\usepackage[utf8]{inputenc} % special characters in tex input
+\usepackage{layouts} % print units like widths
+\usepackage{lipsum} % lorem ipsum filler text
+\usepackage{lmodern} % scalable font?
+\usepackage{longtable} % multi-page tables
+\usepackage{makecell} % specify line-breaks in table cells
+\usepackage{mathrsfs} % math script font
+\usepackage{mhchem} % easier chemical formula
+\usepackage{microtype} % allows disabling of ligatures
+\usepackage{multicol} % multicolumns
+%\usepackage{newcent} % new century schoolbook font
+\usepackage{nicefrac}
+\usepackage{numprint} % print and format (large) numbers
+\usepackage{parskip} % removes paragraph indentation, and adjusts paragraph skip, as well as list items
+\usepackage{pdfpages} % add pdf files as pages
+%\usepackage{setspace} % adjust text spacing and indents
+\usepackage{siunitx} % decimal alignment, and degree symbol
+\usepackage{subfigure} % divided figures
+%\usepackage{tabu} % extra table options
+\usepackage{textcomp} % symbols
+\usepackage{threeparttablex} % better footnotes with longtable
+\usepackage{titling} % title placement
+\usepackage{ulem} % strikethrough text
+\usepackage{upgreek} % upright Greek letters
+%\usepackage{url} % superceded by hyperref
+\usepackage{verbatim} % verbatim environment
+\usepackage{xcolor} % colors and color boxes
+\usepackage{xspace} % commands that don't eat up white space
+\usepackage{hyperref} % links and page setup; should always come last
+
+\hypersetup{
+ bookmarks=true,
+ colorlinks=true,
+ citecolor=blue,
+ linkcolor=blue,
+ urlcolor=blue,
+ pdfstartview={XYZ null null 1.0} % default open view is 100%
+}
+
+\DisableLigatures[f,t]{encoding = T1} % disable ff, fi, fl, tt ligatures; without options, it also disables -- = endash
+\renewcommand{\arraystretch}{1.0} % extra vertical (and horizontal?) space in tables
+
+% define centered, left- and right-aligned columns with specified widths
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+
+\begin{document}
+
+\pagestyle{empty} % don't number pages
+
+% custom title
+\begin{center}
+{\LARGE Classic Riddler}
+
+\vspace{0.15in}
+
+{\Large 11 March 2022}
+\end{center}
+
+
+\section*{Riddle:}
+
+We're playing a game where you have to pick four whole numbers.
+Then I will roll four fair dice.
+If any two of the dice add up to any one of the numbers you picked, then you win!
+Otherwise, you lose.
+
+For example, suppose you picked the numbers 2, 3, 4 and 12, and the four dice came up 1, 2, 4 and 5.
+Then you'd win, because two of the dice (1 and 2) add up to at least one of the numbers you picked (3).
+
+To maximize your chances of winning, which four numbers should you pick?
+And what are your chances of winning?
+
+
+\section*{Solution:}
+
+I enumerate all number choices and dice rolls in the file \texttt{dice\_sums.xlsx}.
+I use this to count up which rolls corresponded to successful choices.
+I find that the maximally successful choice is 4,6,8,10.
+The total probability of winning is $\nicefrac{1,263}{1,296}\approx0.9753$.
+
+By my reasoning, 4,6,8,10 must be the best choice because they are even numbers, and are centered around 7.
+7 is the single most likely number to be a sum, with 6,8 and 5,9\dots\ increasing less likely.
+So if only a single number had to be picked, 7 would be the best choice.
+But for more than one number to pick, it's better to pick numbers that are more spaced out (instead of just 5,6,7,8 for example).
+Picking even numbers specifically is good.
+With four dice, it's possible to roll all even or all add numbers, and not have an odd sum at all, but it's not possible to avoid an even sum.
+So using four distinct even numbers centered around 7 maximizes the probability.
+In fact, if six numbers could be picked, 2,4,6,8,10,12 would guarantee a win.
+
+So the solution is \fcolorbox{red}{white}{\textbf{4,6,8,10}} with a winning probability of \fcolorbox{red}{white}{\textbf{\nicefrac{1,263}{1,296}}}\,.
+
+\end{document}
