@@ -66,67 +66,52 @@
 
 % custom title
 \begin{center}
-{\LARGE Classic Riddler}
+{\LARGE Express Riddler}
 
 \vspace{0.15in}
 
-{\Large 21 January 2022}
+{\Large 18 March 2022}
 \end{center}
 
 
 \section*{Riddle:}
 
-Rumor has it that readers of The Riddler Ellora Sarkar and Daniel Gomez are getting married this weekend.
-Congratulations to you both!
-In keeping with the hexagonal design of your wedding backdrop, I thought you might enjoy the following puzzle.
-(Riddler Nation, this one's for you, too!)
+Earlier today, James's boss was surprised to find out that not only did no one on their team have a birthday this week, but that nobody was celebrating a birthday for the entire \textit{month}.
+With a total of 40 people on the team, the probability of this happening seemed to be miniscule.
 
-The larger regular hexagon in the diagram below has a side length of 1.
+But was that really the case?
+What was the probability that none of the 40 people had birthdays this month?
+(For the purpose of this riddle, assume that a year consists of 12 equally long months.
+It's a sufficiently good approximation!)
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon1.png}
-\end{center}
-\vspace{0.1in}
+\textit{Extra credit}: What is the probability that there is at least one month in the year during which none of the 40 people had birthdays (not necessarily \textit{this} month)?
 
-What is the side length of the smaller regular hexagon?
-
-\textit{Extra credit:} If you look very closely, there are two more, even smaller hexagons on top.
-Can you see them?
-No?
-Maybe this animation will help:
-
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon2.png}
-\end{center}
-\vspace{0.1in}
-
-What are the side lengths of these two even smaller hexagons?
 
 \section*{Solution:}
 
-Although it is not stated, I am assuming that the smaller hexagon is tangent to the larger hexagon, the larger hexagon's vertices lie on the circle, and the smaller hexagon's top two vertices lie on the circle.
-With this more complete description, I have drawn a diagram with some points labeled.
-C is at the center of the circle (and the larger hexagon), and B is at the center of the smaller hexagon.
-In a regular hexagon, the side length is equal to the distance from the center to any vertex.
-Thus, if $x$ is the length of $\overline{\mathrm{AB}}$, then $x$ is also the side length of the smaller hexagon.
+The probability that a single person doesn't have a birthday in March (or any other single month) is $\nicefrac{11}{12}\approx0.833$.
+For 40 people with independent and identically distributed birthdays, the combined probability is $(\nicefrac{11}{12})^{12}\approx0.0308$.
+So the solution to the first question is (approximately) \fcolorbox{red}{white}{\textbf{3.08\%}}\,.
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=4in]{drawing.jpg}
-\end{center}
-\vspace{0.1in}
+The probability $P$ that there is at least one month with no birthdays is
 
-In the diagram, $\overline{\mathrm{AB}}$ is $x$, and $\overline{\mathrm{AC}}$ is 1.
-$\overline{\mathrm{CD}}$ is the altitude of a equilateral triangle of side length 1, which is $\nicefrac{\sqrt{3}}{2}$.
-Similarly, $\overline{\mathrm{BD}}$ is $(\nicefrac{\sqrt{3}}{2})x$.
-The value of $x$ can be solved using the law of cosines with the triangle $\triangle\mathrm{ABC}$:
+\begin{align*}
+P &= \sum_{n=1}^{12}(-1)^{n+1}\binom{12}{n}\left(\frac{n}{12}\right)^{40} \\
+  &= \binom{12}{1}\left(\frac{1}{12}\right)^{40} - \binom{12}{2}\left(\frac{2}{12}\right)^{40} + \binom{12}{3}\left(\frac{3}{12}\right)^{40} - \binom{12}{4}\left(\frac{4}{12}\right)^{40} +\dots
+\end{align*}
 
-\[
-1^2 = \left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)^2 + (x)^2 - 2\left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)(x)\cos(\SI{150}{\degree})
-\]
+As discussed above, the first term in the sum ($(\nicefrac{11}{12})^{40}$) is the probability that there are no birthdays in any particular month.
+This must be added 12 times (12 choose 1) for each month.
+Adding the first two terms actually overcounts situations in which there are two different months with no birthdays.
+So to correct for that, the second term in the sum ($(\nicefrac{10}{12})^{40}$) is the probability that there are no birthdays in any two particular months.
+There are 66 (12 choose 2) pairs of months that must be included in this correction.
+Similarly, this overcorrects (and undercounts) situations in which there are three different months with no birthdays.
+So the third term in the sum ($(\nicefrac{9}{12})^{40}$) is the probability that there are no birthdays in any two particular months.
+And so on, and so on.
+The twelfth term in the sum ($(\nicefrac{0}{12})^{40}$) is the probability that there are no birthdays in all 12 months.
+This is of course 0, since each birthday must occur in some month.
 
-Solving this equation conveniently leads to the exact solution \fcolorbox{red}{white}{\textbf{\nicefrac{1}{13}}}\,.
+Adding all of these terms gives the (approximate) probability of \fcolorbox{red}{white}{\textbf{32.68\%}}\,.
+
 
 \end{document}

@@ -66,67 +66,43 @@
 
 % custom title
 \begin{center}
-{\LARGE Classic Riddler}
+{\LARGE Express Riddler}
 
 \vspace{0.15in}
 
-{\Large 21 January 2022}
+{\Large 8 April 2022}
 \end{center}
 
 
 \section*{Riddle:}
 
-Rumor has it that readers of The Riddler Ellora Sarkar and Daniel Gomez are getting married this weekend.
-Congratulations to you both!
-In keeping with the hexagonal design of your wedding backdrop, I thought you might enjoy the following puzzle.
-(Riddler Nation, this one's for you, too!)
+In tic-tac-toe, you can rate a square's ``real estate value'' by how many possible three-in-a-rows pass through it.
+Thus, the center scores 4, the corners score 3 and the edges score 2.
 
-The larger regular hexagon in the diagram below has a side length of 1.
+That means the center is the ``most valuable'' real estate, while the edges are the ``least valuable''.
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon1.png}
-\end{center}
-\vspace{0.1in}
+Now, let's try three-dimensional tic-tac-toe, played on a 3-by-3-by-3 board.
+Which positions are the most and least valuable, and how much are they worth?
 
-What is the side length of the smaller regular hexagon?
+\textit{Extra credit:} What about four-dimensional tic-tac-toe?
 
-\textit{Extra credit:} If you look very closely, there are two more, even smaller hexagons on top.
-Can you see them?
-No?
-Maybe this animation will help:
-
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon2.png}
-\end{center}
-\vspace{0.1in}
-
-What are the side lengths of these two even smaller hexagons?
 
 \section*{Solution:}
 
-Although it is not stated, I am assuming that the smaller hexagon is tangent to the larger hexagon, the larger hexagon's vertices lie on the circle, and the smaller hexagon's top two vertices lie on the circle.
-With this more complete description, I have drawn a diagram with some points labeled.
-C is at the center of the circle (and the larger hexagon), and B is at the center of the smaller hexagon.
-In a regular hexagon, the side length is equal to the distance from the center to any vertex.
-Thus, if $x$ is the length of $\overline{\mathrm{AB}}$, then $x$ is also the side length of the smaller hexagon.
+There are four types of spaces in three-dimensional tic-tac-toe:
+one center, six face centers, twelve edge centers, and eight vertices, for a total of $3^{3}=27$ spaces.
+The center space has three orthogonal three-in-a-rows, six along a single diagonal, and four along two diagonals, for a total score of 13.
+Each face-center space has three orthogonal three-in-a-rows and two along a single diagonal, for a total score of 5.
+Each edge-center space has three orthogonal three-in-a-rows and one along a single diagonal, for a total score of 4.
+Each vertex space has three orthogonal three-in-a-rows, three along a single diagonal, and one along two diagonals, for a total score of 7.
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=4in]{drawing.jpg}
-\end{center}
-\vspace{0.1in}
+There are five types of spaces in four-dimensional tic-tac-toe:
+one center, eight ``cube'' centers, 24 face centers, 32 edge centers, and 16 vertices, for a total of $3^{4}=81$ spaces.
+The center space has four orthogonal three-in-a-rows, 12 along a single diagonal, 16 along two diagonals, and eight along three diagonals, for a total score of 40.
+Each cube-center space has four orthogonal three-in-a-rows, six along a single diagonal, and four along two diagonals, for a total score of 14.
+Each face-center space has four orthogonal three-in-a-rows and three along a single diagonal for a total score of 7.
+Each edge-center space has four orthogonal three-in-a-rows, three along a single diagonal, and one along two diagonals, for a total score of 8.
+Each vertex space has four orthogonal three-in-a-rows, six along a single diagonal, four along two diagonals, and one along three diagonals, for a total score of 15.
 
-In the diagram, $\overline{\mathrm{AB}}$ is $x$, and $\overline{\mathrm{AC}}$ is 1.
-$\overline{\mathrm{CD}}$ is the altitude of a equilateral triangle of side length 1, which is $\nicefrac{\sqrt{3}}{2}$.
-Similarly, $\overline{\mathrm{BD}}$ is $(\nicefrac{\sqrt{3}}{2})x$.
-The value of $x$ can be solved using the law of cosines with the triangle $\triangle\mathrm{ABC}$:
-
-\[
-1^2 = \left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)^2 + (x)^2 - 2\left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)(x)\cos(\SI{150}{\degree})
-\]
-
-Solving this equation conveniently leads to the exact solution \fcolorbox{red}{white}{\textbf{\nicefrac{1}{13}}}\,.
 
 \end{document}

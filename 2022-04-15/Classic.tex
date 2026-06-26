@@ -70,63 +70,45 @@
 
 \vspace{0.15in}
 
-{\Large 21 January 2022}
+{\Large 15 April 2022}
 \end{center}
 
 
 \section*{Riddle:}
 
-Rumor has it that readers of The Riddler Ellora Sarkar and Daniel Gomez are getting married this weekend.
-Congratulations to you both!
-In keeping with the hexagonal design of your wedding backdrop, I thought you might enjoy the following puzzle.
-(Riddler Nation, this one's for you, too!)
+For this riddle, we'll define $N$ as being a Carmichael number if (1) it is composite and has no square factors, and (2) if one less than every prime factor of $N$ is a factor of $N-1$.
 
-The larger regular hexagon in the diagram below has a side length of 1.
+That's a lot to take in at once, so let's look at an example.
+The smallest Carmichael number is 561. Sure enough, it has no square factors (other than 1, which we're not counting here).
+Meanwhile, its prime factors are 3, 11 and 17.
+If we subtract one from each of those, we get 2, 10 and 16, all of which divide 560 (one less than the original number).
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon1.png}
-\end{center}
-\vspace{0.1in}
+Daniel's puzzle asks you to find a six-digit Carmichael number that can be written as ABCABC in base 10.
+(\textbf{Note:} The digits A, B and C are \textit{not} necessarily distinct.)
+Of course, you could look this up in a matter of seconds or even write some code to figure it out.
+But I assure you, this riddle can be done by hand, so please give it a shot!
 
-What is the side length of the smaller regular hexagon?
-
-\textit{Extra credit:} If you look very closely, there are two more, even smaller hexagons on top.
-Can you see them?
-No?
-Maybe this animation will help:
-
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon2.png}
-\end{center}
-\vspace{0.1in}
-
-What are the side lengths of these two even smaller hexagons?
 
 \section*{Solution:}
 
-Although it is not stated, I am assuming that the smaller hexagon is tangent to the larger hexagon, the larger hexagon's vertices lie on the circle, and the smaller hexagon's top two vertices lie on the circle.
-With this more complete description, I have drawn a diagram with some points labeled.
-C is at the center of the circle (and the larger hexagon), and B is at the center of the smaller hexagon.
-In a regular hexagon, the side length is equal to the distance from the center to any vertex.
-Thus, if $x$ is the length of $\overline{\mathrm{AB}}$, then $x$ is also the side length of the smaller hexagon.
+The number ABCABC can easily be factored into $1001\times\mathrm{ABC}$.
+1001 itself can be further factored into $7\times11\times13$.
+So at least 7, 11, and 13 are factors, and none of 7, 11, or 13 can divide ABC.
+In order to be a Carmichael number, 6, 10, and 12 must divide $\mathrm{ABCABC}-1$.
+Because $\mathrm{ABCABC}-1$ is divisible by 10, $\mathrm{C}-1=0$, so C must be 1.
+Because AB1AB0 is divisible by 3 (because it is divisible by 6), neither AB1AB1 nor AB1 is divisible by 3.
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=4in]{drawing.jpg}
-\end{center}
-\vspace{0.1in}
+There are 60 combinations of A and B where 3 is not a factor of AB1 (101, 121, 131, 151, etc.).
+This is few enough that they can be checked by hand.
+Luckily, the lowest combination, 101 meets the Carmichael criteria.
+101 itself is prime, so the prime factorization of 101,101 is $7\times11\times13\times101$.
+101,100 must therefore be divisible by 6, 10, 12, and 100.
+It trivially is divisible by 10 and 100 $(=2\times2\times5\times5)$, as well as 3.
+Because of the factor of 3 and two factors of 2, it must also be divisible by 6 and 12.
 
-In the diagram, $\overline{\mathrm{AB}}$ is $x$, and $\overline{\mathrm{AC}}$ is 1.
-$\overline{\mathrm{CD}}$ is the altitude of a equilateral triangle of side length 1, which is $\nicefrac{\sqrt{3}}{2}$.
-Similarly, $\overline{\mathrm{BD}}$ is $(\nicefrac{\sqrt{3}}{2})x$.
-The value of $x$ can be solved using the law of cosines with the triangle $\triangle\mathrm{ABC}$:
+So the value of \fcolorbox{red}{white}{\textbf{101,101}} is a solution to the riddle.
+I don't know if there are additional solutions.
 
-\[
-1^2 = \left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)^2 + (x)^2 - 2\left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)(x)\cos(\SI{150}{\degree})
-\]
 
-Solving this equation conveniently leads to the exact solution \fcolorbox{red}{white}{\textbf{\nicefrac{1}{13}}}\,.
 
 \end{document}

@@ -66,67 +66,32 @@
 
 % custom title
 \begin{center}
-{\LARGE Classic Riddler}
+{\LARGE Express Riddler}
 
 \vspace{0.15in}
 
-{\Large 21 January 2022}
+{\Large 1 April 2022}
 \end{center}
 
 
 \section*{Riddle:}
 
-Rumor has it that readers of The Riddler Ellora Sarkar and Daniel Gomez are getting married this weekend.
-Congratulations to you both!
-In keeping with the hexagonal design of your wedding backdrop, I thought you might enjoy the following puzzle.
-(Riddler Nation, this one's for you, too!)
+Multiplying polynomials can be challenging work. But every once in a while, there's an expansion that is particularly elegant.
+One of my favorites is the following expression:
 
-The larger regular hexagon in the diagram below has a side length of 1.
+\[
+(x-a)(x-b)(x-c)\dots(x-z)
+\]
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon1.png}
-\end{center}
-\vspace{0.1in}
+The ellipsis indicates that every letter is subtracted at some point.
+If you multiply all these binomials together, can you write the expansion in simplest form?
 
-What is the side length of the smaller regular hexagon?
-
-\textit{Extra credit:} If you look very closely, there are two more, even smaller hexagons on top.
-Can you see them?
-No?
-Maybe this animation will help:
-
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon2.png}
-\end{center}
-\vspace{0.1in}
-
-What are the side lengths of these two even smaller hexagons?
 
 \section*{Solution:}
 
-Although it is not stated, I am assuming that the smaller hexagon is tangent to the larger hexagon, the larger hexagon's vertices lie on the circle, and the smaller hexagon's top two vertices lie on the circle.
-With this more complete description, I have drawn a diagram with some points labeled.
-C is at the center of the circle (and the larger hexagon), and B is at the center of the smaller hexagon.
-In a regular hexagon, the side length is equal to the distance from the center to any vertex.
-Thus, if $x$ is the length of $\overline{\mathrm{AB}}$, then $x$ is also the side length of the smaller hexagon.
+The 24th term in the expression is $(x-x)$, which of course is 0.
+Because all the terms are being multiplied, the solution is simply \fcolorbox{red}{white}{\textbf{0}}\,.
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=4in]{drawing.jpg}
-\end{center}
-\vspace{0.1in}
 
-In the diagram, $\overline{\mathrm{AB}}$ is $x$, and $\overline{\mathrm{AC}}$ is 1.
-$\overline{\mathrm{CD}}$ is the altitude of a equilateral triangle of side length 1, which is $\nicefrac{\sqrt{3}}{2}$.
-Similarly, $\overline{\mathrm{BD}}$ is $(\nicefrac{\sqrt{3}}{2})x$.
-The value of $x$ can be solved using the law of cosines with the triangle $\triangle\mathrm{ABC}$:
-
-\[
-1^2 = \left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)^2 + (x)^2 - 2\left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)(x)\cos(\SI{150}{\degree})
-\]
-
-Solving this equation conveniently leads to the exact solution \fcolorbox{red}{white}{\textbf{\nicefrac{1}{13}}}\,.
 
 \end{document}

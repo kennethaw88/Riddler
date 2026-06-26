@@ -70,63 +70,36 @@
 
 \vspace{0.15in}
 
-{\Large 21 January 2022}
+{\Large 22 April 2022}
 \end{center}
 
 
 \section*{Riddle:}
 
-Rumor has it that readers of The Riddler Ellora Sarkar and Daniel Gomez are getting married this weekend.
-Congratulations to you both!
-In keeping with the hexagonal design of your wedding backdrop, I thought you might enjoy the following puzzle.
-(Riddler Nation, this one's for you, too!)
+In the hit online game World of Riddlecraft, players can level up their armor. Armor levels range from 0 to 5.
+Now, attempting to level up your armor requires a cerulean gem, which is destroyed in the process.
+If the attempt is successful, your armor's level goes up by one; if not, it goes down by one.
 
-The larger regular hexagon in the diagram below has a side length of 1.
+Fortunately, it's impossible to fail when attempting to upgrade your armor from level 0 to level 1.
+However, the likelihood of success goes down the higher level the armor is before the upgrade.
+More specifically:
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon1.png}
-\end{center}
-\vspace{0.1in}
+\begin{itemize}
+\item Upgrading from level 0 to level 1 has a 100 percent chance of success.
+\item Upgrading from level 1 to level 2 has an 80 percent chance of success.
+\item Upgrading from level 2 to level 3 has a 60 percent chance of success.
+\item Upgrading from level 3 to level 4 has a 40 percent chance of success.
+\item Upgrading from level 4 to level 5 has a 20 percent chance of success.
+\end{itemize}
 
-What is the side length of the smaller regular hexagon?
+On average, how many cerulean gems can you expect to use up in order to upgrade your armor from level 0 to level 5?
 
-\textit{Extra credit:} If you look very closely, there are two more, even smaller hexagons on top.
-Can you see them?
-No?
-Maybe this animation will help:
-
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon2.png}
-\end{center}
-\vspace{0.1in}
-
-What are the side lengths of these two even smaller hexagons?
 
 \section*{Solution:}
 
-Although it is not stated, I am assuming that the smaller hexagon is tangent to the larger hexagon, the larger hexagon's vertices lie on the circle, and the smaller hexagon's top two vertices lie on the circle.
-With this more complete description, I have drawn a diagram with some points labeled.
-C is at the center of the circle (and the larger hexagon), and B is at the center of the smaller hexagon.
-In a regular hexagon, the side length is equal to the distance from the center to any vertex.
-Thus, if $x$ is the length of $\overline{\mathrm{AB}}$, then $x$ is also the side length of the smaller hexagon.
+I wrote the script \texttt{gems.py} to simulate this game.
+With $10^{5}$ iterations, the average number of gems used comes out to approximately \fcolorbox{red}{white}{\textbf{42.8}}\,.
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=4in]{drawing.jpg}
-\end{center}
-\vspace{0.1in}
 
-In the diagram, $\overline{\mathrm{AB}}$ is $x$, and $\overline{\mathrm{AC}}$ is 1.
-$\overline{\mathrm{CD}}$ is the altitude of a equilateral triangle of side length 1, which is $\nicefrac{\sqrt{3}}{2}$.
-Similarly, $\overline{\mathrm{BD}}$ is $(\nicefrac{\sqrt{3}}{2})x$.
-The value of $x$ can be solved using the law of cosines with the triangle $\triangle\mathrm{ABC}$:
-
-\[
-1^2 = \left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)^2 + (x)^2 - 2\left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)(x)\cos(\SI{150}{\degree})
-\]
-
-Solving this equation conveniently leads to the exact solution \fcolorbox{red}{white}{\textbf{\nicefrac{1}{13}}}\,.
 
 \end{document}

@@ -70,63 +70,31 @@
 
 \vspace{0.15in}
 
-{\Large 21 January 2022}
+{\Large 25 March 2022}
 \end{center}
 
 
 \section*{Riddle:}
 
-Rumor has it that readers of The Riddler Ellora Sarkar and Daniel Gomez are getting married this weekend.
-Congratulations to you both!
-In keeping with the hexagonal design of your wedding backdrop, I thought you might enjoy the following puzzle.
-(Riddler Nation, this one's for you, too!)
+The astronomers of Planet Xiddler are back at it.
+They have developed a new technology for measuring the radius of a planet by analyzing its cross sections.
 
-The larger regular hexagon in the diagram below has a side length of 1.
+And so, they launch a satellite to study a newly discovered, spherical planet.
+The satellite sends back data about three parallel, \textit{equally spaced} circular cross sections which have radii $A$, $B$ and $C$ megameters, with $0<A<B<C$.
+Based on these values, the scientists calculate the radius of the planet is $R$ megameters.
+To their astonishment, they find that $A$, $B$, $C$ and $R$ are all whole numbers!
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon1.png}
-\end{center}
-\vspace{0.1in}
+What is the smallest possible radius of the newly discovered planet?
 
-What is the side length of the smaller regular hexagon?
-
-\textit{Extra credit:} If you look very closely, there are two more, even smaller hexagons on top.
-Can you see them?
-No?
-Maybe this animation will help:
-
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon2.png}
-\end{center}
-\vspace{0.1in}
-
-What are the side lengths of these two even smaller hexagons?
 
 \section*{Solution:}
 
-Although it is not stated, I am assuming that the smaller hexagon is tangent to the larger hexagon, the larger hexagon's vertices lie on the circle, and the smaller hexagon's top two vertices lie on the circle.
-With this more complete description, I have drawn a diagram with some points labeled.
-C is at the center of the circle (and the larger hexagon), and B is at the center of the smaller hexagon.
-In a regular hexagon, the side length is equal to the distance from the center to any vertex.
-Thus, if $x$ is the length of $\overline{\mathrm{AB}}$, then $x$ is also the side length of the smaller hexagon.
+I calculate that the smallest possible radius is 65 megameters.
+This occurs in the Pythagorean triples (60,25,65); (56,33,65); and (52,39,65).
+The side lengths of 60, 56, and 52 are equally spaced, so the cross sections have radii 
+25, 33, and 39.
+Interestingly, I also found the Pythagorean triple (63,16,65), although it doesn't fit in with the pattern.
+So my solution is \fcolorbox{red}{white}{\textbf{65~megameters}}\,.
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=4in]{drawing.jpg}
-\end{center}
-\vspace{0.1in}
-
-In the diagram, $\overline{\mathrm{AB}}$ is $x$, and $\overline{\mathrm{AC}}$ is 1.
-$\overline{\mathrm{CD}}$ is the altitude of a equilateral triangle of side length 1, which is $\nicefrac{\sqrt{3}}{2}$.
-Similarly, $\overline{\mathrm{BD}}$ is $(\nicefrac{\sqrt{3}}{2})x$.
-The value of $x$ can be solved using the law of cosines with the triangle $\triangle\mathrm{ABC}$:
-
-\[
-1^2 = \left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)^2 + (x)^2 - 2\left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)(x)\cos(\SI{150}{\degree})
-\]
-
-Solving this equation conveniently leads to the exact solution \fcolorbox{red}{white}{\textbf{\nicefrac{1}{13}}}\,.
 
 \end{document}

@@ -70,63 +70,42 @@
 
 \vspace{0.15in}
 
-{\Large 21 January 2022}
+{\Large 18 March 2022}
 \end{center}
 
 
 \section*{Riddle:}
 
-Rumor has it that readers of The Riddler Ellora Sarkar and Daniel Gomez are getting married this weekend.
-Congratulations to you both!
-In keeping with the hexagonal design of your wedding backdrop, I thought you might enjoy the following puzzle.
-(Riddler Nation, this one's for you, too!)
+A postal worker and his customer joke about the various ways the customer could mathematically encode her post office box number.
 
-The larger regular hexagon in the diagram below has a side length of 1.
+The customer realizes that every integer greater than 1 can be encoded via at least one Fibonacci-like sequence using an ordered triple ($m$, $n$, $q$).
+The encoded number is the $q^{\mathrm{th}}$ member of the sequence after the first two positive integers $m$ and $n$, where each term is the sum of the previous two terms.
+For example, 7 has the encodings (3, 4, 1) and (1, 3, 2).
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon1.png}
-\end{center}
-\vspace{0.1in}
+In an attempt to stump the postal worker, the customer prefers encodings with a maximal value of $q$.
+What encoding should she use for the number 81?
 
-What is the side length of the smaller regular hexagon?
+\textit{Extra credit}: What encoding should she use for the number 179?
 
-\textit{Extra credit:} If you look very closely, there are two more, even smaller hexagons on top.
-Can you see them?
-No?
-Maybe this animation will help:
-
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon2.png}
-\end{center}
-\vspace{0.1in}
-
-What are the side lengths of these two even smaller hexagons?
 
 \section*{Solution:}
 
-Although it is not stated, I am assuming that the smaller hexagon is tangent to the larger hexagon, the larger hexagon's vertices lie on the circle, and the smaller hexagon's top two vertices lie on the circle.
-With this more complete description, I have drawn a diagram with some points labeled.
-C is at the center of the circle (and the larger hexagon), and B is at the center of the smaller hexagon.
-In a regular hexagon, the side length is equal to the distance from the center to any vertex.
-Thus, if $x$ is the length of $\overline{\mathrm{AB}}$, then $x$ is also the side length of the smaller hexagon.
+For any Fibonacci-like sequence, the ratio of consecutive numbers will always approach the golden ratio, $\phi\approx1.618$.
+Therefore, for the number 81 to be as far as possible along in the sequence, its ratio to the previous number should be close to this value.
+Specifically, $80/1.618\approx50.1$, so the best candidates for the next-to-last number are 50 and 51.
+Working backwards from 50, the reversed sequence would be 81,50,31,19,12,7,5,2,3.
+This is as far as it can go with positive integers to start.
+This has a $q$ of 7.
+For 51, the reversed sequence would be 81,51,30,21,9,12, which has a $q$ of 4.
+So the solution to the first question is \fcolorbox{red}{white}{\textbf{(3,2,7)}}\,.
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=4in]{drawing.jpg}
-\end{center}
-\vspace{0.1in}
+Using the same reasoning for 179, $179/1.618\approx110.6$.
+With 110, the reversed sequence would be 179,110,69,41,28,13,15, which has a $q$ of 5.
+With 111, the reversed sequence would be 179,111,68,43,25,18,7,11, which has a $q$ of 6.
+So the solution to the second question is \fcolorbox{red}{white}{\textbf{(11,7,6)}}\,.
 
-In the diagram, $\overline{\mathrm{AB}}$ is $x$, and $\overline{\mathrm{AC}}$ is 1.
-$\overline{\mathrm{CD}}$ is the altitude of a equilateral triangle of side length 1, which is $\nicefrac{\sqrt{3}}{2}$.
-Similarly, $\overline{\mathrm{BD}}$ is $(\nicefrac{\sqrt{3}}{2})x$.
-The value of $x$ can be solved using the law of cosines with the triangle $\triangle\mathrm{ABC}$:
+I wrote a table in \texttt{postal\_sums.xlsx} that calculates the maximum $q$ value for combinations of $m$ and $n$ up to 20 and 20.
+This confirms the manual solutions above.
 
-\[
-1^2 = \left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)^2 + (x)^2 - 2\left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)(x)\cos(\SI{150}{\degree})
-\]
-
-Solving this equation conveniently leads to the exact solution \fcolorbox{red}{white}{\textbf{\nicefrac{1}{13}}}\,.
 
 \end{document}

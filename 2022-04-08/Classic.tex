@@ -70,63 +70,36 @@
 
 \vspace{0.15in}
 
-{\Large 21 January 2022}
+{\Large 8 April 2022}
 \end{center}
 
 
 \section*{Riddle:}
 
-Rumor has it that readers of The Riddler Ellora Sarkar and Daniel Gomez are getting married this weekend.
-Congratulations to you both!
-In keeping with the hexagonal design of your wedding backdrop, I thought you might enjoy the following puzzle.
-(Riddler Nation, this one's for you, too!)
+In the three-player Game of Mediocrity, you win by not winning too much.
 
-The larger regular hexagon in the diagram below has a side length of 1.
+Each round, every player secretly picks a number from 0 to 10. The numbers are simultaneously revealed, and the median number wins that number of points.
+(If two or more players pick the same number, then the winner is randomly selected from among them.)
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon1.png}
-\end{center}
-\vspace{0.1in}
+After five rounds, the winner is whoever has the median number of points.
+(Again, if two or more players have the same score, then the winner is randomly selected from among them.)
 
-What is the side length of the smaller regular hexagon?
+With one round remaining, players A, B and C have 6, 8 and 10 points, respectively.
+Player A sighs and writes down ``3'', but fails to do so in secret.
+Players B and C both see player A's number (and both see that the other saw A's number), and will take care to write their own numbers in secret.
+Assuming everyone plays to win, what numbers should B and C choose?
 
-\textit{Extra credit:} If you look very closely, there are two more, even smaller hexagons on top.
-Can you see them?
-No?
-Maybe this animation will help:
-
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon2.png}
-\end{center}
-\vspace{0.1in}
-
-What are the side lengths of these two even smaller hexagons?
 
 \section*{Solution:}
 
-Although it is not stated, I am assuming that the smaller hexagon is tangent to the larger hexagon, the larger hexagon's vertices lie on the circle, and the smaller hexagon's top two vertices lie on the circle.
-With this more complete description, I have drawn a diagram with some points labeled.
-C is at the center of the circle (and the larger hexagon), and B is at the center of the smaller hexagon.
-In a regular hexagon, the side length is equal to the distance from the center to any vertex.
-Thus, if $x$ is the length of $\overline{\mathrm{AB}}$, then $x$ is also the side length of the smaller hexagon.
+By my reasoning, both B and C would choose 10.
+With picks of 3, 10, and 10, either B or C would get the median points for that round with 50\%\ probability.
+So the final scores would be either 6, 18, and 10; or 6, 8, and 20 with 50\%\ probability.
+Thus either B or C would win the game with 50\%\ probability.
+I believe this is the best scenario for both B and C, because if one of them chooses 10, the other player's best move is to also choose 10, so there is no improvement that either play can make from this scenario.
+So it seems to me to be a Nash equilibrium.
+So B and C should both choose \fcolorbox{red}{white}{\textbf{10}}\,.
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=4in]{drawing.jpg}
-\end{center}
-\vspace{0.1in}
 
-In the diagram, $\overline{\mathrm{AB}}$ is $x$, and $\overline{\mathrm{AC}}$ is 1.
-$\overline{\mathrm{CD}}$ is the altitude of a equilateral triangle of side length 1, which is $\nicefrac{\sqrt{3}}{2}$.
-Similarly, $\overline{\mathrm{BD}}$ is $(\nicefrac{\sqrt{3}}{2})x$.
-The value of $x$ can be solved using the law of cosines with the triangle $\triangle\mathrm{ABC}$:
-
-\[
-1^2 = \left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)^2 + (x)^2 - 2\left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)(x)\cos(\SI{150}{\degree})
-\]
-
-Solving this equation conveniently leads to the exact solution \fcolorbox{red}{white}{\textbf{\nicefrac{1}{13}}}\,.
 
 \end{document}

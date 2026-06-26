@@ -66,67 +66,44 @@
 
 % custom title
 \begin{center}
-{\LARGE Classic Riddler}
+{\LARGE Express Riddler}
 
 \vspace{0.15in}
 
-{\Large 21 January 2022}
+{\Large 22 April 2022}
 \end{center}
 
 
 \section*{Riddle:}
 
-Rumor has it that readers of The Riddler Ellora Sarkar and Daniel Gomez are getting married this weekend.
-Congratulations to you both!
-In keeping with the hexagonal design of your wedding backdrop, I thought you might enjoy the following puzzle.
-(Riddler Nation, this one's for you, too!)
+The Flash challenges Usain Bolt to a 100-meter race.
+Bolt runs at an average speed of 10 meters per second.
+To make it interesting, the Flash decides he will pick a random speed between 5 meters per second and 16 meters per second, with each speed in between being equally likely.
+(Note that fractional and decimal speeds are included here, rather than just whole numbers.)
 
-The larger regular hexagon in the diagram below has a side length of 1.
+On average, how often would you expect the Flash to win?
+What would be his average margin of victory?
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon1.png}
-\end{center}
-\vspace{0.1in}
-
-What is the side length of the smaller regular hexagon?
-
-\textit{Extra credit:} If you look very closely, there are two more, even smaller hexagons on top.
-Can you see them?
-No?
-Maybe this animation will help:
-
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon2.png}
-\end{center}
-\vspace{0.1in}
-
-What are the side lengths of these two even smaller hexagons?
 
 \section*{Solution:}
 
-Although it is not stated, I am assuming that the smaller hexagon is tangent to the larger hexagon, the larger hexagon's vertices lie on the circle, and the smaller hexagon's top two vertices lie on the circle.
-With this more complete description, I have drawn a diagram with some points labeled.
-C is at the center of the circle (and the larger hexagon), and B is at the center of the smaller hexagon.
-In a regular hexagon, the side length is equal to the distance from the center to any vertex.
-Thus, if $x$ is the length of $\overline{\mathrm{AB}}$, then $x$ is also the side length of the smaller hexagon.
-
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=4in]{drawing.jpg}
-\end{center}
-\vspace{0.1in}
-
-In the diagram, $\overline{\mathrm{AB}}$ is $x$, and $\overline{\mathrm{AC}}$ is 1.
-$\overline{\mathrm{CD}}$ is the altitude of a equilateral triangle of side length 1, which is $\nicefrac{\sqrt{3}}{2}$.
-Similarly, $\overline{\mathrm{BD}}$ is $(\nicefrac{\sqrt{3}}{2})x$.
-The value of $x$ can be solved using the law of cosines with the triangle $\triangle\mathrm{ABC}$:
+The Flash will win as long as his speed is greater than 10~m/s.
+As long as his speed is distributed evenly among real numbers, his speed will never equal exactly 10,and they will never tie.
+Then the probability $P$ of his speed being greater than 10 is given by
 
 \[
-1^2 = \left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)^2 + (x)^2 - 2\left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)(x)\cos(\SI{150}{\degree})
+P=\frac{ \int_{10}^{16}\,dv }{ \int_{5}^{16}\,dv }
 \]
 
-Solving this equation conveniently leads to the exact solution \fcolorbox{red}{white}{\textbf{\nicefrac{1}{13}}}\,.
+which has the trivial solution of $\nicefrac{6}{11}\approx54.5\%$.
+The average margin of victory $T$ is given by
+
+\[
+T=\frac{ \int_{10}^{16}\frac{100}{10}-\frac{100}{v}\,dv }{ \int_{10}^{16}\,dv }
+\]
+
+which has the solution $10-\nicefrac{50}{3}\ln(\nicefrac{8}{5})\approx2.17$.
+So the Flash will win (approximately) \fcolorbox{red}{white}{\textbf{54.5\%}} of the time, with an average margin of victory of (approximately) \fcolorbox{red}{white}{\textbf{2.17~s}}\,.
+
 
 \end{document}

@@ -70,63 +70,27 @@
 
 \vspace{0.15in}
 
-{\Large 21 January 2022}
+{\Large 1 April 2022}
 \end{center}
 
 
 \section*{Riddle:}
 
-Rumor has it that readers of The Riddler Ellora Sarkar and Daniel Gomez are getting married this weekend.
-Congratulations to you both!
-In keeping with the hexagonal design of your wedding backdrop, I thought you might enjoy the following puzzle.
-(Riddler Nation, this one's for you, too!)
+To play the game of ``Zactoll'' (named for yours truly, of course), you start with the number 1 and then try to reach a target number through a series of steps.
+For each step, you can \textit{always} choose to double the number you currently have.
+However, if the number happens to be one more than an odd multiple of 3, you can choose to ``reduce''---that is, subtract 1 and then divide by 3.
 
-The larger regular hexagon in the diagram below has a side length of 1.
+For example, to reach a target number of 5, you could double $(1\rightarrow2)$, double $(2\rightarrow4)$, double $(4\rightarrow8)$, double $(8\rightarrow16)$ and reduce $(16\rightarrow5)$.
+And to get a target number of 6, you could double $(1\rightarrow2)$, double $(2\rightarrow4)$, double $(4\rightarrow8)$, double $(8\rightarrow16)$, reduce $(16\rightarrow5)$, double $(5\rightarrow10)$, reduce $(10\rightarrow3)$ and double $(3\rightarrow6)$.
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon1.png}
-\end{center}
-\vspace{0.1in}
+What is the \textit{smallest} target whole number you cannot reach in the game of Zactoll?
 
-What is the side length of the smaller regular hexagon?
-
-\textit{Extra credit:} If you look very closely, there are two more, even smaller hexagons on top.
-Can you see them?
-No?
-Maybe this animation will help:
-
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=2.5in]{hexagon2.png}
-\end{center}
-\vspace{0.1in}
-
-What are the side lengths of these two even smaller hexagons?
 
 \section*{Solution:}
 
-Although it is not stated, I am assuming that the smaller hexagon is tangent to the larger hexagon, the larger hexagon's vertices lie on the circle, and the smaller hexagon's top two vertices lie on the circle.
-With this more complete description, I have drawn a diagram with some points labeled.
-C is at the center of the circle (and the larger hexagon), and B is at the center of the smaller hexagon.
-In a regular hexagon, the side length is equal to the distance from the center to any vertex.
-Thus, if $x$ is the length of $\overline{\mathrm{AB}}$, then $x$ is also the side length of the smaller hexagon.
+This is an unsolved problem, because it is the inverse of the Collatz Conjecture.
+So the question has \fcolorbox{red}{white}{\textbf{no known solution}}\,.
 
-\vspace{0.1in}
-\begin{center}
-\includegraphics[width=4in]{drawing.jpg}
-\end{center}
-\vspace{0.1in}
 
-In the diagram, $\overline{\mathrm{AB}}$ is $x$, and $\overline{\mathrm{AC}}$ is 1.
-$\overline{\mathrm{CD}}$ is the altitude of a equilateral triangle of side length 1, which is $\nicefrac{\sqrt{3}}{2}$.
-Similarly, $\overline{\mathrm{BD}}$ is $(\nicefrac{\sqrt{3}}{2})x$.
-The value of $x$ can be solved using the law of cosines with the triangle $\triangle\mathrm{ABC}$:
-
-\[
-1^2 = \left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)^2 + (x)^2 - 2\left(\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}x\right)(x)\cos(\SI{150}{\degree})
-\]
-
-Solving this equation conveniently leads to the exact solution \fcolorbox{red}{white}{\textbf{\nicefrac{1}{13}}}\,.
 
 \end{document}
